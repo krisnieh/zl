@@ -32,11 +32,6 @@ class WechatController extends Controller
                 },
                 {
                     "type":"view",
-                    "name":"订单",
-                    "url":"https://zl.viirose.com/orders"
-                },
-                {
-                    "type":"view",
                     "name":"积分",
                     "url":"https://zl.viirose.com/score"
                 },
