@@ -15,16 +15,17 @@ class Pub
 
     function __construct()
     {
-        $use = config('wechat');
-        if(config('wechat')['pub']['app_id'] == false) throw new Exception('微信配置缺失:id');
-        if(config('wechat')['pub']['app_secret'] == false)  throw new Exception('微信配置缺失:secret');
-        if(config('wechat')['pub']['token'] == false) throw new Exception('微信配置缺失:token');
-        if(config('wechat')['pub']['aes_key'] == false) throw new Exception('微信配置缺失:AES Key');
+        $pub = config('wechat.pub');
 
-        $this->app_id = config('wechat')['pub']['app_id'];
-        $this->app_secret = config('wechat')['pub']['app_secret'];
-        $this->token = config('wechat')['pub']['token'];
-        $this->aes_key = config('wechat')['pub']['aes_key'];
+        if($pub['app_id'])  throw new Exception('微信配置缺失:app_id');
+        if($pub['app_secret'])  throw new Exception('微信配置缺失:app_secret');
+        if($pub['token'])  throw new Exception('微信配置缺失:token');
+        if($pub['aes_key'])  throw new Exception('微信配置缺失:aes_key');
+
+        $this->app_id = $pub['app_id'];
+        $this->app_secret = $pub['app_secret'];
+        $this->token = $pub['token'];
+        $this->aes_key = $pub['aes_key'];
     }
 
     /**

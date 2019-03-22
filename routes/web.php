@@ -43,5 +43,10 @@ Route::get('/t', 'WechatController@test');
 
 Route::get('/test', function() {
    $a =  config('wechat.pub');
-   print_r($a);
+   // print_r($a);
+   if($a['app_id']) {
+    echo "yes ";
+   }else{
+    echo "fuck";
+   }
 });
