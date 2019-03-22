@@ -11,7 +11,9 @@
 |
 */
 
-
+Route::get('/', function() {
+    echo "众乐速配"; 
+});
 
 // 登录
 Route::get('/login', 'UserController@login');
