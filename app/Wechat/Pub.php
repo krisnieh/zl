@@ -112,6 +112,7 @@ class Pub
 
         $dev_signature = $this->makeSignature($timestamp,$nonce);
         if($dev_signature == $signature) return $echostr;
+        return "Error Input";
     }
 
 
