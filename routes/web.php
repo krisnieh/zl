@@ -12,8 +12,12 @@
 */
 
 Route::get('/', function() {
-    echo "- 众乐速配 -"; 
+    $error = 'Always throw this error';  
+throw new Exception($error); 
 });
+
+
+Route::get('/wechat/ca', 'WechatController@ca');
 
 // 登录
 Route::get('/login', 'UserController@login');
