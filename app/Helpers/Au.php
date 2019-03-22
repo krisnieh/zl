@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Helpers;
+
+use App\User;
+
+/**
+ * 权限 
+ *
+ */
+class Au
+{
+    private $auth;
+
+    function __construct()
+    {
+        $this->auth = json_decode(User::find(session('id'))->auth);
+    }
+
+    // 目标权限
+    private function targetAuth($id)
+    {
+        $target = User::find($id);
+
+        if(!$target) return false;
+
+        return json_decode($target->auth);
+    }
+
+    // root 用户
+    public function root($id=0)
+    {
+        $use = $id === 0 ? $this->auth : $this->targetAuth($id);
+
+        if(!$use) return false;
+
+        return array_key_exists('root', $use) && $use->root ? true : false;
+    }
+
+    // admin 管理员
+    public function admin($id=0)
+    {
+        if($this->root($id)) return true;
+
+        $use = $id === 0 ? $this->auth : $this->targetAuth($id);
+
+        if(!$use) return false;
+
+        return array_key_exists('admin', $use) && $use->admin ? true : false;
+    }
+
+    // manager 操作员
+    public function manager($id=0)
+    {
+        if($this->admin($id)) return true;
+
+        $use = $id === 0 ? $this->auth : $this->targetAuth($id);
+
+        if(!$use) return false;
+
+        return array_key_exists('manager', $use) && $use->manager ? true : false;
+    }
+
+    // own 自己
+    public function own($id)
+    {
+        return session('id') == $id;
+    }
+
+    // creator 创造者
+    public function creator($id)
+    {
+        return User::find(session('id'))->parent_id == $id;
+    }
+
+    // 有管理权
+    public function control($id)
+    {
+        if($this->own($id)) return false;
+
+        if($this->root()) return true;
+        if($this->admin() && !$this->admin($id)) return true;
+        if($this->manager() && !$this->manager($id)) return true;
+
+        return false;
+    }
+
+    // 锁定
+    public function locked($id=0)
+    {
+        $use = $id === 0 ? $this->auth : $this->targetAuth($id);
+
+        if(!$use) return false;
+
+        return array_key_exists('locked', $use) && $use->locked ? true : false;
+    }
+
+}

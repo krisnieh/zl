@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+}
+.thin {
+    padding: 0px;
+    margin: 0px;
+} 
+
+.grey {
+    color: #999;
+}
+
+.page-title {
+    color: #999;
+    padding-left: 5px;
+}
+
+.center {
+    align-self: center;
+}
+
+.icon {
+    height: 40px;
+}
+
+.logo {
+    width: 40px;
+}
+
+.head {
+    height: 75px;
+}
+
+.footer {
+    color: #999;
+    text-align: center;
+    padding: 15px;
+}
+
+.icon-list {
+    margin: 0px;
+    padding: 0px;
+    width: 30px;
+    height: 30px;
+}
+
+.ico-space {
+    padding-right: 5px;
+}
+
+.card-space {
+    margin-top: 2px;
+}
+
+.card-body-space {
+    margin-top: -3px;
+    margin-bottom: -3px;
+}
+
+.user-title {
+    padding-left: 10px;
+    color: #333;
+}
+
+.app {
+    padding: 10px;
+}
+
+.app-icon {
+  width: 65px;
+  height: 65px;
+  border: 0.5px solid #efefef;
+}
+
+.app > h6 {
+    padding-top: 8px; 
+}
+
+.alert {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
