@@ -31,8 +31,8 @@ class WechatController extends Controller
             "button":[
                 {
                     "type":"view",
-                    "name":"应用",
-                    "url":"https://zl.viirose.com/apps"
+                    "name":"推荐码",
+                    "url":"https://zl.viirose.com/ad"
                 },
                 {
                     "type":"view",
@@ -41,9 +41,9 @@ class WechatController extends Controller
                 },
                 {
                     "type":"view",
-                    "name":"推荐码",
-                    "url":"https://zl.viirose.com/ad"
-                }
+                    "name":"应用",
+                    "url":"https://zl.viirose.com/apps"
+                } 
             ]
         }';
 
