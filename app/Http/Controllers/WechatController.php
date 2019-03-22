@@ -28,22 +28,22 @@ class WechatController extends Controller
                 {
                     "type":"view",
                     "name":"应用",
-                    "https://zl.viirose.com/apps"
+                    "url":"https://zl.viirose.com/apps"
                 },
                 {
                     "type":"view",
                     "name":"订单",
-                    "https://zl.viirose.com/orders"
+                    "url":"https://zl.viirose.com/orders"
                 },
                 {
                     "type":"view",
                     "name":"积分",
-                    "https://zl.viirose.com/score"
+                    "url":"https://zl.viirose.com/score"
                 },
                 {
                     "type":"view",
                     "name":"推荐码",
-                    "https://zl.viirose.com/ad"
+                    "url":"https://zl.viirose.com/ad"
                 }
             ]
         }';
