@@ -73,7 +73,8 @@ class Pub
     {
 
         if(array_key_exists("errcode", $array)) {
-            $errmsg = array_key_exists("errmsg", $array) ? $array['errmsg'] : null;
+            $errmsg = '';
+            if(array_key_exists('errmsg', $array)) $errmsg = $array['errmsg'];
             throw new Exception('微信返回错误:'.$array['errcode'].$errmsg);
         }
 
