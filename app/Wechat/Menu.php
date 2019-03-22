@@ -33,7 +33,7 @@ class Menu
      */
     public function delete()
     {
-        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->pub->token();
-        return $this->pub->way($url, $json);
+        $url = 'https://api.weixin.qq.com/cgi-bin/menu/delete?access_token='.$this->pub->token();
+        return $this->pub->way($url);
     }
 }

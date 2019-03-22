@@ -19,6 +19,10 @@ class WechatController extends Controller
         echo($wechat->ca());
     }
 
+    /**
+     * 新建菜单
+     *
+     */
     public function menuCreate()
     {
         $menu = new Menu;
@@ -46,5 +50,28 @@ class WechatController extends Controller
         $menu->create($json);
     }
 
+    /**
+     * 删除菜单
+     *
+     */
+    public function menuDelete()
+    {
+        $menu = new Menu;
+        $menu->delete();
+    }
     // end
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

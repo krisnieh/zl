@@ -19,6 +19,7 @@ throw new Exception($error);
 
 Route::get('/wechat/ca', 'WechatController@ca');
 Route::get('/wechat/menu/create', 'WechatController@menuCreate');
+Route::get('/wechat/menu/delete', 'WechatController@menuDelete');
 
 // 登录
 Route::get('/login', 'UserController@login');
