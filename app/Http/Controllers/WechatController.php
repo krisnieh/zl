@@ -19,7 +19,7 @@ class WechatController extends Controller
         echo($wechat->ca());
     }
 
-    public function setMenu()
+    public function menuCreate()
     {
         $menu = new Menu;
 
