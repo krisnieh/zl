@@ -105,13 +105,13 @@ class Pub
      *
      */
     public function ca($signature, $timestamp, $nonce, $echostr){
-        $signature = Input::get('signature');
-        $timestamp = Input::get('timestamp');
-        $nonce     = Input::get('nonce');
-        $echostr   = Input::get('echostr');
+        $signature = $_GET['signature'];
+        $timestamp = $_GET['timestamp'];
+        $nonce     = $_GET['nonce'];
+        $echostr   = $_GET['echostr'];
 
         $dev_signature = $this->makeSignature($timestamp,$nonce);
-        if($dev_signature == $signature) return $this->token;
+        if($dev_signature == $signature) return $this->echostr;
     }
 
 
