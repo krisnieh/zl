@@ -26,6 +26,6 @@ class Menu
     public function create()
     {
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->pub->token();
-        if($json) return $pub->way($url, $this->json);
+        return $pub->way($url, $this->json);
     }
 }
