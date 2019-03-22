@@ -59,7 +59,7 @@ class Pub
 
         $output = curl_exec($ch);
         curl_close($ch);
-        $output = json_decode($output);
+        $output = json_decode($output, true);
 
         return $this->errorCheck($output);
     }
@@ -73,8 +73,7 @@ class Pub
     {
 
         if(array_key_exists("errcode", $array)) {
-            $errmsg = '';
-            if(array_key_exists('errmsg', $array)) $errmsg = $array['errmsg'];
+            $errmsg = array_key_exists('errmsg', $array) ? $array['errmsg'] : '';
             throw new Exception('微信返回错误:'.$array['errcode'].$errmsg);
         }
 
