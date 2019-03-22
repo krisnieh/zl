@@ -18,5 +18,12 @@ class WechatController extends Controller
         return $wechat->ca();
     }
 
+    public function test()
+    {
+        $wechat = new Pub;
+
+        echo $wechat->token();
+    }
+
     // end
 }

@@ -38,7 +38,7 @@ Route::group(['middleware' => ['login', 'state']], function () {
 
 });
 
-
+Route::get('/t', 'WechatController@test');
 
 
 Route::get('/test', function() {
