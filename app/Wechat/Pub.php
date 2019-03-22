@@ -104,15 +104,14 @@ class Pub
      * 微信服务器认证
      *
      */
-    public function ca(){
-        $signature = Input::get('signature');
-        $timestamp = Input::get('timestamp');
-        $nonce     = Input::get('nonce');
-        $echostr   = Input::get('echostr');
+    public function ca($signature, $timestamp, $nonce, $echostr){
+        // $signature = Input::get('signature');
+        // $timestamp = Input::get('timestamp');
+        // $nonce     = Input::get('nonce');
+        // $echostr   = Input::get('echostr');
 
         $dev_signature = $this->makeSignature($timestamp,$nonce);
         if($dev_signature == $signature) return $echostr;
-        return "Error Input";
     }
 
 
