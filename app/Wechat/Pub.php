@@ -18,10 +18,10 @@ class Pub
     {
         $pub = config('wechat.pub');
 
-        if($pub['app_id'])  throw new Exception('微信配置缺失:app_id');
-        if($pub['app_secret'])  throw new Exception('微信配置缺失:app_secret');
-        if($pub['token'])  throw new Exception('微信配置缺失:token');
-        if($pub['aes_key'])  throw new Exception('微信配置缺失:aes_key');
+        if(!$pub['app_id'])  throw new Exception('微信配置缺失:app_id');
+        if(!$pub['app_secret'])  throw new Exception('微信配置缺失:app_secret');
+        if(!$pub['token'])  throw new Exception('微信配置缺失:token');
+        if(!$pub['aes_key'])  throw new Exception('微信配置缺失:aes_key');
 
         $this->app_id = $pub['app_id'];
         $this->app_secret = $pub['app_secret'];
