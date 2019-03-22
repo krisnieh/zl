@@ -111,7 +111,7 @@ class Pub
         $echostr   = $_GET['echostr'];
 
         $dev_signature = $this->makeSignature($timestamp,$nonce);
-        if($dev_signature == $signature) return $this->echostr;
+        if($dev_signature == $signature) return $echostr;
     }
 
 
