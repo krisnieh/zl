@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function() {
-    echo "@众乐速配"; 
+    echo "众乐速配"; 
 });
 
 // 登录
