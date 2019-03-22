@@ -23,7 +23,7 @@ class WechatController extends Controller
     {
         $menu = new Menu;
 
-        $menu->json = '{
+        $json = '{
             "button":[
                 {
                     "type":"view",
@@ -48,7 +48,7 @@ class WechatController extends Controller
             ]
         }';
 
-        $menu->create();
+        $menu->create($json);
     }
 
     // end

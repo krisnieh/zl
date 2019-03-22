@@ -10,8 +10,6 @@ use App\Wechat\Pub;
  */
 class Menu
 {
-    public $json;
-
     private $pub;
 
     function __construct()
@@ -23,9 +21,9 @@ class Menu
      * 新建
      *
      */
-    public function create()
+    public function create($json)
     {
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->pub->token();
-        return $this->pub->way($url, $this->json);
+        return $this->pub->way($url, $json);
     }
 }
