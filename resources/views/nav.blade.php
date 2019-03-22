@@ -14,12 +14,14 @@
 <body>
 
 <nav class="navbar bg-light fixed-top">
-  <a href="/apps" ><img class="logo" src="{{ URL::asset('svg/logo.svg') }}"></a>
+  <a href="/" ><img class="logo" src="{{ URL::asset('svg/logo.svg') }}"></a>
     <div class="dropdown menu">
       <a href="#" data-toggle="dropdown"><img class="icon rounded-circle" src="{{ URL::asset('image/head.png') }}"></a>
       <div class="dropdown-menu  dropdown-menu-right">
-        <a class="dropdown-item" href="/home"><i class="fa fa-user-circle-o ico-space" aria-hidden="true"></i>个人中心</a>
+        <a class="dropdown-item" href="/home"><i class="fa fa-qrcode ico-space" aria-hidden="true"></i>推荐码</a>
+        <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/apps"><i class="fa fa-th ico-space" aria-hidden="true"></i>应用</a>
+        <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/logout"><i class="fa fa-power-off ico-space" aria-hidden="true"></i>退出</a>
       </div>
     </div>

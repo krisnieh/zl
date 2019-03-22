@@ -12,15 +12,15 @@
 */
 
 Route::get('/', function() {
-    return view('ok');
+    return view('welcome');
 });
 
-
+// 微信
 Route::get('/wechat/ca', 'WechatController@ca');
 Route::get('/wechat/menu/create', 'WechatController@menuCreate');
 Route::get('/wechat/menu/delete', 'WechatController@menuDelete');
 
-// 登录
+// web登录
 Route::get('/login', 'UserController@login');
 Route::get('/logout', 'UserController@logout');
 Route::post('/check', 'UserController@check');
