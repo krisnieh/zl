@@ -18,6 +18,7 @@ class Login
     {
         if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')) {
             // 
+            Session::put('id',1);
             return $next($request);
         } else {
             if(Session::has('id')) {
