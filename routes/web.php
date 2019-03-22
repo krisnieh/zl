@@ -12,8 +12,7 @@
 */
 
 Route::get('/', function() {
-    $error = 'Always throw this error';  
-throw new Exception($error); 
+    return view('ok');
 });
 
 
@@ -44,11 +43,5 @@ Route::get('/t', 'WechatController@test');
 
 
 Route::get('/test', function() {
-   $a =  config('wechat.pub');
-   // print_r($a);
-   if($a['app_id']) {
-    echo "yes ";
-   }else{
-    echo "fuck";
-   }
+   return view('ok');
 });

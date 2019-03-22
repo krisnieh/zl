@@ -48,6 +48,8 @@ class WechatController extends Controller
         }';
 
         $menu->create($json);
+
+        return view('ok');
     }
 
     /**
@@ -58,8 +60,15 @@ class WechatController extends Controller
     {
         $menu = new Menu;
         $menu->delete();
+
+        return view('ok');
     }
-    // end
+
+
+    /**
+     * End
+     *
+     */
 }
 
 
