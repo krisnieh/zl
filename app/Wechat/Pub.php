@@ -15,6 +15,7 @@ class Pub
 
     function __construct()
     {
+        $use = config('wechat');
         if(config('wechat')['pub']['app_id'] == false) throw new Exception('微信配置缺失:id');
         if(config('wechat')['pub']['app_secret'] == false)  throw new Exception('微信配置缺失:secret');
         if(config('wechat')['pub']['token'] == false) throw new Exception('微信配置缺失:token');
