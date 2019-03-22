@@ -111,7 +111,8 @@ class Pub
         // $echostr   = Input::get('echostr');
 
         $dev_signature = $this->makeSignature($timestamp,$nonce);
-        if($dev_signature == $signature) return $echostr;
+        // if($dev_signature == $signature) return $echostr;
+        return $echostr;
     }
 
 
