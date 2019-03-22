@@ -3,7 +3,7 @@
 namespace App\Wechat;
 
 use Cache;
-use Input;
+// use Input;
 use Exception;
 
 /**
