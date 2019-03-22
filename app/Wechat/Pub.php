@@ -46,7 +46,7 @@ class Pub
      * 与微信服务器交流
      *
      */
-    private function way($url, $json=null)
+    public function way($url, $json=null)
     {
         $method = $json == null ? "GET" : "POST";
 
