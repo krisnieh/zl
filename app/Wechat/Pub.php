@@ -72,7 +72,7 @@ class Pub
     private function errorCheck($array)
     {
 
-        if(array_key_exists("errcode", $array)) {
+        if(array_key_exists("errcode", $array) && $array['errcode'] != 0) {
             $errmsg = array_key_exists('errmsg', $array) ? $array['errmsg'] : '';
             throw new Exception('微信返回错误:'.$array['errcode'].$errmsg);
         }

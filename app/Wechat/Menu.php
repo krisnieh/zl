@@ -26,4 +26,14 @@ class Menu
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->pub->token();
         return $this->pub->way($url, $json);
     }
+
+    /**
+     * 删除
+     *
+     */
+    public function delete()
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->pub->token();
+        return $this->pub->way($url, $json);
+    }
 }
