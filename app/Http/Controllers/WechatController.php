@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Wechat\Pub;
-use Input;
 
 class WechatController extends Controller
 {
@@ -15,13 +14,8 @@ class WechatController extends Controller
      */
     public function ca()
     {
-        $signature = Input::get('signature');
-        $timestamp = Input::get('timestamp');
-        $nonce     = Input::get('nonce');
-        $echostr   = Input::get('echostr');
-
         $wechat = new Pub;
-        return $wechat->ca($signature, $timestamp, $nonce, $echostr);
+        return $wechat->ca();
     }
 
     public function test()

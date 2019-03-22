@@ -3,7 +3,7 @@
 namespace App\Wechat;
 
 use Cache;
-// use Input;
+use Input;
 use Exception;
 
 /**
@@ -95,7 +95,7 @@ class Pub
      *
      */
     private function makeSignature($timestamp,$nonce){
-        $arr = array($this->token(), $timestamp, $nonce);
+        $arr = array($this->token, $timestamp, $nonce);
         sort($arr, SORT_STRING);
         return sha1(implode($arr));
     }
@@ -105,14 +105,13 @@ class Pub
      *
      */
     public function ca($signature, $timestamp, $nonce, $echostr){
-        // $signature = Input::get('signature');
-        // $timestamp = Input::get('timestamp');
-        // $nonce     = Input::get('nonce');
-        // $echostr   = Input::get('echostr');
+        $signature = Input::get('signature');
+        $timestamp = Input::get('timestamp');
+        $nonce     = Input::get('nonce');
+        $echostr   = Input::get('echostr');
 
         $dev_signature = $this->makeSignature($timestamp,$nonce);
-        // if($dev_signature == $signature) return $echostr;
-        return $echostr;
+        if($dev_signature == $signature) return $echostr;
     }
 
 
