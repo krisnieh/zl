@@ -4,6 +4,7 @@ namespace App\Wechat;
 
 use Cache;
 use Input;
+use Exception;
 
 /**
  * 微信: 公众号
