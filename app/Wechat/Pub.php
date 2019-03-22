@@ -3,7 +3,6 @@
 namespace App\Wechat;
 
 use Cache;
-use Input;
 use Exception;
 
 /**
@@ -47,16 +46,16 @@ class Pub
      * 与微信服务器交流
      *
      */
-    private function way($url, $data=null)
+    private function way($url, $json=null)
     {
-        $method = $data == null ? "GET" : "POST";
+        $method = $json == null ? "GET" : "POST";
 
         $ch = curl_init();
         curl_setopt ($ch,CURLOPT_URL,$url);
         // curl_setopt ($ch, CURLOPT_HTTPHEADER, array('Content-type:application/json'));
         curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt ($ch, CURLOPT_CUSTOMREQUEST, $method);  
-        if($data !== null) curl_setopt($ch, CURLOPT_POSTFIELDS,$data); 
+        if($json !== null) curl_setopt($ch, CURLOPT_POSTFIELDS, $json); 
 
         $output = curl_exec($ch);
         curl_close($ch);
@@ -94,7 +93,8 @@ class Pub
      * 签名生成
      *
      */
-    private function makeSignature($timestamp,$nonce){
+    private function makeSignature($timestamp,$nonce) 
+    {
         $arr = array($this->token, $timestamp, $nonce);
         sort($arr, SORT_STRING);
         return sha1(implode($arr));
@@ -104,7 +104,8 @@ class Pub
      * 微信服务器认证
      *
      */
-    public function ca(){
+    public function ca() 
+    {
         $signature = $_GET['signature'];
         $timestamp = $_GET['timestamp'];
         $nonce     = $_GET['nonce'];
