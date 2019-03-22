@@ -42,11 +42,6 @@ Route::get('/t', 'WechatController@test');
 
 
 Route::get('/test', function() {
-    $a = new App\Helpers\Au;
-    $t = $a->locked(5);
-    if ($t) {
-        echo "yes";
-    }else{
-        echo "fuck";
-    }
+   $a =  config('wechat.pub');
+   print_r($a);
 });
