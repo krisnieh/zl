@@ -15,7 +15,7 @@ class WechatController extends Controller
     public function ca()
     {
         $wechat = new Pub;
-        return $wechat->ca();
+        echo($wechat->ca());
     }
 
     public function test()

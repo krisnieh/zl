@@ -104,7 +104,7 @@ class Pub
      * 微信服务器认证
      *
      */
-    public function ca($signature, $timestamp, $nonce, $echostr){
+    public function ca(){
         $signature = $_GET['signature'];
         $timestamp = $_GET['timestamp'];
         $nonce     = $_GET['nonce'];
