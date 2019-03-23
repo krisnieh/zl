@@ -4,6 +4,8 @@ namespace App\Wechat;
 
 use Exception;
 use Request;
+use Cache;
+use Session;
 
 use App\Wechat\Pub;
 
