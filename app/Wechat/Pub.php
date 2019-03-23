@@ -111,9 +111,12 @@ class Pub
         $xml = file_get_contents('php://input');
 
         if($xml) {
+            // 自动回复
             $a = new Answer;
-            return $a->router(xml_to_array($xml));
+            echo($a->router(xml_to_array($xml)));
+
         }elseif(isset($_GET['signature']) && isset($_GET['timestamp']) && isset($_GET['nonce']) && isset($_GET['echostr'])){
+            // 握手认证
             return $this->shakeHands();
         }
     }
