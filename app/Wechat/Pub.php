@@ -103,31 +103,22 @@ class Pub
     }
 
     /**
-     * 微信服务器认证
+     * 自动回复
      *
      */
-    public function ca() 
+    public function answer() 
     {
         $xml = file_get_contents('php://input');
 
-        if($xml) {
-            // 自动回复
-            $a = new Answer;
-            // echo($a->router(xml_to_array($xml)));
-            Log::info($a->router(xml_to_array($xml)));
-            return $a->router(xml_to_array($xml));
-
-        }elseif(isset($_GET['signature']) && isset($_GET['timestamp']) && isset($_GET['nonce']) && isset($_GET['echostr'])){
-            // 握手认证
-            return $this->shakeHands();
-        }
+        $a = new Answer;
+        echo($a->router(xml_to_array($xml)));
     }
 
     /**
      * 握手
      *
      */
-    private function shakeHands() 
+    private function ca() 
     {
         $signature = $_GET['signature'];
         $timestamp = $_GET['timestamp'];

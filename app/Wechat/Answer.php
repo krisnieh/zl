@@ -30,7 +30,7 @@ class Answer
                     ],
                 ];
 
-                echo($t->news($arr));
+                return $t->news($arr);
 
                 break;
             

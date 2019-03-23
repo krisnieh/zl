@@ -19,6 +19,7 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 // 微信
 Route::get('/wechat/ca', 'WechatController@ca');
+Route::post('/wechat/ca', 'WechatController@answer'); # post xml
 Route::get('/wechat/menu/create', 'WechatController@menuCreate');
 Route::get('/wechat/menu/delete', 'WechatController@menuDelete');
 
