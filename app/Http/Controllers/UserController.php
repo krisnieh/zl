@@ -67,6 +67,7 @@ class UserController extends Controller
     public function logout ()
     {
         Session::flush();
+        Cookie::forget('id');
         return redirect('/');
     }
 
