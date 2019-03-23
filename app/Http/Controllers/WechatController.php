@@ -48,8 +48,12 @@ class WechatController extends Controller
                     'OpenID' => $array['FromUserName'],
                     'Content' => 'welcome !!!'
                 ];
+                Log::info($array);
+                Log::danger($text);
+
+
                 echo($t->text($text));
-                
+
                 break;
             
             default:
