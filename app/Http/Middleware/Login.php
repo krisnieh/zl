@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Session;
+use Cookie;
 
 use App\Wechat\Oauth2;
 use App\Helpers\Prepare;
