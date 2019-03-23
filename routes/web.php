@@ -49,7 +49,7 @@ Route::get('/t', 'WechatController@test');
 
 
 Route::get('/test', function() {
-    $a = Request::fullUrl();
+    $a = Session::get('openid');
     echo $a;
 });
 
