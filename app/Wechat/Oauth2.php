@@ -45,7 +45,7 @@ class Oauth2
      */
     public function getWebToken() 
     {
-        if(!isset($_GET['code'])) return $this->getCode();
+        if(!isset($_GET['code'])) throw new Exception('微信:code未成功');
 
         $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$this->pub->app_id.'&secret='.$this->pub->app_secret.'&code='.$_GET['code'].'&grant_type=authorization_code';
 

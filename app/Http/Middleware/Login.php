@@ -24,7 +24,12 @@ class Login
             if(Session::has('openid')) {
                 return $next($request);
             }else{
-                return $auth->getInfo();
+                if(!isset($_GET['code'])) {
+                    return $auth->getCode();
+                }else{
+                    $auth->getWebToken();
+                    return $next($request);
+                }
             }
 
         } else {
