@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use Hash;
 use Session;
+use Cookie;
 
 use App\Forms\LoginForm;
 use App\User;
