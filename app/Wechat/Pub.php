@@ -5,7 +5,6 @@ namespace App\Wechat;
 use Cache;
 use Exception;
 use Log;
-use App\Wechat\Answer;
 
 /**
  * 微信: 公众号
@@ -100,18 +99,6 @@ class Pub
         $arr = array($this->token, $timestamp, $nonce);
         sort($arr, SORT_STRING);
         return sha1(implode($arr));
-    }
-
-    /**
-     * 自动回复
-     *
-     */
-    public function answer() 
-    {
-        $xml = file_get_contents('php://input');
-
-        $a = new Answer;
-        echo($a->router(xml_to_array($xml)));
     }
 
     /**

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Wechat\Pub;
 use App\Wechat\Menu;
+use App\Wechat\Templets;
 
 class WechatController extends Controller
 {
@@ -17,6 +18,37 @@ class WechatController extends Controller
     {
         $wechat = new Pub;
         echo($wechat->ca());
+    }
+
+    /**
+     * 操作
+     *
+     */
+    public function answer() 
+    {
+        $xml = file_get_contents('php://input');
+        $array = xml_to_array($xml);
+
+        $t = new Templets;
+
+        switch ($array['Event']) {
+            case 'subscribe':
+                # 订阅
+                $news =[
+                    'OpenID' => $array['FromUserName'], 
+                    'Articles' => [
+                       ['title'=>'众乐速配', 'description'=>'快捷.高效', 'picurl'=>URL::asset('image/welcome.jpg'), 'url'=>'https://zl.viirose.com'],
+                    ],
+                ];
+
+                echo($t->news($news));
+
+                break;
+            
+            default:
+                # code...
+                break;
+        }
     }
 
     /**
