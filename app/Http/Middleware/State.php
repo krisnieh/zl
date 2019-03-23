@@ -16,12 +16,12 @@ class State
      */
     public function handle($request, Closure $next)
     {
-        $a = json_decode(User::find(session('id'))->auth);
+        // $a = json_decode(User::find(session('id'))->auth);
 
-        if (array_key_exists('locked', $a) && $a->locked) {
-            abort('403');
-        } else {    
-            return $next($request);
-        }
+        // if (array_key_exists('locked', $a) && $a->locked) {
+        //     abort('403');
+        // } else {    
+        //     return $next($request);
+        // }
     }
 }
