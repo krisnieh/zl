@@ -49,21 +49,8 @@ Route::get('/t', 'WechatController@test');
 
 
 Route::get('/test', function() {
-    $arr =[
-           'OpenID' => '用户', 
-           'Articles' => [
-               ['title'=>'标题 1', 'description'=>'简介1', 'picurl'=>'图片1', 'url'=>'地址1'],
-               ['title'=>'标题 1', 'description'=>'简介1', 'picurl'=>'图片1', 'url'=>'地址1'],
-           ],
-       ];
-
-    $t = new App\Wechat\Answer;
-
-    // $r = $t->news($arr);
-
-    // echo($r);
-    Log::info($t->router());
-
+    $a = Request::fullUrl();
+    echo $a;
 });
 
 
