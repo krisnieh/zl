@@ -35,15 +35,21 @@ class WechatController extends Controller
         switch ($array['Event']) {
             case 'subscribe':
                 # 订阅
-                $news =[
-                    'OpenID' => $array['FromUserName'], 
-                    'Articles' => [
-                       ['title'=>'众乐速配', 'description'=>'快捷.高效', 'picurl'=>URL::asset('image/welcome.jpg'), 'url'=>'https://zl.viirose.com'],
-                    ],
+                // $news =[
+                //     'OpenID' => $array['FromUserName'], 
+                //     'Articles' => [
+                //        ['title'=>'众乐速配', 'description'=>'快捷.高效', 'picurl'=>URL::asset('image/welcome.jpg'), 'url'=>'https://zl.viirose.com'],
+                //     ],
+                // ];
+
+                // echo($t->news($news));
+
+                $text = [
+                    'OpenID' => $array['FromUserName'],
+                    'Content' => 'welcome !!!'
                 ];
-
-                echo($t->news($news));
-
+                echo($t->text($text));
+                
                 break;
             
             default:
