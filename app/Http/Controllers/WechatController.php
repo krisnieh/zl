@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use URL;
 
 use App\Wechat\Pub;
 use App\Wechat\Menu;
