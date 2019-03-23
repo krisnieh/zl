@@ -4,7 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Session;
+
 use App\Wechat\Oauth2;
+use App\Helpers\Prepare;
 
 class Login
 {
@@ -18,9 +20,14 @@ class Login
     public function handle($request, Closure $next)
     {
         $auth = new Oauth2;
+        $p = new Prepare;
 
-        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')) {
+        if ($p->useWechat()) {
             // 使用微信
+            if(Session::has('id')) return $next($request);
+
+            if(Cookie::has('id') && $p->check(Cookie::get('id')))  return $next($request);
+
             if(Session::has('openid')) {
                 return $next($request);
             }else{
