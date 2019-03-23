@@ -83,7 +83,7 @@ class Oauth2
      */
     public function getInfo() 
     {
-        $url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$this->webToken().'&openid='.$this->openid.'&lang=zh_CN';
+        $url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$this->webToken().'&openid='.$this->openid().'&lang=zh_CN';
         $resault = $this->pub->way($url);
         return $resault;
     }
