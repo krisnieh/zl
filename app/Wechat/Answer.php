@@ -16,7 +16,7 @@ class Answer
      * 操作
      *
      */
-    private function router($array) 
+    public function router($array) 
     {
         $t = new Templets;
 
