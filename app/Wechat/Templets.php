@@ -80,10 +80,9 @@ class Templets
               </Articles>
             </xml>
         ';
-
-        return $templet;
+        $out = preg_replace('/\s(?=)/', '', $templet);
+        return $out;
     }
-
 
     // END
 }
