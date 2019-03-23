@@ -21,7 +21,7 @@ class State
         // if (array_key_exists('locked', $a) && $a->locked) {
         //     abort('403');
         // } else {    
-        //     return $next($request);
+            return $next($request);
         // }
     }
 }
