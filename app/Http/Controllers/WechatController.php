@@ -42,7 +42,7 @@ class WechatController extends Controller
                        ['title'=>'众乐速配', 'description'=>'快捷.高效', 'picurl'=>URL::asset('image/welcome.jpg'), 'url'=>'https://zl.viirose.com'],
                     ],
                 ];
-
+                Log::info($t->news($news));
                 echo($t->news($news));
 
                 // $text = [
