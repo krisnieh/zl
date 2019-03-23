@@ -33,7 +33,7 @@ class Oauth2
 
         if($scop != "snsapi_userinfo" && $scop != "snsapi_base") throw new Exception('微信scop错误');
 
-        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$pub->app_id.'&redirect_uri='.urlencode($uri).'&response_type=code&scope='.$scop.'&state=STATE#wechat_redirect';
+        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$this->pub->app_id.'&redirect_uri='.urlencode($uri).'&response_type=code&scope='.$scop.'&state=STATE#wechat_redirect';
 
         return redirect($url);
     }
@@ -47,9 +47,9 @@ class Oauth2
     {
         if(!isset($_GET['code'])) return $this->getCode();
 
-        $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$pub->app_id.'&secret='.$pub->app_secret.'&code='.$_GET['code'].'&grant_type=authorization_code';
+        $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$this->pub->app_id.'&secret='.$this->pub->app_secret.'&code='.$_GET['code'].'&grant_type=authorization_code';
 
-        $resault = $pub->way($url);
+        $resault = $this->pub->way($url);
 
         Cache::put('wechat_web_token', $resault['access_token'], $resault['expires_in'] / 60);
         Session::put('openid', $resault['openid']);
@@ -84,7 +84,7 @@ class Oauth2
     public function getInfo() 
     {
         $url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$this->webToken().'&openid='.$this->openid.'&lang=zh_CN';
-        $resault = $pub->way($url);
+        $resault = $this->pub->way($url);
         return $resault;
     }
 
