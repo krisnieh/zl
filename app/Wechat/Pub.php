@@ -113,7 +113,9 @@ class Pub
         if($xml) {
             // 自动回复
             $a = new Answer;
-            echo($a->router(xml_to_array($xml)));
+            // echo($a->router(xml_to_array($xml)));
+            Log::info($a->router(xml_to_array($xml)));
+            return $a->router(xml_to_array($xml));
 
         }elseif(isset($_GET['signature']) && isset($_GET['timestamp']) && isset($_GET['nonce']) && isset($_GET['echostr'])){
             // 握手认证
