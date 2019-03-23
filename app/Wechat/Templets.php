@@ -81,7 +81,7 @@ class Templets
             </xml>
         ';
         $out = preg_replace('/\s(?=)/', '', $templet);
-        return $out;
+        return sprintf($out);
     }
 
     // END
