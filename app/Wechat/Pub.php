@@ -12,7 +12,7 @@ use Log;
  */
 class Pub
 {
-    public $app_id, $app_secret, $token, $aes_key;
+    public $app_id, $app_secret, $token, $aes_key, $name;
 
     function __construct()
     {
@@ -22,11 +22,13 @@ class Pub
         if(!$pub['app_secret'])  throw new Exception('微信配置缺失:app_secret');
         if(!$pub['token'])  throw new Exception('微信配置缺失:token');
         if(!$pub['aes_key'])  throw new Exception('微信配置缺失:aes_key');
+        if(!$pub['name'])  throw new Exception('微信配置缺失:用户名');
 
         $this->app_id = $pub['app_id'];
         $this->app_secret = $pub['app_secret'];
         $this->token = $pub['token'];
         $this->aes_key = $pub['aes_key'];
+        $this->name = $pub['name'];
     }
 
     /**
