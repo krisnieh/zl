@@ -71,7 +71,7 @@ class Templets
         $templet = '
             <xml>
               <ToUserName><![CDATA['.$array['OpenID'].']]></ToUserName>
-              <FromUserName><![CDATA['.$this->pub->app_id.']]></FromUserName>
+              <FromUserName><![CDATA['.$this->pub->name.']]></FromUserName>
               <CreateTime>'.time().'</CreateTime>
               <MsgType><![CDATA[news]]></MsgType>
               <ArticleCount>'.count($array['Articles']).'</ArticleCount>
