@@ -15,6 +15,8 @@ Route::get('/', function() {
     return view('welcome');
 });
 
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 // 微信
 Route::get('/wechat/ca', 'WechatController@ca');
 Route::get('/wechat/menu/create', 'WechatController@menuCreate');
@@ -39,9 +41,43 @@ Route::group(['middleware' => ['login', 'state']], function () {
 
 });
 
+
+// -------- test ----------
+
 Route::get('/t', 'WechatController@test');
 
 
 Route::get('/test', function() {
-   return view('ok');
+    $arr =[
+           'OpenID' => '用户', 
+           'Content' => 'fuck',
+       ];
+
+    $t = new App\Wechat\Templets;
+
+    // $r = $t->news($arr);
+
+    // echo($r);
+    Log::info($t->text($arr));
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

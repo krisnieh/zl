@@ -4,6 +4,8 @@ namespace App\Wechat;
 
 use Cache;
 use Exception;
+use Log;
+use App\Wechat\Answer;
 
 /**
  * 微信: 公众号
@@ -11,7 +13,7 @@ use Exception;
  */
 class Pub
 {
-    private $app_id, $app_secret, $token, $aes_key;
+    public $app_id, $app_secret, $token, $aes_key;
 
     function __construct()
     {
@@ -106,6 +108,22 @@ class Pub
      */
     public function ca() 
     {
+        $xml = file_get_contents('php://input');
+
+        if($xml) {
+            $a = new Answer;
+            return $a->router(xml_to_array($xml));
+        }elseif(isset($_GET['signature']) && isset($_GET['timestamp']) && isset($_GET['nonce']) && isset($_GET['echostr'])){
+            return $this->shakeHands();
+        }
+    }
+
+    /**
+     * 握手
+     *
+     */
+    private function shakeHands() 
+    {
         $signature = $_GET['signature'];
         $timestamp = $_GET['timestamp'];
         $nonce     = $_GET['nonce'];
@@ -114,7 +132,6 @@ class Pub
         $dev_signature = $this->makeSignature($timestamp,$nonce);
         if($dev_signature == $signature) return $echostr;
     }
-
 
 }
 
