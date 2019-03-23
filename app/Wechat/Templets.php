@@ -80,7 +80,23 @@ class Templets
               </Articles>
             </xml>
         ';
-        $out = preg_replace('/\s(?=)/', '', sprintf($templet));
+
+        $orign = '<xml>
+<ToUserName><![CDATA['.$array['OpenID'].']]></ToUserName>
+  <FromUserName><![CDATA['.$this->pub->name.']]></FromUserName>
+  <CreateTime>'.time().'</CreateTime>
+  <MsgType><![CDATA[news]]></MsgType>
+  <ArticleCount>1</ArticleCount>
+  <Articles>
+    <item>
+      <Title><![CDATA[title1]]></Title>
+      <Description><![CDATA[description1]]></Description>
+      <PicUrl><![CDATA[https://zl.viirose.com/image/welcome.jpg]]></PicUrl>
+      <Url><![CDATA[https://zl.viirose.com]]></Url>
+    </item>
+  </Articles>
+</xml>';
+        $out = preg_replace('/\s(?=)/', '', sprintf($orign));
         return $out;
     }
 
