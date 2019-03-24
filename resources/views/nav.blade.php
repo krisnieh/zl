@@ -21,7 +21,7 @@
   <a href="/" ><img class="logo" src="{{ URL::asset('svg/logo.svg') }}"></a>
     @if(Session::has('id'))
     <div class="dropdown menu">
-      <a href="#" data-toggle="dropdown">{{ $me->name }}</a>
+      <button type="button" class="btn btn-light" data-toggle="dropdown">{{ $me->name }}</button>
       <div class="dropdown-menu  dropdown-menu-right">
         <a class="dropdown-item" href="/ad"><i class="fa fa-qrcode ico-space" aria-hidden="true"></i>推荐码</a>
         <div class="dropdown-divider"></div>
