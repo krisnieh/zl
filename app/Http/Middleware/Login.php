@@ -36,7 +36,7 @@ class Login
                     return $auth->getCode();
                 }else{
                     $auth->getWebToken();
-                    $p->updateInfo();
+                    // $p->updateInfo();
 
                     return $next($request);
                 }
