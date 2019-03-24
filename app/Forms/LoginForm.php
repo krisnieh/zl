@@ -8,7 +8,7 @@ use App\Helpers\Prepare;
 class LoginForm extends Form
 {
     $p = new Prepare;
-    $title = $p->useWechat() ? "登录并关联此微信" : "登录"
+    $title = $p->useWechat() ? "登录并关联此微信" : "登录";
 
     public function buildForm()
     {
