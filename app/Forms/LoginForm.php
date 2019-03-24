@@ -3,12 +3,12 @@
 namespace App\Forms;
 
 use Kris\LaravelFormBuilder\Form;
-use App\Helpers\Prepare;
+// use App\Helpers\Prepare;
 
 class LoginForm extends Form
 {
-    $p = new Prepare;
-    $title = $p->useWechat() ? "登录并关联此微信" : "登录";
+    // $p = new Prepare;
+    // $title = $p->useWechat() ? "登录并关联此微信" : "登录";
 
     public function buildForm()
     {
@@ -21,7 +21,7 @@ class LoginForm extends Form
             'rules' => 'required|min:4|max:32'
         ])
         ->add('submit','submit',[
-              'label' => $title,
+              'label' => strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') ? "登录并关联此微信" : "登录",
               'attr' => ['class' => 'btn btn-success btn-block']
         ]);
     }
