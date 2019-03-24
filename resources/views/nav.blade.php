@@ -1,6 +1,6 @@
 <?php
   $p = new App\Helpers\Prepare;
-  $me = $p->me();
+  if(Session::has('id')) $me = $p->me();
 ?>
 <!DOCTYPE html>
 <html>
