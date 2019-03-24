@@ -1,3 +1,7 @@
+<?php
+  $p = new App\Helpers\Prepare;
+  $me = $p->me();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +19,9 @@
 
 <nav class="navbar bg-light fixed-top">
   <a href="/" ><img class="logo" src="{{ URL::asset('svg/logo.svg') }}"></a>
+    @if(Session::has('id'))
     <div class="dropdown menu">
-      <a href="#" data-toggle="dropdown"><img class="icon rounded-circle" src="{{ URL::asset('image/head.png') }}"></a>
+      <a href="#" data-toggle="dropdown">{{ $me->name }}</a>
       <div class="dropdown-menu  dropdown-menu-right">
         <a class="dropdown-item" href="/ad"><i class="fa fa-qrcode ico-space" aria-hidden="true"></i>推荐码</a>
         <div class="dropdown-divider"></div>
@@ -25,6 +30,7 @@
         <a class="dropdown-item" href="/logout"><i class="fa fa-power-off ico-space" aria-hidden="true"></i>退出</a>
       </div>
     </div>
+    @endif
 </nav>
 <div class="head"></div>
 

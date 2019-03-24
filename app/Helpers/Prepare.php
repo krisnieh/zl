@@ -21,6 +21,17 @@ class Prepare
     }
 
     /**
+     * 用户信息
+     *
+     */
+    public function me() 
+    {
+        $me = User::find(session('id'))->info;
+        return json_decode($me);
+    }
+
+
+    /**
      * 设置cookie
      *
      */
