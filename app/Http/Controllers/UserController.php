@@ -60,6 +60,11 @@ class UserController extends Controller
 
         session(['id' => $exists->id]);
 
+        // 微信关联
+        if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') && Session::has('openid')) {
+            $exists->update(['accounts->openid' => session('openid')]);
+        }
+
         return redirect('/home');
 
     }
