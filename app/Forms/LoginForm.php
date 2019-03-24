@@ -3,9 +3,13 @@
 namespace App\Forms;
 
 use Kris\LaravelFormBuilder\Form;
+use App\Helpers\Prepare;
 
 class LoginForm extends Form
 {
+    $p = new Prepare;
+    $title = $p->useWechat() ? "登录并关联此微信" : "登录"
+
     public function buildForm()
     {
         $this->add('mobile', 'text', [
@@ -17,7 +21,7 @@ class LoginForm extends Form
             'rules' => 'required|min:4|max:32'
         ])
         ->add('submit','submit',[
-              'label' => '提交',
+              'label' => $title,
               'attr' => ['class' => 'btn btn-success btn-block']
         ]);
     }

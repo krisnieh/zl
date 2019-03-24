@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\User;
+use App\Wechat\Oauth2;
 
 /**
  * 准备
@@ -70,6 +71,24 @@ class Prepare
         $a = json_decode(User::find(session('id'))->auth);
 
         return array_key_exists('locked', $a) && $a->locked ? true : false;
+    }
+
+    /**
+     * 更新信息
+     *
+     */
+    public function updateInfo() 
+    {
+
+        $auth = new Oauth2;
+        $openid = session('openid');
+
+        $info = $auth->getInfo($openid);
+
+        $me = User::find(session('id'));
+            
+        $me->update(['info->wechat' => json_encode($info)]);
+        // $me->update(['info->wechat', ])
     }
 
 

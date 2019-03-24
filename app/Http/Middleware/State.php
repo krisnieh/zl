@@ -24,7 +24,7 @@ class State
         if(Session::has('id')) {
             // 已登录
             if($p->fail()) abort('403');
-            
+
             return $next($request);
 
         } else {
@@ -32,11 +32,13 @@ class State
                 $has = User::where('accounts->openid', session('openid'))->first();
                 if($has) {
                     Session::put('id', $has->id);
+            // $p->updateInfo();
                     if($p->fail()) abort('403');
 
                     return $next($request);
                 }else{
-                    abort('403');
+                    // abort('400');
+                    return redirect('/login');
                 }
             }else{
                 Session::flush();

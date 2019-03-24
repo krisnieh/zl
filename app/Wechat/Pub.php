@@ -45,6 +45,8 @@ class Pub
         return $resault['access_token'];
     }
 
+    
+
     /**
      * 与微信服务器交流
      *
