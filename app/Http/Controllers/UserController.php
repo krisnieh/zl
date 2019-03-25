@@ -56,6 +56,9 @@ class UserController extends Controller
     {
         $form = $this->form(LoginForm::class);
 
+        $v = new Validator;
+        if(!$v->checkMobile($request->mobile)) return redirect()->back()->withErrors(['mobile'=>'手机号不正确!'])->withInput();
+
         $exists = User::where('accounts->mobile', $request->mobile)
                         ->first();
 
