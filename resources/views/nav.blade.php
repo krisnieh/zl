@@ -22,7 +22,7 @@
 
 <nav class="navbar bg-light fixed-top">
   <a href="/" ><img class="logo" src="{{ URL::asset('svg/logo.svg') }}"></a>
-    @if(Session::has('id') && !$a->locked)
+    @if(Session::has('id') && !$a->locked())
     <div class="dropdown menu">
       <button type="button" class="btn btn-light" data-toggle="dropdown">{{ $me->name }}</button>
       <div class="dropdown-menu  dropdown-menu-right">
