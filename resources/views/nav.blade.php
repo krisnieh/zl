@@ -27,7 +27,11 @@
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/apps"><i class="fa fa-th ico-space" aria-hidden="true"></i>应用</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/logout"><i class="fa fa-power-off ico-space" aria-hidden="true"></i>退出</a>
+        @if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')) 
+          <a class="dropdown-item text text-danger" href="/wechat/cut"><i class="fa fa-cut ico-space" aria-hidden="true"></i>解除此微信关联</a>
+        @else
+          <a class="dropdown-item" href="/logout"><i class="fa fa-power-off ico-space" aria-hidden="true"></i>退出</a>
+        @endif
       </div>
     </div>
     @endif

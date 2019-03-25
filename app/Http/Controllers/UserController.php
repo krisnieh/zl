@@ -77,6 +77,14 @@ class UserController extends Controller
         return redirect('/');
     }
 
+
+    // 解除微信绑定
+    public function cut ()
+    {
+        User::find(session('id')) -> update(['accounts->openid' => '']);
+        return $this->logout();
+    }
+
     // lock 锁定
     public function lock($id)
     {
