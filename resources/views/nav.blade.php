@@ -27,8 +27,8 @@
       <button type="button" class="btn btn-light" data-toggle="dropdown">{{ $me->name }}</button>
       <div class="dropdown-menu  dropdown-menu-right">
         <a class="dropdown-item" href="/ad"><i class="fa fa-qrcode ico-space" aria-hidden="true"></i>推荐码</a>
-        <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/apps"><i class="fa fa-th ico-space" aria-hidden="true"></i>应用</a>
+        <a class="dropdown-item" href="/ad"><i class="fa fa-user-o ico-space" aria-hidden="true"></i>个人中心</a>
         <div class="dropdown-divider"></div>
         @if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')) 
           <a class="dropdown-item text text-danger" href="/wechat/cut"><i class="fa fa-cut ico-space" aria-hidden="true"></i>解除此微信关联</a>
