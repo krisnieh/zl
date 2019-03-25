@@ -14,6 +14,7 @@ use App\Forms\LoginForm;
 use App\Forms\RegisterForm;
 use App\User;
 use App\Helpers\Au;
+use App\Helpers\Validator;
 use App\Wechat\Qrcode;
 
 class UserController extends Controller
@@ -157,9 +158,16 @@ class UserController extends Controller
         return view('form', compact('form','title','icon'));
     }
 
+    /**
+     * 注册检查
+     *
+     */
     public function regCheck(Request $request) 
     {
         $form = $this->form(RegisterForm::class);
+
+        $v = new Validator;
+        if(!$v->checkMobile($request->mobile)) return redirect()->back()->withErrors(['mobile'=>'手机号不正确!'])->withInput();
 
         $exists = User::where('accounts->mobile', $request->mobile)
                         ->first();
