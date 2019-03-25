@@ -50,8 +50,9 @@ Route::get('/t', 'WechatController@test');
 
 
 Route::get('/test', function() {
-    $a = new App\Wechat\Qrcode;
-    $a->get();
+    $a = new Carbon\Carbon;
+
+    echo $a->now()->addDays(1);
 });
 
 

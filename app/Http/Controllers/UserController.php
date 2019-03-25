@@ -117,11 +117,15 @@ class UserController extends Controller
     {
         $qrcode = new Qrcode;
 
-        $json = '{"expire_seconds": 604800, "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.session('id').'"}}}';
+        $expire_seconds = 604800;
+
+        $json = '{"expire_seconds": '.$expire_seconds.', "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.session('id').'"}}}';
 
         $resault = $qrcode->get($json);
 
         $url = $resault['url'];
+
+        User::find(session('id'))->update(['info->qrcode' => '{"url":"'.$url.'", "expire":"'.$time.'"}']);
 
         return view('ad', compact('url'));
     }
