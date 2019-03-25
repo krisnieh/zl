@@ -114,6 +114,16 @@ class Prepare
         // $me->update(['info->wechat', ])
     }
 
+    /**
+     * 显示json
+     *
+     */
+    public function show($json, $item, $default=null)
+    {
+        $array = json_decode($json);
+        return array_key_exists($item, $array) ? $array->$item : $default;
+    }
+
 
     // END
 }

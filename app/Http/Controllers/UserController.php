@@ -197,6 +197,16 @@ class UserController extends Controller
         return view('note', compact('text'));
     }
 
+    /**
+     * home
+     *
+     */
+    public function home()
+    {
+        $me = User::find(session('id'));
+        return view('home', compact('me'));
+    }
+
     // end
 }
 

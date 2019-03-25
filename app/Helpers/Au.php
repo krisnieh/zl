@@ -95,4 +95,57 @@ class Au
         return array_key_exists('locked', $use) && $use->locked ? true : false;
     }
 
+    // 内部
+    public function staff($id=0)
+    {
+        $use = $id === 0 ? $this->auth : $this->targetAuth($id);
+
+        if(!$use) return false;
+
+        return array_key_exists('type', $use) && $use->type == 'staff' ? true : false;
+    }
+
+    // 代理
+    public function agent($id=0)
+    {
+        $use = $id === 0 ? $this->auth : $this->targetAuth($id);
+
+        if(!$use) return false;
+
+        return array_key_exists('type', $use) && $use->type == 'agent' ? true : false;
+    }
+
+    // 代理推销员
+    public function salesman($id=0)
+    {
+        $use = $id === 0 ? $this->auth : $this->targetAuth($id);
+
+        if(!$use) return false;
+
+        return array_key_exists('type', $use) && $use->type == 'salesman' ? true : false;
+    }
+
+    // 客户
+    public function customer($id=0)
+    {
+        $use = $id === 0 ? $this->auth : $this->targetAuth($id);
+
+        if(!$use) return false;
+
+        return array_key_exists('type', $use) && $use->type == 'customer' ? true : false;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

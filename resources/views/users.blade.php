@@ -1,5 +1,6 @@
 <?php
     $a = new App\Helpers\Au;
+    $p = new App\Helpers\Prepare;
 ?>
 
 @extends ('nav')
@@ -32,6 +33,7 @@
                     </a>
 
                     @if($a->control($record->id))
+
                         @if($a->locked($record->id))
                             <a href="/unlock/{{ $record->id }}" class="btn btn-default btn-sm pull-right text text-success"><i class="fa fa-unlock" aria-hidden="true"></i></a>
                         @else
@@ -44,6 +46,18 @@
                     <div class="card-body card-body-space">
 
                         <p>
+                          <div class="dropdown">
+    <a class="btn btn-sm btn-danger dropdown-toggle pull-right" data-toggle="dropdown">
+      Dropdown a
+    </a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Link 1</a>
+      <a class="dropdown-item" href="#">Link 2</a>
+      <a class="dropdown-item" href="#">Link 3</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Another link</a>
+    </div>
+  </div> 
                             @if($a->locked($record->id))
                                 <span class="badge badge-pill badge-warning">账号锁定</span>
                             @endif
@@ -52,12 +66,12 @@
                                 <span class="badge badge-pill badge-info">管理员</span>
                             @endif
                         </p>
-                        <p><i class="fa fa-mobile-phone ico-space" aria-hidden="true"></i>{{ json_decode($record->accounts)->mobile }}</p>
+                        <p><i class="fa fa-mobile-phone ico-space" aria-hidden="true"></i>{{  $p->show($record->accounts, 'mobile') }}<br><i class="fa fa-map-marker ico-space" aria-hidden="true"></i>{{  $p->show($record->info, 'addr') }}</p>
 
                         @if(count($record->child))
                             <p>
                                 @foreach($record->child as $item)
-                                    {{ $item->id }}
+                                    {{ $p->show($item->info, 'name') }}
                                 @endforeach
                             </p>
                         @endif
