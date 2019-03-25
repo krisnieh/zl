@@ -29,6 +29,8 @@ class State
 
         } else {
             if(Session::has('openid')){
+                if(Cache::has(session('openid'))) return redirect('/register');
+
                 $has = User::where('accounts->openid', session('openid'))->first();
                 if($has) {
                     Session::put('id', $has->id);
@@ -37,7 +39,6 @@ class State
 
                     return $next($request);
                 }else{
-                    // abort('400');
                     return redirect('/login');
                 }
             }else{

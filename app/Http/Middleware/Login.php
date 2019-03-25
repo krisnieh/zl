@@ -32,7 +32,7 @@ class Login
 
 
             if(Session::has('openid')) {
-                if(Cache::has(session('openid'))) return redirect('/register');
+                // if(Cache::has(session('openid'))) return redirect('/register');
                 return $next($request);
             }else{
                 if(!isset($_GET['code'])) {
@@ -40,7 +40,7 @@ class Login
                 }else{
                     $auth->getWebToken();
                     // $p->updateInfo();
-                    if(Cache::has(session('openid'))) return redirect('/register');
+                    // if(Cache::has(session('openid'))) return redirect('/register');
                     
                     return $next($request);
                 }
