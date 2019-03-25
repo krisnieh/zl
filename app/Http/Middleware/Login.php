@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Session;
 use Cookie;
+use Cache;
 
 use App\Wechat\Oauth2;
 use App\Helpers\Prepare;
@@ -29,7 +30,9 @@ class Login
 
             if(Cookie::has('id') && $p->check(Cookie::get('id')))  return $next($request);
 
+
             if(Session::has('openid')) {
+                if(Cache::has(session('openid'))) return redirect('/register');
                 return $next($request);
             }else{
                 if(!isset($_GET['code'])) {

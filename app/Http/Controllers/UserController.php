@@ -8,6 +8,7 @@ use Hash;
 use Session;
 use Cookie;
 use Carbon\Carbon;
+use Cache;
 
 use App\Forms\LoginForm;
 use App\Forms\RegisterForm;
@@ -145,7 +146,7 @@ class UserController extends Controller
         $a = new Au;
         if(!$a->locked($id)) abort('403');
 
-        if(!Session::has('parent_id') || Session::has('id')) abort('403');
+        if(!Cache::has(session('openid')) || Session::has('id')) abort('403');
 
         $form = $this->form(RegisterForm::class, [
             'method' => 'POST',

@@ -50,7 +50,7 @@ class WechatController extends Controller
                 // Log::info($t->news($news));
 
                 // 推荐码
-                if(array_key_exists('EventKey', $array)) return $this->register($array['EventKey']);
+                if(array_key_exists('EventKey', $array)) return $this->register($array['EventKey'], $array['FromUserName']);
 
                 // 回复
                 echo($t->news($news));
@@ -64,13 +64,15 @@ class WechatController extends Controller
     }
 
     // 注册
-    public function register($key)
+    public function register($key, $openid)
     {
         $key_array = explode('_', $key);
 
         if($Key[1] == 'ad') {
-            Session::put('parent_id', $key[2]);
-            return redirect('/register');
+            // Session::put('parent_id', $key[2]);
+            Cache::put($openid, $key[2], 10);
+
+            // return redirect('/register');
         }
     }
 
