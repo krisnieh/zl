@@ -134,9 +134,7 @@ class UserController extends Controller
     {
         $info =json_decode(User::find(session('id'))->info);
 
-        $url = '';
-
-        $url = array_key_exists('qrcode', $me) ? $me->qrcode : $this->setQrcode();
+        $url = array_key_exists('qrcode', $info) ? $info->qrcode : $this->setQrcode();
 
         return view('ad', compact('url'));
     }
