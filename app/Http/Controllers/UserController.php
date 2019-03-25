@@ -69,7 +69,7 @@ class UserController extends Controller
             $exists->update(['accounts->openid' => session('openid')]);
         }
 
-        return redirect('/home');
+        return redirect('/apps');
 
     }
 
@@ -157,9 +157,43 @@ class UserController extends Controller
         return view('form', compact('form','title','icon'));
     }
 
-    public function regCheck()
+    public function regCheck(Request $request) 
     {
-        echo "fuck";
+        $form = $this->form(RegisterForm::class);
+
+        $exists = User::where('accounts->mobile', $request->mobile)
+                        ->first();
+
+        if($exists) return redirect()->back()->withErrors(['mobile'=>'手机号已存在!'])->withInput();
+
+        if($request->password !== $request->confirm_password) redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
+
+        $array = explode('_', Cache::get(session('openid')));
+
+        $new = [
+            'parent_id' => $array[2];
+            'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
+            'password' => $request->password,
+            'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
+            'auth' => '{"locked":"true"}',
+        ];
+
+        print_r($new);
+        // 'parent_id' => 2,
+        //     'accounts' =>'{"mobile":"13000000000", "openid":"wechatopenid"}',
+        //     'password' => bcrypt('000000'),
+        //     'info' => '{"name":"陈东阳", "sex":"male"}',
+        //     'auth' => '{"manager":true}'
+        // if(!Hash::check($request->password, $exists->password)) return redirect()->back()->withErrors(['password'=>'密码错误!'])->withInput();
+
+        // session(['id' => $exists->id]);
+
+        // // 微信关联
+        // if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') && Session::has('openid')) {
+        //     $exists->update(['accounts->openid' => session('openid')]);
+        // }
+
+        // return redirect('/home');
     }
 
     // end
