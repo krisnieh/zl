@@ -143,8 +143,6 @@ class UserController extends Controller
 
     public function register()
     {
-        // $a = new Au;
-        // if(!$a->locked($id)) abort('403');
 
         if(!Cache::has(session('openid')) || Session::has('id')) abort('403');
 
@@ -153,7 +151,7 @@ class UserController extends Controller
             'url' => '/reg_check'
         ]);
 
-        $title = '请填写注册信息';
+        $title = '注册: 请在10分钟内完成';
         $icon = 'user-o';
 
         return view('form', compact('form','title','icon'));

@@ -26,7 +26,7 @@ class RegisterForm extends Form
             'rules' => 'required|min:4|max:32'
         ])
         ->add('confirm_password', 'password', [
-            'label' => '密码',
+            'label' => '确认密码',
             'rules' => 'required|min:4|max:32'
         ])
         ->add('submit','submit',[
