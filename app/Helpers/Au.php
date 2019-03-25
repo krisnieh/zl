@@ -12,9 +12,17 @@ class Au
 {
     private $auth;
 
+    private $role;
+
     function __construct()
     {
         $this->auth = json_decode(User::find(session('id'))->auth);
+        $this->role = [
+            'staff' => "众乐速配",
+            'agent' => "代理商",
+            'salesman' => "代理商员工",
+            'customer' => "客户",
+        ];
     }
 
     // 目标权限
@@ -133,6 +141,16 @@ class Au
         if(!$use) return false;
 
         return array_key_exists('type', $use) && $use->type == 'customer' ? true : false;
+    }
+
+    // 类别名
+    public function type($id=0)
+    {
+        $use = $id === 0 ? $this->auth : $this->targetAuth($id);
+
+        if(!$use) return false;
+
+        return array_key_exists('type', $use) && array_key_exists($use->type, $this->role) ? $this->role[$use->type] : '未知';
     }
 
 }

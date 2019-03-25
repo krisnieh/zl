@@ -33,7 +33,6 @@
                     </a>
 
                     @if($a->control($record->id))
-
                         @if($a->locked($record->id))
                             <a href="/unlock/{{ $record->id }}" class="btn btn-default btn-sm pull-right text text-success"><i class="fa fa-unlock" aria-hidden="true"></i></a>
                         @else
@@ -44,20 +43,21 @@
                   </div>
                   <div id="collapse{{ $record->id }}" class="collapse" data-parent="#accordion">
                     <div class="card-body card-body-space">
-
                         <p>
                           <div class="dropdown">
-    <a class="btn btn-sm btn-danger dropdown-toggle pull-right text-white" data-toggle="dropdown">
-      Dropdown a
-    </a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Link 1</a>
-      <a class="dropdown-item" href="#">Link 2</a>
-      <a class="dropdown-item" href="#">Link 3</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Another link</a>
-    </div>
-  </div> 
+                            <a class="btn btn-sm btn-warning dropdown-toggle pull-right text-white" data-toggle="dropdown">
+                              授权
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="/user/{{ $record->id }}/staff">员工</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="/user/{{ $record->id }}/agent">代理商</a>
+                              <a class="dropdown-item" href="/user/{{ $record->id }}/salesman">代理商员工</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="/user/{{ $record->id }}/customer">客户</a>
+                            </div>
+                          </div> 
+                                <span class="badge badge-pill badge-success">{{ $a->type($record->id) }}</span>
                             @if($a->locked($record->id))
                                 <span class="badge badge-pill badge-warning">账号锁定</span>
                             @endif
