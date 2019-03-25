@@ -6,7 +6,7 @@
         <div class="card-body">
             <img class="ok" src="{{ URL::asset('svg/logo.svg') }}">
             <h5>众乐速配</h5>
-            <p class="text text-danger">{!! QrCode::generate('Make me into a QrCode!'); !!}</p>
+           <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($url)) !!} ">
             <p>
                 
             </p>
