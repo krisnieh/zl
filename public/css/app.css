@@ -87,6 +87,10 @@ a:hover, a:visited, a:link, a:active {
 .ok {
     width: 80px;
 }
+.qrcode {
+    width: 200px;
+    height: 200px;
+}
 
 
 
