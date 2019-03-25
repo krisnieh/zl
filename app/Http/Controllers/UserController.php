@@ -151,7 +151,7 @@ class UserController extends Controller
             'url' => '/reg_check'
         ]);
 
-        $title = '注册: 请在10分钟内完成';
+        $title = '注册: 请在30分钟内完成';
         $icon = 'user-o';
 
         return view('form', compact('form','title','icon'));

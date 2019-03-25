@@ -12,7 +12,7 @@
             <p class="text text-danger">省钱 . 高效</p>
             <p>
                 @if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') && Cache::has(session('openid')))
-                    <a href="/register" class="btn btn-sm btn-block btn-success">继续完成注册</a>
+                    <a href="/register" class="btn btn-sm btn-block btn-success">继续完成注册(扫码30分钟内有效)</a>
                 @endif
             </p>
         </div>
