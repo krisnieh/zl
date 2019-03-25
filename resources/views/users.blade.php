@@ -25,7 +25,6 @@
                 <div class="card card-space">
                   <div class="card-header">
                     <a data-toggle="collapse" href="#collapse{{ $record->id }}">
-                      <img class="icon rounded icon-list" src="{{ URL::asset('image/head.png') }}"> 
                       <strong class="user-title text-{{ $a->locked($record->id) ? "warning" : "dark" }}">
                         {{ json_decode($record->info)->name }}
                       </strong>
