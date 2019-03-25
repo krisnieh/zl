@@ -68,12 +68,12 @@ class WechatController extends Controller
     {
         $key_array = explode('_', $key);
 
-        if($Key[1] == 'ad') {
+            Cache::put($openid, $key, 1);
+        // if($Key[1] == 'ad') {
             // Session::put('parent_id', $key[2]);
-            Cache::put($openid, $key[2], 10);
 
             // return redirect('/register');
-        }
+        // }
     }
 
     /**
