@@ -47,10 +47,11 @@ class WechatController extends Controller
                         ],
                     ],
                 ];
-                // Log::info($t->news($news));
+                Log::info($array);
 
                 // 推荐码
                 if(array_key_exists('EventKey', $array)) return $this->register($array['EventKey'], $array['FromUserName']);
+
 
                 // 回复
                 echo($t->news($news));
