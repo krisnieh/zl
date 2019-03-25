@@ -171,7 +171,7 @@ class UserController extends Controller
         $array = explode('_', Cache::get(session('openid')));
 
         $new = [
-            'parent_id' => $array[2];
+            'parent_id' => $array[2],
             'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
             'password' => $request->password,
             'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
