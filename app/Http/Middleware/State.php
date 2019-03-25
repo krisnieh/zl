@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Session;
+use Cache;
 
 use App\Helpers\Prepare;
 use App\User;
