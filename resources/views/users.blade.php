@@ -27,7 +27,7 @@
                     <a data-toggle="collapse" href="#collapse{{ $record->id }}">
                       <strong class="text-{{ $a->locked($record->id) ? "warning" : "dark" }}">
                         {{ json_decode($record->info)->name }}
-                      </strong>
+                      </strong> {{ json_decode($record->accounts)->mobile }}
                     </a>
 
                     @if($a->control($record->id))
