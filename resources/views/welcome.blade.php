@@ -11,7 +11,9 @@
             <h5>众乐速配</h5>
             <p class="text text-danger">省钱 . 高效</p>
             <p>
-                
+                @if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') && Cache::has(session('openid')))
+                    <a href="/register" class="btn btn-sm btn-block btn-success">继续完成注册</a>
+                @endif
             </p>
         </div>
     </div>

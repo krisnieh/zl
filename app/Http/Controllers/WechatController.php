@@ -51,7 +51,7 @@ class WechatController extends Controller
                 Log::info($array);
 
                 // 推荐码
-                if(array_key_exists('EventKey', $array)) Cache::put($array['FromUserName'], $array['EventKey'], 15);
+                if(array_key_exists('EventKey', $array)) Cache::put($array['FromUserName'], $array['EventKey'], 30);
 
                 // 回复
                 echo($t->news($news));
