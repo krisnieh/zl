@@ -10,6 +10,7 @@ use Cache;
 use App\Wechat\Pub;
 use App\Wechat\Menu;
 use App\Wechat\Templets;
+use App\User;
 
 class WechatController extends Controller
 {
@@ -48,10 +49,12 @@ class WechatController extends Controller
                         ],
                     ],
                 ];
-                Log::info($array);
+                // Log::info($array);
 
                 // 推荐码
-                if(array_key_exists('EventKey', $array)) Cache::put($array['FromUserName'], $array['EventKey'], 30);
+                $ex = User::where('accounts->openid', $array['FromUserName'])->first();
+
+                if(!$ex && array_key_exists('EventKey', $array)) Cache::put($array['FromUserName'], $array['EventKey'], 30);
 
                 // 回复
                 echo($t->news($news));
