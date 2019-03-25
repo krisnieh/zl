@@ -47,7 +47,7 @@
 
                         <p>
                           <div class="dropdown">
-    <a class="btn btn-sm btn-danger dropdown-toggle pull-right" data-toggle="dropdown">
+    <a class="btn btn-sm btn-danger dropdown-toggle pull-right text-white" data-toggle="dropdown">
       Dropdown a
     </a>
     <div class="dropdown-menu">
