@@ -143,8 +143,8 @@ class UserController extends Controller
 
     public function register()
     {
-        $a = new Au;
-        if(!$a->locked($id)) abort('403');
+        // $a = new Au;
+        // if(!$a->locked($id)) abort('403');
 
         if(!Cache::has(session('openid')) || Session::has('id')) abort('403');
 
