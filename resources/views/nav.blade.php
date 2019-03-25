@@ -1,6 +1,9 @@
 <?php
   $p = new App\Helpers\Prepare;
-  if(Session::has('id')) $me = $p->me();
+  if(Session::has('id')) {
+    $me = $p->me();
+    $a = new App\Helpers\Au;
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +22,7 @@
 
 <nav class="navbar bg-light fixed-top">
   <a href="/" ><img class="logo" src="{{ URL::asset('svg/logo.svg') }}"></a>
-    @if(Session::has('id'))
+    @if(Session::has('id') && !$a->locked)
     <div class="dropdown menu">
       <button type="button" class="btn btn-light" data-toggle="dropdown">{{ $me->name }}</button>
       <div class="dropdown-menu  dropdown-menu-right">
