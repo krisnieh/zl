@@ -173,12 +173,14 @@ class UserController extends Controller
         $new = [
             'parent_id' => $array[2],
             'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
             'auth' => '{"locked":"true"}',
         ];
 
         User::create($new);
+
+        Cache::forget(session('openid'));
 
         $text = '您的注册资料已经提交审核, 请耐心等待!';
         return view('note', compact('text'));
