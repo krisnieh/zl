@@ -79,7 +79,16 @@ class Prepare
      */
     public function fail() 
     {
-        $a = json_decode(User::find(session('id'))->auth);
+
+        $ex = User::find(session('id'));
+
+        if(!$ex) {
+            if(Cookie::has('id')) Cookie::forget('id');
+            if(Session::has('id')) Session::forget('id');
+            return false;
+        }
+
+        $a = json_decode($ex->auth);
 
         return array_key_exists('locked', $a) && $a->locked ? true : false;
     }
