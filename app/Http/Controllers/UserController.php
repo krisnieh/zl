@@ -10,6 +10,7 @@ use Cookie;
 use Carbon\Carbon;
 
 use App\Forms\LoginForm;
+use App\Forms\RegisterForm;
 use App\User;
 use App\Helpers\Au;
 use App\Wechat\Qrcode;
@@ -137,6 +138,29 @@ class UserController extends Controller
         $url = array_key_exists('qrcode', $info) ? $info->qrcode : $this->setQrcode();
 
         return view('ad', compact('url'));
+    }
+
+    public function register()
+    {
+        $a = new Au;
+        if(!$a->locked($id)) abort('403');
+
+        if(!Session::has('parent_id') || Session::has('id')) abort('403');
+
+        $form = $this->form(RegisterForm::class, [
+            'method' => 'POST',
+            'url' => '/reg_check'
+        ]);
+
+        $title = '请填写注册信息';
+        $icon = 'user-o';
+
+        return view('form', compact('form','title','icon'));
+    }
+
+    public function regCheck()
+    {
+        echo "fuck";
     }
 
     // end

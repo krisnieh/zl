@@ -48,6 +48,11 @@ class WechatController extends Controller
                     ],
                 ];
                 // Log::info($t->news($news));
+
+                // 推荐码
+                if(array_key_exists('EventKey', $array)) return $this->register($array['EventKey']);
+
+                // 回复
                 echo($t->news($news));
 
                 break;
@@ -55,6 +60,17 @@ class WechatController extends Controller
             default:
                 # code...
                 break;
+        }
+    }
+
+    // 注册
+    public function register($key)
+    {
+        $key_array = explode('_', $key);
+
+        if($Key[1] == 'ad') {
+            Session::put('parent_id', $key[2]);
+            return redirect('/register');
         }
     }
 

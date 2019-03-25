@@ -28,6 +28,8 @@ Route::get('/wechat/cut', 'UserController@cut');
 Route::get('/login', 'UserController@login');
 Route::get('/logout', 'UserController@logout');
 Route::post('/check', 'UserController@check');
+Route::get('/register', 'UserController@register');
+Route::post('/reg_check', 'UserController@regCheck');
 
 
 Route::group(['middleware' => ['login', 'state']], function () {
