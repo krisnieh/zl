@@ -7,6 +7,7 @@ use Kris\LaravelFormBuilder\FormBuilderTrait;
 use Hash;
 use Session;
 use Cookie;
+use Carbon\Carbon;
 
 use App\Forms\LoginForm;
 use App\User;
@@ -113,19 +114,29 @@ class UserController extends Controller
      *
      * 永久: {"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": 123}}}
      */
-    public function ad()
+    private function setQrcode()
     {
         $qrcode = new Qrcode;
 
-        $expire_seconds = 604800;
-
-        $json = '{"expire_seconds": '.$expire_seconds.', "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.session('id').'"}}}';
+        $json = '{"action_name": "QR_LIMIT_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.session('id').'"}}}';
 
         $resault = $qrcode->get($json);
 
         $url = $resault['url'];
 
-        User::find(session('id'))->update(['info->qrcode' => '{"url":"'.$url.'", "expire":"'.$time.'"}']);
+        $new = User::find(session('id'))->update(['info->qrcode' => $url]);
+
+        return $url;
+
+    }
+
+    public function ad()
+    {
+        $info =json_decode(User::find(session('id'))->info);
+
+        $url = '';
+
+        $url = array_key_exists('qrcode', $me) ? $me->qrcode : $this->setQrcode();
 
         return view('ad', compact('url'));
     }

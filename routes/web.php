@@ -51,8 +51,15 @@ Route::get('/t', 'WechatController@test');
 
 Route::get('/test', function() {
     $a = new Carbon\Carbon;
+    $b = $a->now()->addDays(1);
 
-    echo $a->now()->addDays(1);
+    if($a->now()->gte($b)){
+        echo "good";
+    }else{
+        echo "fuck";
+    }
+
+    // echo(json_decode(null));
 });
 
 
