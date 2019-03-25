@@ -178,22 +178,10 @@ class UserController extends Controller
             'auth' => '{"locked":"true"}',
         ];
 
-        print_r($new);
-        // 'parent_id' => 2,
-        //     'accounts' =>'{"mobile":"13000000000", "openid":"wechatopenid"}',
-        //     'password' => bcrypt('000000'),
-        //     'info' => '{"name":"陈东阳", "sex":"male"}',
-        //     'auth' => '{"manager":true}'
-        // if(!Hash::check($request->password, $exists->password)) return redirect()->back()->withErrors(['password'=>'密码错误!'])->withInput();
+        User::create($new);
 
-        // session(['id' => $exists->id]);
-
-        // // 微信关联
-        // if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') && Session::has('openid')) {
-        //     $exists->update(['accounts->openid' => session('openid')]);
-        // }
-
-        // return redirect('/home');
+        $text = '您的注册资料已经提交审核, 请耐心等待!';
+        return view('note', compact('text'));
     }
 
     // end
