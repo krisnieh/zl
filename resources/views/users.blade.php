@@ -9,7 +9,7 @@
 <div class="d-flex justify-content-center align-items-center w-100">
 <div class="col-sm-8">
 
-  <a class="btn btn-default" href="/users"><i class="fa fa-user-o ico-space" aria-hidden="true"></i>用户</a>
+  <a class="btn btn-default" href="/users"><i class="fa fa-user-o ico-space" aria-hidden="true"></i>用户 - {{ count($records) }}</a>
   <form>
     <div class="input-group mb-3 input-group-sm col-10 col-sm-5">
       <input type="text" class="form-control">
