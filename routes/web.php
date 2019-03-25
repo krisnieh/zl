@@ -39,7 +39,7 @@ Route::group(['middleware' => ['login', 'state']], function () {
     Route::get('/users', 'UserController@index');
     Route::get('/lock/{id}', 'UserController@lock');
     Route::get('/unlock/{id}', 'UserController@unlock');
-    Route::get('/home', 'UserController@home');
+    Route::get('/ad', 'UserController@ad');
 
 });
 
@@ -50,8 +50,8 @@ Route::get('/t', 'WechatController@test');
 
 
 Route::get('/test', function() {
-    $a = Session::get('openid');
-    echo $a;
+    $a = new App\Wechat\Qrcode;
+    $a->get();
 });
 
 

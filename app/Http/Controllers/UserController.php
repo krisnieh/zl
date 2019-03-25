@@ -11,6 +11,7 @@ use Cookie;
 use App\Forms\LoginForm;
 use App\User;
 use App\Helpers\Au;
+use App\Wechat\Qrcode;
 
 class UserController extends Controller
 {
@@ -105,16 +106,44 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    // home
-    public function home()
+    /**
+     * 推荐码
+     *
+     * 临时: {"expire_seconds": 604800, "action_name": "QR_SCENE", "action_info": {"scene": {"scene_id": 123}}}
+     *
+     * 永久: {"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": 123}}}
+     */
+    public function ad()
     {
-        $list = User::find(2)->child;
+        $qrcode = new Qrcode;
 
-        foreach ($list as $key) {
-            # code...
-        echo($key->id);
-        }
+        $json = '{"expire_seconds": 604800, "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.session('id').'"}}}';
+
+        $resault = $qrcode->get($json);
+
+        $url = $resault['url'];
+
+        return view('ad', compact('url'));
     }
 
     // end
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
