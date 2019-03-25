@@ -40,7 +40,8 @@ class Login
                 }else{
                     $auth->getWebToken();
                     // $p->updateInfo();
-
+                    if(Cache::has(session('openid'))) return redirect('/register');
+                    
                     return $next($request);
                 }
             }
