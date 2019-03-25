@@ -25,7 +25,7 @@
                 <div class="card card-space">
                   <div class="card-header">
                     <a data-toggle="collapse" href="#collapse{{ $record->id }}">
-                      <strong class="user-title text-{{ $a->locked($record->id) ? "warning" : "dark" }}">
+                      <strong class="text-{{ $a->locked($record->id) ? "warning" : "dark" }}">
                         {{ json_decode($record->info)->name }}
                       </strong>
                     </a>
