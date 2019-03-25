@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use URL;
 use Log;
+use Cache;
 
 use App\Wechat\Pub;
 use App\Wechat\Menu;
