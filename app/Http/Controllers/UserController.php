@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $records = User::where('id','>',1)
                     ->orderBy('id')
-                    ->get();
+                    ->paginate(30);
 
         return view('users', compact('records'));
     }
@@ -186,7 +186,6 @@ class UserController extends Controller
             'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
             'password' => bcrypt($request->password),
             'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
-            'auth' => '{"locked":"true"}',
         ];
 
         User::create($new);
@@ -206,6 +205,38 @@ class UserController extends Controller
         $me = User::find(session('id'));
         return view('home', compact('me'));
     }
+
+    /**
+     * 权限设置
+     *
+     */
+    public function set($id, $key) 
+    {
+        $a = new Au;
+        if(!$a->control($id)) abort('403');
+
+        $target = User::findOrFail($id);
+        $target->update(['auth->type' => $key]);
+        return redirect()->back();
+    }
+
+    /**
+     * 待审批
+     *
+     */
+    public function approve() 
+    {
+        $a = new Au;
+        if(!$a->manager()) abort('403');
+
+        $records = User::whereNull('auth->type')
+                ->where('id', '>', 1)
+                ->paginate(30);
+
+        return view('users', compact('records'));
+    }
+
+
 
     // end
 }

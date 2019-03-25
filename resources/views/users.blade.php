@@ -9,7 +9,7 @@
 <div class="d-flex justify-content-center align-items-center w-100">
 <div class="col-sm-8">
 
-  <strong><i class="fa fa-user-o ico-space" aria-hidden="true"></i>用户</strong>
+  <a class="btn btn-default" href="/users"><i class="fa fa-user-o ico-space" aria-hidden="true"></i>用户</a>
   <form>
     <div class="input-group mb-3 input-group-sm col-10 col-sm-5">
       <input type="text" class="form-control">
@@ -44,6 +44,8 @@
                   <div id="collapse{{ $record->id }}" class="collapse" data-parent="#accordion">
                     <div class="card-body card-body-space">
                         <p>
+
+                          @if($a->control($record->id))
                           <div class="dropdown">
                             <a class="btn btn-sm btn-warning dropdown-toggle pull-right text-white" data-toggle="dropdown">
                               授权
@@ -57,7 +59,9 @@
                               <a class="dropdown-item" href="/user/{{ $record->id }}/customer">客户</a>
                             </div>
                           </div> 
-                                <span class="badge badge-pill badge-success">{{ $a->type($record->id) }}</span>
+                          @endif
+
+                            <span class="badge badge-pill badge-success">{{ $a->type($record->id) }}</span>
                             @if($a->locked($record->id))
                                 <span class="badge badge-pill badge-warning">账号锁定</span>
                             @endif
@@ -80,6 +84,7 @@
                   </div>
                 </div>
             @endforeach
+            <div class="d-flex justify-content-center align-items-center w-100 alert">{{ $records->links() }}</div>
         @else
             <div class="alert alert-info">尚无记录</div>
         @endif

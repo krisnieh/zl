@@ -150,7 +150,7 @@ class Au
 
         if(!$use) return false;
 
-        return array_key_exists('type', $use) && array_key_exists($use->type, $this->role) ? $this->role[$use->type] : '未知';
+        return array_key_exists('type', $use) && array_key_exists($use->type, $this->role) ? $this->role[$use->type] : '未授权';
     }
 
 }

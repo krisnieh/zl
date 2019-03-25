@@ -93,7 +93,7 @@ class Prepare
 
         $a = json_decode($ex->auth);
 
-        return array_key_exists('locked', $a) && $a->locked ? true : false;
+        return (array_key_exists('locked', $a) && $a->locked) || !array_key_exists('type', $a) ? true : false;
     }
 
     /**
