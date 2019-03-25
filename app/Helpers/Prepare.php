@@ -5,6 +5,9 @@ namespace App\Helpers;
 use App\User;
 use App\Wechat\Oauth2;
 
+use Cookie;
+use Session;
+
 /**
  * 准备
  *
