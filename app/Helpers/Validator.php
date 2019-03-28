@@ -17,6 +17,8 @@ use Auth;
     {
         $has = User::where('accounts->openid', $openid)->first();
 
+        if($has) Auth::login($has);
+
         return $has ? $has : false;
     }
     

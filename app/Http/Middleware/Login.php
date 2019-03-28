@@ -27,7 +27,6 @@ class Login
         if(Auth::check()) return $next($request);
 
         if($v->useWechat() && Session::has('openid') && $v->regWechat(session('openid'))) {
-            Auth::login($v->regWechat());
             return $next($request);
         }
 
