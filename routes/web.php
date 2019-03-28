@@ -54,21 +54,23 @@ Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
-    $r = new App\Helpers\Role;
+    $a = new App\Helpers\Validator;
+    return $a->regWechat('ojK9v1ZaCM4AnDe_iMjf5AQM61II');
+    // $r = new App\Helpers\Role;
 
-    $a = $r->orgLocked();
+    // $a = $r->orgLocked();
 
-    if ($a) {
-        echo "yes";
-    }else{
-        echo "fuck";
-    }
+    // if ($a) {
+    //     echo "yes";
+    // }else{
+    //     echo "fuck";
+    // }
 
-    // $a = Auth::user()->org-;
+    // $a = Auth::user()->org;
 
     // $b = App\User::find(4)->org->typeConf->key;
 
-    // // print_r($b);
+    // print_r($a);
     // echo $b;
 
     // $r = new App\Helpers\Role;
