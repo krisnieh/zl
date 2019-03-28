@@ -128,7 +128,7 @@ class UserController extends Controller
     {
         $qrcode = new Qrcode;
 
-        $expire_seconds = 3600; # 1小时过期
+        $expire_seconds = 7200; # 2小时过期
 
         $json = '{"expire_seconds": '.$expire_seconds.', "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.Auth::id().'"}}}';
 
@@ -150,7 +150,7 @@ class UserController extends Controller
 
         $check =json_decode(Auth::user()->info);
 
-        if(!$check || !array_key_exists('qrcode', $check) || !array_key_exists('url', $check->qrcode) || !array_key_exists('expire', $check->qrcode) || $check->qrcode->expire < time()) $use = $this->setQrcode();
+        if(!$check || !array_key_exists('qrcode', $check) || !array_key_exists('url', $check->qrcode) || !array_key_exists('expire', $check->qrcode) || $check->qrcode->expire < (time() + 1800) ) $use = $this->setQrcode();
 
 
         $info = json_decode($use->info);
