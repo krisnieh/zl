@@ -13,7 +13,7 @@ use Auth;
     }
 
     // 微信登录
-    public function regWechat($opeid)
+    public function regWechat($openid)
     {
         $has = User::where('accounts->openid', $openid)->first();
 
