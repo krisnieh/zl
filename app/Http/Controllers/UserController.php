@@ -150,10 +150,10 @@ class UserController extends Controller
 
         $use = Auth::user();
 
-        if(!array_key_exists('url', $check->qrcode) || !array_key_exists('expire', $check->qrcode) || $check->qrcode->expire < time()) $use = $this->setQrcode();
+        if(!$check || !array_key_exists('url', $check->qrcode) || !array_key_exists('expire', $check->qrcode) || $check->qrcode->expire < time()) $use = $this->setQrcode();
 
 
-        $qrcode = json_decode($use->info)->qrcode;
+        $qrcode = json_decode($use->info);
 
         return view('ad', compact('qrcode'));
     }
