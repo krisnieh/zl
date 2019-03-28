@@ -30,7 +30,10 @@ class Login
 
         if($v->useWechat() && Session::has('openid') && !$v->regWechat(session('openid')) && Cache::has(session('openid'))) return redirect('/register');
         if($v->useWechat() && !Session::has('openid') && !isset($_GET['code'])) return $wechat->getCode();
-        if($v->useWechat() && !Session::has('openid') && isset($_GET['code'])) return $wechat->getWebToken();
+        if($v->useWechat() && !Session::has('openid') && isset($_GET['code'])) {
+            $wechat->getWebToken();
+            return redirect()->back();
+        } 
 
         return redirect('/login');
 
