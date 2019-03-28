@@ -120,7 +120,7 @@ class UserController extends Controller
     /**
      * 推荐码
      *
-     * 临时: {"expire_seconds": 604800, "action_name": "QR_SCENE", "action_info": {"scene": {"scene_id": 123}}}
+     * 临时: {"expire_seconds": 604800, "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "test"}}}
      *
      * 永久: {"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": 123}}}
      */
@@ -128,15 +128,19 @@ class UserController extends Controller
     {
         $qrcode = new Qrcode;
 
-        $json = '{"action_name": "QR_LIMIT_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.session('id').'"}}}';
+        $expire_seconds = 3600; # 1小时过期
+
+        $json = '{"expire_seconds": '.$expire_seconds.', "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.Auth::id().'"}}}';
 
         $resault = $qrcode->get($json);
 
         $url = $resault['url'];
 
-        $new = Auth::user()->update(['info->qrcode' => $url]);
+        $expire = time() + $expire_seconds - 30;
 
-        return $url;
+        $new = Auth::user()->update(['info->qrcode->url' => $url, 'info->qrcode->expire' => $expire]);
+
+        return $new;
 
     }
 
@@ -144,7 +148,7 @@ class UserController extends Controller
     {
         $info =json_decode(Auth::user()->info);
 
-        $url = array_key_exists('qrcode', $info) ? $info->qrcode : $this->setQrcode();
+        $url = array_key_exists('expire', $info->qrcode) && $info->qrcode->expire > time() ? $info->qrcode->url : json_decode($this->setQrcode()->info)->qrcode->url;
 
         return view('ad', compact('url'));
     }

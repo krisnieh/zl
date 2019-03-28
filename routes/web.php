@@ -54,8 +54,23 @@ Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
-    $a = new App\Helpers\Validator;
-    return $a->regWechat('ojK9v1ZaCM4AnDe_iMjf5AQM61II');
+
+    $url = "fuck";
+    $expire_seconds = 1000;
+
+    // $save = '{"url":"'.$url.'", "ex":'.$expire_seconds.'}';
+    $arr = ['url' => $url, 'expire' => time() + $expire_seconds - 30];
+
+    $s = json_encode($arr);
+
+    App\User::find(2)->update(['info->qrcode->url'=>$url, 'info->qrcode->expire'=>$expire_seconds]);
+
+    // echo($s->url);
+
+    // j
+    echo time();
+    // echo $save->url;
+    // echo $save->expire;
     // $r = new App\Helpers\Role;
 
     // $a = $r->orgLocked();
