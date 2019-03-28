@@ -19,7 +19,7 @@ use Auth;
 
         if($has) Auth::login($has);
 
-        return $has;
+        return $has ? true : false;
     }
     
     // 18位身份证
