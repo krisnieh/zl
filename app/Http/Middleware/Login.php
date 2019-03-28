@@ -3,12 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Session;
-use Cookie;
+use Auth;
 use Cache;
 
 use App\Wechat\Oauth2;
-use App\Helpers\Prepare;
+use App\Helpers\Validator;
 
 class Login
 {
@@ -21,39 +20,18 @@ class Login
      */
     public function handle($request, Closure $next)
     {
-        $auth = new Oauth2;
-        $p = new Prepare;
+        $v = new Validator;
+        $wechat = new Oauth2;
 
-        if ($p->useWechat()) {
-            // 使用微信
-            if(Session::has('id')) return $next($request);
+        if(Auth::check()) return $next($request);
 
-            if(Cookie::has('id') && $p->check(Cookie::get('id')))  return $next($request);
+        if($v->useWechat() && Session::has('openid') && $v->regWechat(session('openid'))) return $next($request);
 
+        if($v->useWechat() && Session::has('openid') && !$v->regWechat(session('openid')) && Cache::has(session('openid'))) return redirect('/register');
+        if($v->useWechat() && !Session::has('openid') && !isset($_GET['code'])) return $wechat->getCode();
+        if($v->useWechat() && !Session::has('openid') && isset($_GET['code'])) return $wechat->getWebToken();
 
-            if(Session::has('openid')) {
-                if(Cache::has(session('openid'))) return redirect('/register');
-                return $next($request);
-            }else{
-                if(!isset($_GET['code'])) {
-                    return $auth->getCode();
-                }else{
-                    $auth->getWebToken();
-                    // $p->updateInfo();
-                    if(Cache::has(session('openid'))) return redirect('/register');
-                    
-                    return $next($request);
-                }
-            }
-
-        } else {
-            if(Session::has('id')) {
-                return $next($request);
-            } else {
-                return redirect('/login');
-            }
-            
-        }
+        return redirect('/login');
 
     }
 }

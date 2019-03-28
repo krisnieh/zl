@@ -21,6 +21,12 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
+    // 机构
+    public function org()
+    {
+        return $this->belongsTo('App\Org', 'org_id');
+    }
+
     // 下家
     public function child()
     {

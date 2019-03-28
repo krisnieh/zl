@@ -1,9 +1,27 @@
 <?php
 namespace App\Helpers;
 
+use App\User;
+use Auth;
 
  class Validator
  {
+    // 使用微信
+    public function useWechat()
+    {
+        return strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger');
+    }
+
+    // 微信登录
+    public function regWechat($opeid)
+    {
+        $has = User::where('accounts->openid', $openid)->first();
+
+        if($has) Auth::login($has);
+
+        return $has;
+    }
+    
     // 18位身份证
     public function checkIdNumber($val)
     {

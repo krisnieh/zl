@@ -20,32 +20,33 @@ class State
      */
     public function handle($request, Closure $next)
     {
-        $p = new Prepare;
+        return $next($request);
+        // $p = new Prepare;
 
-        if(Session::has('id')) {
-            // 已登录
-            if($p->fail()) abort('403');
+        // if(Session::has('id')) {
+        //     // 已登录
+        //     if($p->fail()) abort('403');
 
-            return $next($request);
+        //     return $next($request);
 
-        } else {
-            if(Session::has('openid')){
-                if(Cache::has(session('openid'))) return redirect('/register');
+        // } else {
+        //     if(Session::has('openid')){
+        //         if(Cache::has(session('openid'))) return redirect('/register');
 
-                $has = User::where('accounts->openid', session('openid'))->first();
-                if($has) {
-                    Session::put('id', $has->id);
-            // $p->updateInfo();
-                    if($p->fail()) abort('403');
+        //         $has = User::where('accounts->openid', session('openid'))->first();
+        //         if($has) {
+        //             Session::put('id', $has->id);
+        //     // $p->updateInfo();
+        //             if($p->fail()) abort('403');
 
-                    return $next($request);
-                }else{
-                    return redirect('/login');
-                }
-            }else{
-                Session::flush();
-            }
-        }
+        //             return $next($request);
+        //         }else{
+        //             return redirect('/login');
+        //         }
+        //     }else{
+        //         Session::flush();
+        //     }
+        // }
         
     }
 }

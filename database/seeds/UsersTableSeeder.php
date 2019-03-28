@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'parent_id' => 1,
+            'org_id' => 1,
             'accounts' =>'{"mobile":"17821621090", "openid":"ojK9v1ZaCM4AnDe_iMjf5AQM61II"}',
             'password' => bcrypt('000000'),
             'info' => '{"name":"Kris", "addr":"无锡"}',
@@ -22,6 +23,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'parent_id' => 1,
+            'org_id' => 1,
             'accounts' =>'{"mobile":"17261750890", "openid":"wechatopenid"}',
             'password' => bcrypt('000000'),
             'info' => '{"name":"吴清国", "addr":"无锡江阴青阳"}',
@@ -30,6 +32,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'parent_id' => 2,
+            'org_id' => 1,
             'accounts' =>'{"mobile":"13000000000", "openid":"wechatopenid"}',
             'password' => bcrypt('000000'),
             'info' => '{"name":"陈东阳", "addr":"无锡江阴青阳"}',
@@ -38,6 +41,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'parent_id' => 2,
+            'org_id' => 2,
             'accounts' =>'{"mobile":"131231231", "openid":"wechatopenid"}',
             'password' => bcrypt('000000'),
             'info' => '{"name":"令狐冲", "addr":"无锡江阴青阳"}',
@@ -46,6 +50,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'parent_id' => 2,
+            'org_id' => 3,
             'accounts' =>'{"mobile":"131231231", "openid":"wechatopenid"}',
             'password' => bcrypt('000000'),
             'info' => '{"name":"莫大先生", "addr":"无锡江阴青阳"}',
@@ -54,6 +59,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'parent_id' => 2,
+            'org_id' => 4,
             'accounts' =>'{"mobile":"17821121090", "openid":"wechatopenid"}',
             'password' => bcrypt('000000'),
             'info' => '{"name":"任盈盈", "addr":"fexxxxxxyyyy"}',

@@ -50,11 +50,13 @@ Route::group(['middleware' => ['login', 'state']], function () {
 
 // -------- test ----------
 
-Route::get('/t', 'WechatController@test');
+Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
-    Cache::get(session('openid'));
+    $a = Auth::user();
+    print_r($a);
+    // Cache::get(session('openid'));
     // $a = new Carbon\Carbon;
     // $b = $a->now()->addDays(1);
 

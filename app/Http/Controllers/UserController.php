@@ -9,6 +9,7 @@ use Session;
 use Cookie;
 use Carbon\Carbon;
 use Cache;
+use Auth;
 
 use App\Forms\LoginForm;
 use App\Forms\RegisterForm;
@@ -66,11 +67,14 @@ class UserController extends Controller
 
         if(!Hash::check($request->password, $exists->password)) return redirect()->back()->withErrors(['password'=>'密码错误!'])->withInput();
 
-        session(['id' => $exists->id]);
+        // session(['id' => $exists->id]);
 
         // 微信关联
         if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') && Session::has('openid')) {
+            Auth::login($exists, true); # 记住登录
             $exists->update(['accounts->openid' => session('openid')]);
+        } else {
+            Auth::login($exists);
         }
 
         return redirect('/apps');
@@ -80,8 +84,9 @@ class UserController extends Controller
     // 退出
     public function logout ()
     {
-        Session::flush();
-        Cookie::forget('id');
+        // Session::flush();
+        // Cookie::forget('id');
+        Auth::logout();
         return redirect('/');
     }
 
