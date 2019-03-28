@@ -148,9 +148,9 @@ class UserController extends Controller
     {
         $info =json_decode(Auth::user()->info);
 
-        $url = array_key_exists('expire', $info->qrcode) && $info->qrcode->expire > time() ? $info->qrcode->url : json_decode($this->setQrcode()->info)->qrcode->url;
+        $qrcode = array_key_exists('url', $info->qrcode) && array_key_exists('expire', $info->qrcode) && $info->qrcode->expire > time() ? $info->qrcode : json_decode($this->setQrcode()->info)->qrcode;
 
-        return view('ad', compact('url'));
+        return view('ad', compact('qrcode'));
     }
 
     public function register()
