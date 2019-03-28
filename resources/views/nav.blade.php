@@ -1,9 +1,5 @@
 <?php
-  $p = new App\Helpers\Prepare;
-  if(Session::has('id')) {
-    $me = $p->me();
-    $a = new App\Helpers\Au;
-  }
+  if(Auth::check()) $r = new App\Helpers\Role;
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,13 +18,13 @@
 
 <nav class="navbar bg-light fixed-top">
   <a href="/" ><img class="logo" src="{{ URL::asset('svg/logo.svg') }}"></a>
-    @if(Session::has('id') && !$a->locked())
+    @if(Auth::check() && !$r->locked() && !$r->orgLocked())
     <div class="dropdown menu">
-      <button type="button" class="btn btn-light" data-toggle="dropdown">{{ $me->name }}</button>
+      <button type="button" class="btn btn-light" data-toggle="dropdown">{{ $r->me()->name }}</button>
       <div class="dropdown-menu  dropdown-menu-right">
         <a class="dropdown-item" href="/ad"><i class="fa fa-qrcode ico-space" aria-hidden="true"></i>推荐码</a>
         <a class="dropdown-item" href="/apps"><i class="fa fa-th ico-space" aria-hidden="true"></i>应用</a>
-        @if($a->manager())
+        @if($r->admin())
         <a class="dropdown-item" href="/user/approve"><i class="fa fa-check-square-o ico-space" aria-hidden="true"></i>审批中心</a>
         @endif
         <div class="dropdown-divider"></div>

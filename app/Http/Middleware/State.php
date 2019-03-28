@@ -3,11 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Session;
-use Cache;
 
-use App\Helpers\Prepare;
-use App\User;
+use App\Helpers\Role;
 
 class State
 {
@@ -20,33 +17,11 @@ class State
      */
     public function handle($request, Closure $next)
     {
+        $r = new Role;
+
+        if($r->locked() || $r->orgLocked()) abort('403');
+
         return $next($request);
-        // $p = new Prepare;
-
-        // if(Session::has('id')) {
-        //     // 已登录
-        //     if($p->fail()) abort('403');
-
-        //     return $next($request);
-
-        // } else {
-        //     if(Session::has('openid')){
-        //         if(Cache::has(session('openid'))) return redirect('/register');
-
-        //         $has = User::where('accounts->openid', session('openid'))->first();
-        //         if($has) {
-        //             Session::put('id', $has->id);
-        //     // $p->updateInfo();
-        //             if($p->fail()) abort('403');
-
-        //             return $next($request);
-        //         }else{
-        //             return redirect('/login');
-        //         }
-        //     }else{
-        //         Session::flush();
-        //     }
-        // }
         
     }
 }

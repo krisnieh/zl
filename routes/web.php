@@ -54,19 +54,31 @@ Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
-    $a = Auth::user();
-    print_r($a);
-    // Cache::get(session('openid'));
-    // $a = new Carbon\Carbon;
-    // $b = $a->now()->addDays(1);
+    $r = new App\Helpers\Role;
 
-    // if($a->now()->gte($b)){
-    //     echo "good";
+    $a = $r->locked(8);
+
+    if ($a) {
+        echo "yes";
+    }else{
+        echo "fuck";
+    }
+
+    // $a = Auth::user()->org-;
+
+    // $b = App\User::find(4)->org->typeConf->key;
+
+    // // print_r($b);
+    // echo $b;
+
+    // $r = new App\Helpers\Role;
+    // if ($r->staff(4)) {
+    //     echo "yes";
     // }else{
     //     echo "fuck";
     // }
 
-    // echo(json_decode(null));
+
 });
 
 

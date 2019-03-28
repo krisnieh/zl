@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilderTrait;
 use Hash;
 use Session;
-use Cookie;
 use Carbon\Carbon;
 use Cache;
 use Auth;
@@ -94,7 +93,7 @@ class UserController extends Controller
     // 解除微信绑定
     public function cut ()
     {
-        User::find(session('id')) -> update(['accounts->openid' => '']);
+        Auth::user() -> update(['accounts->openid' => '']);
         return $this->logout();
     }
 
@@ -135,7 +134,7 @@ class UserController extends Controller
 
         $url = $resault['url'];
 
-        $new = User::find(session('id'))->update(['info->qrcode' => $url]);
+        $new = Auth::user()->update(['info->qrcode' => $url]);
 
         return $url;
 
@@ -143,7 +142,7 @@ class UserController extends Controller
 
     public function ad()
     {
-        $info =json_decode(User::find(session('id'))->info);
+        $info =json_decode(Auth::user()->info);
 
         $url = array_key_exists('qrcode', $info) ? $info->qrcode : $this->setQrcode();
 
@@ -207,7 +206,7 @@ class UserController extends Controller
      */
     public function home()
     {
-        $me = User::find(session('id'));
+        $me = Auth::user();
         return view('home', compact('me'));
     }
 

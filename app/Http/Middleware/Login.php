@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 use Cache;
+use Session;
 
 use App\Wechat\Oauth2;
 use App\Helpers\Validator;

@@ -15,36 +15,43 @@ class OrgsTableSeeder extends Seeder
     {
         Org::create([
             'name' => '众乐速配',
-            'type' => 3,
+            'conf_id' => 3,
             'info' => '{"province":"江苏", "city":"无锡", "sub_city":"无锡"}',
             'auth' => '{"root":true}'
         ]);
 
         Org::create([
             'name' => '湖兴',
-            'type' => 4,
+            'conf_id' => 4,
             'info' => '{"province":"江苏", "city":"常州", "sub_city":"溧阳"}',
             'auth' => null
         ]);
 
         Org::create([
             'name' => '锡城特快',
-            'type' => 4,
+            'conf_id' => 4,
             'info' => '{"province":"江苏", "city":"无锡", "sub_city":"无锡"}',
             'auth' => null
         ]);
 
         Org::create([
             'name' => '江阴飞龙',
-            'type' => 4,
+            'conf_id' => 4,
             'info' => '{"province":"江苏", "city":"无锡", "sub_city":"江阴"}',
             'auth' => null
         ]);
 
         Org::create([
             'name' => '宜兴中天',
-            'type' => 4,
+            'conf_id' => 4,
             'info' => '{"province":"江苏", "city":"无锡", "sub_city":"宜兴"}',
+            'auth' => null
+        ]);
+
+        Org::create([
+            'name' => '新桥修理店',
+            'conf_id' => 5,
+            'info' => '{"province":"江苏", "city":"无锡", "sub_city":"江阴"}',
             'auth' => null
         ]);
 

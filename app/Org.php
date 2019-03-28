@@ -8,8 +8,14 @@ class Org extends Model
 {
     protected $guarded = [];
 
+    // 对应配置
+    public function typeConf() 
+    {
+        return $this->hasOne('App\Conf', 'id', 'conf_id');
+    }
+
     // 员工和客户
-    public function users()
+    public function users() 
     {
         return $this->hasMany('App\User', 'org_id');
     }

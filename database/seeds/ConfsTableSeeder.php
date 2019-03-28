@@ -14,24 +14,29 @@ class ConfsTableSeeder extends Seeder
     public function run()
     {
         Conf::create([
-            'key' => 'gender',
+            'type' => 'gender',
+            'key' => 'male',
             'val' => '男',
         ]);
         Conf::create([
-            'key' => 'gender',
+            'type' => 'gender',
+            'key' => 'female',
             'val' => '女',
         ]);
 
         Conf::create([
-            'key' => 'org_type',
+            'type' => 'org',
+            'key' => 'staff',
             'val' => '众乐速配',
         ]);
         Conf::create([
-            'key' => 'org_type',
+            'type' => 'org',
+            'key' => 'angent',
             'val' => '代理商',
         ]);
         Conf::create([
-            'key' => 'org_type',
+            'type' => 'org',
+            'key' => 'customer',
             'val' => '客户',
         ]);
 
