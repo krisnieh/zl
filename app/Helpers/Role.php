@@ -47,6 +47,8 @@ class Role
      */
     public function orgLocked($id=0)
     {
+        if(!$this->choose($id)->org->auth) return false;
+        
         return $this->hasAndTrue($this->choose($id)->org->auth, 'locked');
     }
 
