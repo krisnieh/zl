@@ -19,7 +19,7 @@ class State
     {
         $r = new Role;
 
-        // if($r->locked() || $r->orgLocked()) abort('403');
+        if($r->locked() || $r->orgLocked()) abort('403');
 
         return $next($request);
         
