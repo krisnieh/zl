@@ -17,9 +17,9 @@ use Auth;
     {
         $has = User::where('accounts->openid', $openid)->first();
 
-        if($has) Auth::login($has);
+        // if($has) Auth::login($has);
 
-        return $has ? true : false;
+        return $has ? $has : false;
     }
     
     // 18位身份证

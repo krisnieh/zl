@@ -26,7 +26,10 @@ class Login
 
         if(Auth::check()) return $next($request);
 
-        if($v->useWechat() && Session::has('openid') && $v->regWechat(session('openid'))) return $next($request);
+        if($v->useWechat() && Session::has('openid') && $v->regWechat(session('openid'))) {
+            Auth::login($v->regWechat());
+            return $next($request);
+        }
 
         if($v->useWechat() && Session::has('openid') && !$v->regWechat(session('openid')) && Cache::has(session('openid'))) return redirect('/register');
         if($v->useWechat() && !Session::has('openid') && !isset($_GET['code'])) return $wechat->getCode();

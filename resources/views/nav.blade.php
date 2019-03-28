@@ -18,7 +18,7 @@
 
 <nav class="navbar bg-light fixed-top">
   <a href="/" ><img class="logo" src="{{ URL::asset('svg/logo.svg') }}"></a>
-    @if(Auth::check() && !$r->locked())
+    @if(Auth::check() && !$r->locked() && !$r->orgLocked())
     <div class="dropdown menu">
       <button type="button" class="btn btn-light" data-toggle="dropdown">{{ $r->me()->name }}</button>
       <div class="dropdown-menu  dropdown-menu-right">
