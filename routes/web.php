@@ -56,7 +56,7 @@ Route::get('/t', 'OrgController@test');
 Route::get('/test', function() {
     $r = new App\Helpers\Role;
 
-    $a = $r->locked(8);
+    $a = $r->orgLocked();
 
     if ($a) {
         echo "yes";
