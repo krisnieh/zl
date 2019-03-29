@@ -22,10 +22,10 @@
     <tbody>
 
     @foreach($records as $record)
-        @if($r->admin($record->id))
-      <tr class="text-info">
-        @elseif($r->locked($record->id))
+        @if($r->locked($record->id))
       <tr class="table-warning">
+        @elseif($r->admin($record->id))
+      <tr class="text-info">  
         @elseif($r->own($record->id))
       <tr class="table-success">
         @elseif($r->master($record->id))
