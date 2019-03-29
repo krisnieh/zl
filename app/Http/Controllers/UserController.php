@@ -161,10 +161,10 @@ class UserController extends Controller
                 $this->setQrcode();
                 sleep(2);
             }else{
+                $qrcode = $this->checkQrcode();
                 break;
             }
         }
-        if($this->checkQrcode()) $qrcode = $this->checkQrcode();
 
         return view('ad', compact('qrcode'));
     }
