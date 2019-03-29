@@ -156,7 +156,7 @@ class UserController extends Controller
             $qrcode = $this->setQrcode();
         }else{
 
-            $qrcode = ['url' => $info->qrcode->url, 'expire' => $info->qrcode->expire];
+            $qrcode = ['url' => $check->qrcode->url, 'expire' => $check->qrcode->expire];
         }
 
 
