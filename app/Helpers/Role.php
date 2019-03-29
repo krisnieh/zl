@@ -13,6 +13,13 @@ use App\User;
  */
 class Role
 {
+    public function show($json, $key) 
+    {
+        $arr = json_decode($json);
+        return $arr && array_key_exists($key, $arr) ? $arr->$key : null;
+    }
+
+    // 个人信息
     public function me()
     {
         return json_decode(Auth::user()->info);

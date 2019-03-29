@@ -26,6 +26,11 @@ class ConfsTableSeeder extends Seeder
 
         Conf::create([
             'type' => 'org',
+            'key' => 'invalid',
+            'val' => '未分配',
+        ]);
+        Conf::create([
+            'type' => 'org',
             'key' => 'staff',
             'val' => '众乐速配',
         ]);

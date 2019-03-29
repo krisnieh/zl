@@ -25,6 +25,7 @@ class UserController extends Controller
     public function index ()
     {
         $records = User::where('id','>',1)
+                    ->where('org_id', Auth::user()->org_id)
                     ->orderBy('id')
                     ->paginate(30);
 
@@ -209,6 +210,7 @@ class UserController extends Controller
 
         $new = [
             'parent_id' => $array[2],
+            'org_id' => 3,
             'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
             'password' => bcrypt($request->password),
             'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
