@@ -7,7 +7,6 @@
         @if(count($qrcode))
            <div class="row"><img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->merge('/public/image/qrcode_logo.png', .2)->errorCorrection('H')->size(200)->generate($qrcode['url'])) !!} "></div>
             <div class="row"><small class="text text-danger">{{ date('Y-m-d  h:i:s', $qrcode['expire']) }} 后过期</small></div>
-            <div class="row"><small class="text text-danger">{{ date('Y-m-d  h:i:s', time()) }} 现在</small></div>
         @else
             <h3>获取推荐码失败</h3>
         @endif
