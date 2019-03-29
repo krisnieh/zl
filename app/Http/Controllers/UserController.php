@@ -142,23 +142,37 @@ class UserController extends Controller
 
     }
 
-    public function ad()
+    // 检查二维码信息过期
+    private function checkQrcode()
     {
-        // $use = Auth::user();
-
         $check = json_decode(Auth::user()->info);
 
-        if(!$check || !array_key_exists('qrcode', $check) || !array_key_exists('url', $check->qrcode) || !array_key_exists('expire', $check->qrcode) || $check->qrcode->expire < (time() - 180))  $this->setQrcode();
+        if(!$check || !array_key_exists('qrcode', $check) || !array_key_exists('url', $check->qrcode) || !array_key_exists('expire', $check->qrcode) || $check->qrcode->expire < (time() - 180)) return false;
 
+        return ['url' => $check->qrcode->url, 'expire' => $check->qrcode->expire];
+    }
 
-        return view('ad');
+    public function ad()
+    {
+        $out = [];
+
+        for ($i=0; $i < 2; $i++) { 
+            if(!$this->checkQrcode()) { 
+                $this->setQrcode();
+                sleep(2);
+            }else{
+                break;
+            }
+        }
+        $qrcode = $this->checkQrcode();
+
+        return view('ad', compact('qrcode'));
     }
 
 
     public function get()
     {
-        $info = json_decode(Auth::user()->info);
-        return 
+        return $this->checkQrcode() ? json_encode($this->checkQrcode()) :
     }
 
 
