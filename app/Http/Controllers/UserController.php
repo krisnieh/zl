@@ -169,13 +169,6 @@ class UserController extends Controller
         return view('ad', compact('qrcode'));
     }
 
-
-    public function get()
-    {
-        return $this->checkQrcode() ? json_encode($this->checkQrcode()) :
-    }
-
-
     // 注册
 
     public function register()
