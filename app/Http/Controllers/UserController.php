@@ -154,7 +154,7 @@ class UserController extends Controller
 
     public function ad()
     {
-        $out = [];
+        $qrcode = [];
 
         for ($i=0; $i < 2; $i++) { 
             if(!$this->checkQrcode()) { 
@@ -164,7 +164,7 @@ class UserController extends Controller
                 break;
             }
         }
-        $qrcode = $this->checkQrcode();
+        if($this->checkQrcode()) $qrcode = $this->checkQrcode();
 
         return view('ad', compact('qrcode'));
     }
