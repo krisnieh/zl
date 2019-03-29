@@ -5,9 +5,12 @@
 @extends ('nav')
 
 @section ('content')
-<h2>指定意义的颜色类</h2>
-  <p>通过指定意义的颜色类可以为表格的行或者单元格设置颜色：</p>   
   @if(isset($records) && count($records))         
+<h5><i class="fa fa-user-circle-o ico-space" aria-hidden="true"></i>员工</h5>
+<p>
+    <span class="badge badge-success">{{ Auth::user()->org->name }}</span>
+    <span class="badge badge-light">共{{ count($records) }}人</span>
+</p>   
   <table class="table">
     <thead>
       <tr>
@@ -20,7 +23,7 @@
 
     @foreach($records as $record)
         @if($r->admin($record->id))
-      <tr class="table-primary">
+      <tr class="text-info">
         @elseif($r->locked($record->id))
       <tr class="table-warning">
         @elseif($r->own($record->id))
@@ -36,9 +39,26 @@
         <td>
 
             @if($r->higher($record->id))
-            <a class="btn btn-sm">管理</a>
+            <div class="dropdown">
+              <a class="btn btn-sm dropdown-toggle text-info" data-toggle="dropdown">
+               <i class="fa fa-cog" aria-hidden="true"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+
+                @if($r->locked($record->id))
+                <a class="dropdown-item text-success" href="/unlock/{{ $record->id }}"><i class="fa fa-unlock ico-space" aria-hidden="true"></i>解锁</a>
+                @else
+                <a class="dropdown-item text-warning" href="/lock/{{ $record->id }}"><i class="fa fa-lock ico-space" aria-hidden="true"></i>锁定</a>
+                @endif
+
+                @if($r->admin())
+                <a class="dropdown-item text-danger" href="/trans/{{ $record->id }}"><i class="fa fa-retweet ico-space" aria-hidden="true"></i>转机机构</a>
+                @endif
+
+              </div>
+            </div>
             @endif
-            
+
         </td>
       </tr>      
     @endforeach

@@ -13,7 +13,7 @@ use Auth;
 use App\Forms\LoginForm;
 use App\Forms\RegisterForm;
 use App\User;
-use App\Helpers\Au;
+use App\Helpers\Role;
 use App\Helpers\Validator;
 use App\Wechat\Qrcode;
 
@@ -101,20 +101,20 @@ class UserController extends Controller
     // lock 锁定
     public function lock($id)
     {
-        $a = new Au;
-        if(!$a->control($id)) abort('403');
+        $r = new Role;
+        if(!$r->higher($id)) abort('403');
 
-        User::find($id)->update(['auth->locked' => true]);
+        User::findOrFail($id)->update(['auth->locked' => true]);
         return redirect()->back();
     }
 
     // lock 解锁
     public function unlock($id)
     {
-        $a = new Au;
-        if(!$a->control($id)) abort('403');
+        $r = new Role;
+        if(!$r->higher($id)) abort('403');
 
-        User::find($id)->update(['auth->locked' => false]);
+        User::findOrFail($id)->update(['auth->locked' => false]);
         return redirect()->back();
     }
 
