@@ -7,6 +7,7 @@
   <title>众乐速配</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
   <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}" >
@@ -47,6 +48,15 @@
   <small>2019 &copy; 众乐速配</small>
   <small><br><a class="grey" href="http://www.miitbeian.gov.cn">沪ICP备17040558号</a></small>
 </div>
-
+<script>
+    // ajax csrf
+    $(function(){ 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+        });
+    });
+</script>
 </body>
 </html>

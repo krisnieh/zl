@@ -138,11 +138,7 @@ class UserController extends Controller
 
         $expire = time() + $expire_seconds;
 
-        $qrcode = ['url' => $url, 'expire' => $expire];
-
-        $new = Auth::user()->update(['info->qrcode->url' => $url, 'info->qrcode->expire' => $expire]);
-
-        return $qrcode;
+        Auth::user()->update(['info->qrcode->url' => $url, 'info->qrcode->expire' => $expire]);
 
     }
 
@@ -152,19 +148,17 @@ class UserController extends Controller
 
         $check = json_decode(Auth::user()->info);
 
-        if(!$check || !array_key_exists('qrcode', $check) || !array_key_exists('url', $check->qrcode) || !array_key_exists('expire', $check->qrcode) || $check->qrcode->expire < time()) {
-            $qrcode = $this->setQrcode();
-        }else{
-
-            $qrcode = ['url' => $check->qrcode->url, 'expire' => $check->qrcode->expire];
-        }
+        if(!$check || !array_key_exists('qrcode', $check) || !array_key_exists('url', $check->qrcode) || !array_key_exists('expire', $check->qrcode) || $check->qrcode->expire < (time() - 180))  $this->setQrcode();
 
 
+        return view('ad');
+    }
 
-        // $info = json_decode($use->info);
 
-
-        return view('ad', compact('qrcode'));
+    public function get()
+    {
+        $info = json_decode(Auth::user()->info);
+        return 
     }
 
 
