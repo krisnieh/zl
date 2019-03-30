@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="d-flex justify-content-center align-items-center w-100 alert">
-    <div class="card bg-danger text-white col-10 col-sm-5">
-        <div class="card-body"><h5>404</h5><p>页面或者服务不存在</p></div>
+    <div class="alert alert-danger col-10 col-sm-5">
+        <h1><i class="fa fa-fire" aria-hidden="true"></i></h1><p>页面或者服务不存在</p>
     </div>
 </div>
 

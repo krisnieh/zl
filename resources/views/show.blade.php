@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="d-flex justify-content-center align-items-center w-100 alert">
-    <div class="alert alert-danger col-10 col-sm-5">
-        <h1><i class="fa fa-ban" aria-hidden="true"></i></h1><p>暂停服务</p>
+    <div class="card bg-info text-white col-10 col-sm-5">
+        <div class="card-body"><h5>成功</h5><p></p></div>
     </div>
 </div>
 

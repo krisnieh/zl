@@ -119,6 +119,19 @@ class UserController extends Controller
     }
 
     /**
+     * 个人详情
+     *
+     *
+     */
+    public function show($id=0)
+    {
+
+        $record = $id == 0 ? Auth::user() : User::findOrFail($id);
+        
+        return view('show', compact('record'));
+    }
+
+    /**
      * 推荐码
      *
      * 临时: {"expire_seconds": 604800, "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "test"}}}

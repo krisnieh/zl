@@ -34,29 +34,18 @@
       <tr>
         @endif
 
-        <td>{{ $r->show($record->info, 'name') }}</td>
+        <td><a class="text-dark" href="/user/{{ $record->id }}">{{ $r->show($record->info, 'name') }}</a> </td>
         <td>{{ $r->show($record->accounts, 'mobile') }}</td>
         <td>
 
             @if($r->higher($record->id))
-            <div class="dropdown">
-              <a class="btn btn-sm dropdown-toggle text-info" data-toggle="dropdown">
-               <i class="fa fa-cog" aria-hidden="true"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right">
 
                 @if($r->locked($record->id))
-                <a class="dropdown-item text-success" href="/unlock/{{ $record->id }}"><i class="fa fa-unlock ico-space" aria-hidden="true"></i>解锁</a>
+                <a class="btn btn-sm text-success" href="/user/unlock/{{ $record->id }}"><i class="fa fa-unlock ico-space" aria-hidden="true"></i></a>
                 @else
-                <a class="dropdown-item text-warning" href="/lock/{{ $record->id }}"><i class="fa fa-lock ico-space" aria-hidden="true"></i>锁定</a>
+                <a class="btn btn-sm text-warning" href="/user/lock/{{ $record->id }}"><i class="fa fa-lock ico-space" aria-hidden="true"></i></a>
                 @endif
 
-                @if($r->admin())
-                <a class="dropdown-item text-danger" href="/trans/{{ $record->id }}"><i class="fa fa-retweet ico-space" aria-hidden="true"></i>转机机构</a>
-                @endif
-
-              </div>
-            </div>
             @endif
 
         </td>

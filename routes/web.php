@@ -38,10 +38,11 @@ Route::group(['middleware' => ['login', 'state']], function () {
     });
 
     // 用户
-    Route::get('/users', 'UserController@index');
-    Route::get('/lock/{id}', 'UserController@lock');
-    Route::get('/unlock/{id}', 'UserController@unlock');
     Route::get('/ad', 'UserController@ad');
+    Route::get('/users', 'UserController@index');
+    Route::get('/user/{id?}', 'UserController@show');
+    Route::get('/user/lock/{id}', 'UserController@lock');
+    Route::get('/user/unlock/{id}', 'UserController@unlock');
     Route::get('/user/{id}/{key}', 'UserController@set');
     Route::get('/user/approve', 'UserController@approve');
 
@@ -55,46 +56,7 @@ Route::get('/t', 'OrgController@test');
 
 Route::get('/test', function() {
 
-    $url = "fuck";
-    $expire_seconds = 1000;
-
-    // $save = '{"url":"'.$url.'", "ex":'.$expire_seconds.'}';
-    $arr = ['url' => $url, 'expire' => time() + $expire_seconds - 30];
-
-    $s = json_encode($arr);
-
-    App\User::find(2)->update(['info->qrcode->url'=>$url, 'info->qrcode->expire'=>$expire_seconds]);
-
-    // echo($s->url);
-
-    // j
-    echo time();
-    // echo $save->url;
-    // echo $save->expire;
-    // $r = new App\Helpers\Role;
-
-    // $a = $r->orgLocked();
-
-    // if ($a) {
-    //     echo "yes";
-    // }else{
-    //     echo "fuck";
-    // }
-
-    // $a = Auth::user()->org;
-
-    // $b = App\User::find(4)->org->typeConf->key;
-
-    // print_r($a);
-    // echo $b;
-
-    // $r = new App\Helpers\Role;
-    // if ($r->staff(4)) {
-    //     echo "yes";
-    // }else{
-    //     echo "fuck";
-    // }
-
+abort('500');
 
 });
 
