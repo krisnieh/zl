@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="d-flex justify-content-center w-100">
-    <div class="card bg-light text-dark col-10 col-sm-6 show">
+    <div class="card bg-light text-dark col-10 col-sm-6 show-space">
         <h5>{{ $r->show($record->info, 'name')}}</h5>
         <p>
             <span class="badge badge-success">{{ $record->org->name }}</span>
