@@ -1,7 +1,6 @@
 <?php
-    $r = new App\Helpers\Role;
+  if(Auth::check()) $r = new App\Helpers\Role;
 ?>
-
 @extends ('nav')
 
 @section ('content')
@@ -41,9 +40,9 @@
             @if($r->higher($record->id))
 
                 @if($r->locked($record->id))
-                <a class="btn btn-sm text-success" href="/user/unlock/{{ $record->id }}"><i class="fa fa-unlock ico-space" aria-hidden="true"></i></a>
+            <a class="btn btn-sm text-success" href="/user/unlock/{{ $record->id }}"><i class="fa fa-unlock ico-space" aria-hidden="true"></i></a>
                 @else
-                <a class="btn btn-sm text-warning" href="/user/lock/{{ $record->id }}"><i class="fa fa-lock ico-space" aria-hidden="true"></i></a>
+            <a class="btn btn-sm text-warning" href="/user/lock/{{ $record->id }}"><i class="fa fa-lock ico-space" aria-hidden="true"></i></a>
                 @endif
 
             @endif

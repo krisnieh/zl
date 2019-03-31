@@ -87,6 +87,10 @@ a:hover, a:visited, a:link, a:active {
     height: 200px;
 }
 
+.show {
+    padding: 15px;
+}
+
 
 
 

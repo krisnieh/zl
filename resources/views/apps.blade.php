@@ -8,7 +8,14 @@
         <a href="/users">
           <img src="svg/user.svg" class="rounded-circle app-icon">
         </a>
-          <h6>用户</h6>
+          <h6>员工</h6>
+    </div>
+
+    <div class="col-md-2 col-sm-4 col-4 text-center app">
+        <a href="/users">
+          <img src="svg/org.svg" class="rounded-circle app-icon">
+        </a>
+          <h6>机构</h6>
     </div>
 
     <div class="col-md-2 col-sm-4 col-4 text-center app">
