@@ -5,6 +5,7 @@ namespace App\Helpers;
 use Auth;
 
 use App\User;
+use App\Org;
 
 
 /**
@@ -178,6 +179,22 @@ class Role
         return false;
     }
 
+
+    /**
+     * 机构
+     * ------------------
+     * 锁定
+     *
+     */
+    public function oLocked($id)
+    {
+        return $this->hasAndTrue(Org::find($id)->auth, 'locked');
+    }
+
+    public function ownOrg($id)
+    {
+        return Auth::user()->org_id == $id;
+    }
 
     // END
 }

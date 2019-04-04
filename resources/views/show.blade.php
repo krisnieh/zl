@@ -4,8 +4,14 @@
 @extends('../nav')
 
 @section('content')
+<nav class="breadcrumb">
+    <a class="breadcrumb-item text-dark" href="/apps"><i class="fa fa-th ico-space" aria-hidden="true"></i>应用</a>
+    <a class="breadcrumb-item text-dark" href="/users"><i class="fa fa-user-circle-o ico-space" aria-hidden="true"></i>员工</a>
+    <span class="breadcrumb-item active">{{ $r->show($record->info, 'name')}}</span>
+</nav>
 <div class="d-flex justify-content-center w-100">
-    <div class="card bg-light text-dark col-10 col-sm-6 show-space">
+    <div class="card bg-light text-dark col-12 col-sm-6 show-space">
+        
         <h5>{{ $r->show($record->info, 'name')}}</h5>
         <p>
             <span class="badge badge-success">{{ $record->org->name }}</span>

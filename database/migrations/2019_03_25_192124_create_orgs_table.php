@@ -15,7 +15,8 @@ class CreateOrgsTable extends Migration
     {
         Schema::create('orgs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('conf_id');
+            $table->integer('parent_id');
+            $table->integer('conf_id')->index();
             $table->string('name');
             $table->integer('master_id')->nullable();
             $table->jsonb('info')->nullable();

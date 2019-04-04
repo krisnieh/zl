@@ -4,13 +4,13 @@
 @extends ('nav')
 
 @section ('content')
-  @if(isset($records) && count($records))         
-<h5><i class="fa fa-user-circle-o ico-space" aria-hidden="true"></i>员工</h5>
-<p>
-    <span class="badge badge-success">{{ Auth::user()->org->name }}</span>
-    <span class="badge badge-light">共{{ count($records) }}人</span>
-</p>   
-  <table class="table">
+  @if(isset($records) && count($records))      
+    <nav class="breadcrumb">
+    <a class="breadcrumb-item text-dark" href="/apps"><i class="fa fa-th ico-space" aria-hidden="true"></i>应用</a>
+    <span class="breadcrumb-item active"><i class="fa fa-user-circle-o ico-space" aria-hidden="true"></i>员工 [{{ count($records) }}]</span>
+  </nav>
+ 
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>姓名</th>
@@ -24,7 +24,7 @@
         @if($r->locked($record->id))
       <tr class="table-warning">
         @elseif($r->admin($record->id))
-      <tr class="text-info">  
+      <tr class="table-info">  
         @elseif($r->own($record->id))
       <tr class="table-success">
         @elseif($r->master($record->id))

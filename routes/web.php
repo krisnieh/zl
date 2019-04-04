@@ -46,6 +46,12 @@ Route::group(['middleware' => ['login', 'state']], function () {
     Route::get('/user/{id}/{key}', 'UserController@set');
     Route::get('/user/approve', 'UserController@approve');
 
+    // 机构
+    Route::get('/orgs', 'OrgController@index');
+    Route::get('/orgs/{id}', 'OrgController@show');
+    Route::get('/org/lock/{id}', 'OrgController@lock');
+    Route::get('/org/unlock/{id}', 'OrgController@unlock');
+
 });
 
 
@@ -55,8 +61,18 @@ Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
+    $a = Auth::user()->org->typeConf->order;
 
-abort('500');
+    echo $a;
+
+// // abort('500');
+//     $a = new App\Helpers\Role;
+
+//     if ($a->staff()) {
+//         echo "good";
+//     }else{
+//         echo "fuck";
+//     }
 
 });
 

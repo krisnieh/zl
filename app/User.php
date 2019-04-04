@@ -24,7 +24,8 @@ class User extends Authenticatable
     // 机构
     public function org()
     {
-        return $this->belongsTo('App\Org', 'org_id');
+        // return $this->belongsTo('App\Org', 'org_id', 'id');
+        return $this->hasOne('App\Org', 'id', 'org_id');
     }
 
     // 下家

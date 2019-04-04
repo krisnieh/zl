@@ -18,6 +18,7 @@ class CreateConfsTable extends Migration
             $table->string('type');
             $table->string('key')->unique();
             $table->string('val');
+            $table->string('order')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

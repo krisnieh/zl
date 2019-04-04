@@ -183,6 +183,11 @@ class UserController extends Controller
         return view('ad', compact('qrcode'));
     }
 
+    public function adPre()
+    {
+        # code...
+    }
+
     // 注册
 
     public function register()

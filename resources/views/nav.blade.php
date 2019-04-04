@@ -19,7 +19,7 @@
 
 <nav class="navbar bg-light fixed-top">
   <a href="/" ><img class="logo" src="{{ URL::asset('svg/logo.svg') }}"></a>
-    @if(Auth::check() && !$r->locked() && !$r->orgLocked())
+    @if(Auth::check())
     <div class="dropdown menu">
       <button type="button" class="btn btn-light" data-toggle="dropdown">{{ $r->me()->name }}</button>
       <div class="dropdown-menu  dropdown-menu-right">
@@ -46,7 +46,7 @@
 
 <div class="footer">
   <small>2019 &copy; 众乐速配</small>
-  <small><br><a class="grey" href="http://www.miitbeian.gov.cn">沪ICP备17040558号</a></small>
+  <small><br><a class="text-dark" href="http://www.miitbeian.gov.cn">沪ICP备17040558号</a></small>
 </div>
 <script>
     // ajax csrf

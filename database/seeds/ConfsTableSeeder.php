@@ -26,21 +26,31 @@ class ConfsTableSeeder extends Seeder
 
         Conf::create([
             'type' => 'org',
+            'key' => 'root',
+            'order' => 1,
+            'val' => 'root',
+        ]);
+        Conf::create([
+            'type' => 'org',
             'key' => 'invalid',
-            'val' => '未分配',
+            'order' => 2,
+            'val' => '待审核',
         ]);
         Conf::create([
             'type' => 'org',
             'key' => 'staff',
-            'val' => '众乐速配',
+            'order' => 3,
+            'val' => '内部',
         ]);
         Conf::create([
             'type' => 'org',
             'key' => 'angent',
+            'order' => 4,
             'val' => '代理商',
         ]);
         Conf::create([
             'type' => 'org',
+            'order' => 5,
             'key' => 'customer',
             'val' => '客户',
         ]);
