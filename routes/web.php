@@ -30,6 +30,7 @@ Route::get('/logout', 'UserController@logout');
 Route::post('/check', 'UserController@check');
 Route::get('/register', 'UserController@register');
 Route::post('/reg_check', 'UserController@regCheck');
+Route::get('/reg_cancel', 'UserController@regCancel');
 
 
 Route::group(['middleware' => ['login', 'state']], function () {

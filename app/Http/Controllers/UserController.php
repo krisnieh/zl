@@ -233,10 +233,25 @@ class UserController extends Controller
             'url' => '/reg_check'
         ]);
 
-        $title = '注册: 需30分钟内完成; <a class="btn btn-danger btn-sm text-white" href="/cancel_reg">取消注册</a>';
+        $title = '注册: 需30分钟内完成 <a class="btn btn-danger btn-sm text-white" href="/cancel_reg">取消注册</a>';
         $icon = 'user-o';
 
         return view('form', compact('form','title','icon'));
+    }
+
+    /**
+     * 取消注册
+     *
+     */
+    public function regCancel()
+    {
+        if(Session::has('openid'))) {
+            if(Cache::has(session('openid'))) Cache::forget(session('openid'));
+            Session::forget('openid');
+        }
+
+        Auth::logout();
+        return redirect('/');
     }
 
     /**
