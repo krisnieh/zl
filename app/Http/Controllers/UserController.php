@@ -138,13 +138,13 @@ class UserController extends Controller
      *
      * 永久: {"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": 123}}}
      */
-    private function setQrcode()
+    private function setQrcode($key)
     {
         $qrcode = new Qrcode;
 
         $expire_seconds = 600; # 10分钟过期
 
-        $json = '{"expire_seconds": '.$expire_seconds.', "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.Auth::id().'"}}}';
+        $json = '{"expire_seconds": '.$expire_seconds.', "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.Auth::id().'_'.$key.'"}}}';
 
         $resault = $qrcode->get($json);
 
@@ -152,30 +152,50 @@ class UserController extends Controller
 
         $expire = time() + $expire_seconds;
 
-        Auth::user()->update(['info->qrcode->url' => $url, 'info->qrcode->expire' => $expire]);
+        Auth::user()->update(['info->qrcode->'.$key.'->url' => $url, 'info->qrcode->'.$key.'->expire' => $expire]);
 
     }
 
     // 检查二维码信息过期
-    private function checkQrcode()
+    private function checkQrcode($key)
     {
         $check = json_decode(Auth::user()->info);
 
-        if(!$check || !array_key_exists('qrcode', $check) || !array_key_exists('url', $check->qrcode) || !array_key_exists('expire', $check->qrcode) || $check->qrcode->expire < (time() + 180)) return false;
+        if(!$check || !array_key_exists('qrcode', $check) || !array_key_exists($key, $check->'qrcode') || !array_key_exists('url', $check->qrcode->$key) || !array_key_exists('expire', $check->qrcode->$key) || $check->qrcode->$key->expire < (time() + 180)) return false;
 
-        return ['url' => $check->qrcode->url, 'expire' => $check->qrcode->expire];
+        return ['url' => $check->qrcode->$key->url, 'expire' => $check->qrcode->$key->expire];
     }
 
-    public function ad()
+    /**
+     * 二维码: 检查有效性
+     *
+     */
+    private function checkKey($key)
     {
+        $limit = ['workmate', 'angent', 'customer'];
+        if(!in_array($key, $limit)) abort('403');
+
+        $r = new Role;
+        if($key == 'angent' && !$r->staff()) abort('403');
+        if($key == 'customer' && !$r->angent()) abort('403');
+    }
+
+    /**
+     * 二维码
+     *
+     */
+    public function ad($key=0)
+    {
+        $this->checkKey($key);
+
         $qrcode = [];
 
         for ($i=0; $i < 2; $i++) { 
-            if(!$this->checkQrcode()) { 
-                $this->setQrcode();
+            if(!$this->checkQrcode($key)) { 
+                $this->setQrcode($key);
                 sleep(2);
             }else{
-                $qrcode = $this->checkQrcode();
+                $qrcode = $this->checkQrcode($key);
                 break;
             }
         }
@@ -183,27 +203,33 @@ class UserController extends Controller
         return view('ad', compact('qrcode'));
     }
 
-    public function adPre()
+
+    /**
+     * 推荐二维码
+     *
+     */
+    public function new()
     {
-        # code...
+        return view('new');
     }
 
     // 注册
-
     public function register()
     {
 
         if(!Cache::has(session('openid')) || Session::has('id')) abort('403');
 
-        $form = $this->form(RegisterForm::class, [
-            'method' => 'POST',
-            'url' => '/reg_check'
-        ]);
+        echo(Cache::get(session('openid')));;
 
-        $title = '注册: 请在30分钟内完成';
-        $icon = 'user-o';
+        // $form = $this->form(RegisterForm::class, [
+        //     'method' => 'POST',
+        //     'url' => '/reg_check'
+        // ]);
 
-        return view('form', compact('form','title','icon'));
+        // $title = '注册: 请在30分钟内完成';
+        // $icon = 'user-o';
+
+        // return view('form', compact('form','title','icon'));
     }
 
     /**
