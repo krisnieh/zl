@@ -42,6 +42,8 @@
               @foreach($record->orgType as $org)
                 @if($r->oLocked($org->id))
                     <tr class="table-warning">
+                @elseif($r->orgMaster($id))
+                    <tr class="table-success">
                 @else
                     <tr>
                 @endif

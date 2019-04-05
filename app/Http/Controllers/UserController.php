@@ -129,7 +129,7 @@ class UserController extends Controller
     public function show($id=0)
     {
         $r = new Role;
-        if(!$r->higher($id)) abort('403');
+        if(!$r->higher($id) && !$r->own($id)) abort('403');
 
         $record = $id == 0 ? Auth::user() : User::findOrFail($id);
         

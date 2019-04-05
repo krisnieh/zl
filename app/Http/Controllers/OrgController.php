@@ -63,6 +63,9 @@ class OrgController extends Controller
     // 显示
     public function show($id)
     {
+        $r = new Role;
+        if(!$r->admin() && !$r->orgMaster($id) && $r->inOrg($id)) abort('403');
+
         $record = Org::findOrFail($id);
 
         return view('org_show', compact('record'));

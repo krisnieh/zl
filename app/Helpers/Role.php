@@ -152,9 +152,18 @@ class Role
      * 机构指定管理员
      *
      */
-    public function orgMaster($master_id)
+    public function orgMaster($org_id)
     {
-        return Auth::id() == $master_id;
+        return Auth::id() == Org::findOrFail($org_id)->master_id;
+    }
+
+    /**
+     * 所在机构
+     *
+     */
+    public function inOrg($org_id)
+    {
+        return Auth::user()->org_id == $org_id;
     }
 
     /**
@@ -173,7 +182,7 @@ class Role
             if($this->master() && !$this->master($id)) return true;
         } else {
             // 不同单位
-            if($this->orgMaster($this->choose($id)->org->master_id)) return true;
+            if($this->orgMaster($this->choose($id)->org)) return true;
         } 
 
         return false;
