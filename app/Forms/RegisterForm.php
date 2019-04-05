@@ -6,8 +6,45 @@ use Kris\LaravelFormBuilder\Form;
 
 class RegisterForm extends Form
 {
+
+    private function pick()
+    {
+        $str = Cache::get(session('openid'));
+        $do = end(explode('_', $str));
+        return $do;
+    }
+
     public function buildForm()
     {
+        if($tihs->pick() == 'angent' || $this->pick() == 'customer') {
+            $this
+            ->add('province', 'text', [
+                'label' => '省',
+                'rules' => 'required|min:2|max:8'
+            ])
+            ->add('city', 'text', [
+                'label' => '市',
+                'rules' => 'required|min:2|max:8'
+            ])
+            ->add('sub_city', 'text', [
+                'label' => '区/县',
+                'rules' => 'required|min:2|max:8'
+            ])
+
+            ->add('org_name', 'text', [
+                'label' => '单位名称',
+                'rules' => 'required|min:2|max:20'
+            ])
+            ->add('org_addr', 'text', [
+                'label' => '单位地址',
+                'rules' => 'required|min:5|max:32'
+            ]);
+            ->add('org_content', 'textarea', [
+                'label' => '备注',
+                'rules' => 'min:2|max:200'
+            ]);
+        }
+
         $this
         ->add('name', 'text', [
             'label' => '姓名',
@@ -16,10 +53,6 @@ class RegisterForm extends Form
         ->add('mobile', 'text', [
             'label' => '手机号',
             'rules' => 'required|min:11|max:11'
-        ])
-        ->add('addr', 'text', [
-            'label' => '地址',
-            'rules' => 'required|min:3|max:32'
         ])
         ->add('password', 'password', [
             'label' => '密码',

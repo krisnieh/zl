@@ -13,6 +13,7 @@ use Auth;
 use App\Forms\LoginForm;
 use App\Forms\RegisterForm;
 use App\User;
+use App\Org;
 use App\Helpers\Role;
 use App\Helpers\Validator;
 use App\Wechat\Qrcode;
@@ -217,19 +218,17 @@ class UserController extends Controller
     public function register()
     {
 
-        if(!Cache::has(session('openid')) || Session::has('id')) abort('403');
+        if(!Session::has('openid') || !Cache::has(session('openid')) || Session::has('id')) abort('401');
 
-        echo(Cache::get(session('openid')));;
+        $form = $this->form(RegisterForm::class, [
+            'method' => 'POST',
+            'url' => '/reg_check'
+        ]);
 
-        // $form = $this->form(RegisterForm::class, [
-        //     'method' => 'POST',
-        //     'url' => '/reg_check'
-        // ]);
+        $title = '注册: 请在30分钟内完成';
+        $icon = 'user-o';
 
-        // $title = '注册: 请在30分钟内完成';
-        // $icon = 'user-o';
-
-        // return view('form', compact('form','title','icon'));
+        return view('form', compact('form','title','icon'));
     }
 
     /**
@@ -242,15 +241,31 @@ class UserController extends Controller
 
         $v = new Validator;
         if(!$v->checkMobile($request->mobile)) return redirect()->back()->withErrors(['mobile'=>'手机号不正确!'])->withInput();
+        if($request->password !== $request->confirm_password) redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
 
         $exists = User::where('accounts->mobile', $request->mobile)
                         ->first();
 
         if($exists) return redirect()->back()->withErrors(['mobile'=>'手机号已存在!'])->withInput();
 
-        if($request->password !== $request->confirm_password) redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
-
+        // 单位
         $array = explode('_', Cache::get(session('openid')));
+
+        $org_id = User::find($array[2])->first()->org_id;
+
+        if($request->org_name) {
+            $org_exsists = Org::where('name', $request->org_name)->first();
+            if($exists) return redirect()->back()->withErrors(['mobile'=>'单位名称已存在!'])->withInput();
+
+            $new_org = [
+                'name' => $request->org_name;
+                'info' => '{"city": "无锡", "province": "江苏", "sub_city": "江阴"}',
+            ];
+
+        }
+        
+
+
 
         $new = [
             'parent_id' => $array[2],
