@@ -266,44 +266,44 @@ class UserController extends Controller
         $need = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":false}';
         $text = $r->admin($array[2]) || $r->master($array[2]) ? '恭喜,您已经可以使用!' : '您的注册资料已经提交审核, 请耐心等待!';
 
-        // if($request->org_name) {
-        //     $org_exsists = Org::where('name', $request->org_name)->first();
-        //     if($exists) return redirect()->back()->withErrors(['mobile'=>'单位名称已存在!'])->withInput();
+        if($request->org_name) {
+            $org_exsists = Org::where('name', $request->org_name)->first();
+            if($exists) return redirect()->back()->withErrors(['mobile'=>'单位名称已存在!'])->withInput();
 
-        //     // conf_id
-        //     $do = end($array);
+            // conf_id
+            $do = end($array);
 
-        //     $conf_id = Conf::where('type', 'org')
-        //                     ->where('key', $do)
-        //                     ->firstOrFail();
+            $conf_id = Conf::where('type', 'org')
+                            ->where('key', $do)
+                            ->firstOrFail();
 
-        //     $new_org = [
-        //         'name' => $request->org_name,
-        //         'parent_id' => $u->org_id,
-        //         'conf_id' => $conf_id,
-        //         'info' => '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}',
-        //         'auth' => $need,
-        //     ];
+            $new_org = [
+                'name' => $request->org_name,
+                'parent_id' => $u->org_id,
+                'conf_id' => $conf_id,
+                'info' => '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}',
+                'auth' => $need,
+            ];
 
-        //     $org_id = Org::create($new_org)->id;
+            $org_id = Org::create($new_org)->id;
 
-        // }
+        }
         
-        // $new = [
-        //     'parent_id' => $array[2],
-        //     'org_id' => 3,
-        //     'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
-        //     'password' => bcrypt($request->password),
-        //     'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
-        //     'auth' => $need,
-        // ];
+        $new = [
+            'parent_id' => $array[2],
+            'org_id' => 3,
+            'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
+            'password' => bcrypt($request->password),
+            'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
+            'auth' => $need,
+        ];
 
-        // User::create($new);
+        User::create($new);
 
-        // Cache::forget(session('openid'));
+        Cache::forget(session('openid'));
 
-        // // $text = '您的注册资料已经提交审核, 请耐心等待!';
-        // return view('note', compact('text'));
+        // $text = '您的注册资料已经提交审核, 请耐心等待!';
+        return view('note', compact('text'));
     }
 
     /**
