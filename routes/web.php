@@ -63,9 +63,13 @@ Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
-    $a = Auth::user()->org->typeConf->order;
+    $str = 'a_b_c';
+    $arr = explode('_', $str);
+    $do = end($arr);
+        return $do;
+    // $a = Auth::user()->org->typeConf->order;
 
-    echo $a;
+    // echo $a;
 
 // // abort('500');
 //     $a = new App\Helpers\Role;

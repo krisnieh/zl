@@ -11,7 +11,8 @@ class RegisterForm extends Form
     private function pick()
     {
         $str = Cache::get(session('openid'));
-        $do = end(explode('_', $str));
+        $arr = explode('_', $str);
+        $do = end($arr);
         return $do;
     }
 
