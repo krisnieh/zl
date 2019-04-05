@@ -292,7 +292,7 @@ class UserController extends Controller
         
         $new = [
             'parent_id' => $array[2],
-            'org_id' => 3,
+            'org_id' => $org_id,
             'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
             'password' => bcrypt($request->password),
             'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
