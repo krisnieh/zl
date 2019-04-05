@@ -137,7 +137,7 @@ class UserController extends Controller
     }
 
     /**
-     * 推荐码
+     * 微信二维码
      *
      * 临时: {"expire_seconds": 604800, "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "test"}}}
      *
@@ -161,7 +161,10 @@ class UserController extends Controller
 
     }
 
-    // 检查二维码信息过期
+    /**
+     * 二维码: 数据库信息是否过期
+     *
+     */
     private function checkQrcode($key)
     {
         $check = json_decode(Auth::user()->info);
@@ -191,6 +194,7 @@ class UserController extends Controller
      */
     public function ad($key=0)
     {
+        // 有效性
         $this->checkKey($key);
 
         $qrcode = [];
@@ -229,7 +233,7 @@ class UserController extends Controller
             'url' => '/reg_check'
         ]);
 
-        $title = '注册: 请在30分钟内完成';
+        $title = '注册: 需30分钟内完成; <a class="btn btn-danger btn-sm text-white" href="/cancel_reg">撤销</a>';
         $icon = 'user-o';
 
         return view('form', compact('form','title','icon'));
@@ -241,9 +245,7 @@ class UserController extends Controller
      */
     public function regCheck(Request $request) 
     {
-
-        // print_r($request);
-        // $form = $this->form(RegisterForm::class);
+        $form = $this->form(RegisterForm::class);
 
         // 输入校验
         $v = new Validator;
@@ -266,7 +268,7 @@ class UserController extends Controller
 
         // 是否需要审批
         $need = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":false}';
-        $text = $r->admin($array[2]) || $r->master($array[2]) ? '恭喜,您已经可以使用!' : '您的注册资料已经提交审核, 请耐心等待!';
+        $text = $r->admin($array[2]) || $r->master($array[2]) ? '恭喜,您可以使用本系统了!' : '您的注册资料已经提交审核, 请耐心等待!';
 
         if($request->org_name) {
             $org_exsists = Org::where('name', $request->org_name)->first();
