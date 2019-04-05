@@ -1,6 +1,14 @@
+<?php
+  if(Auth::check()) $r = new App\Helpers\Role;
+?>
 @extends('../nav')
 
 @section('content')
+<nav class="breadcrumb">
+    <a class="breadcrumb-item text-dark" href="/apps"><i class="fa fa-th ico-space" aria-hidden="true"></i>应用</a>
+    <span class="breadcrumb-item active"><i class="fa fa-qrcode ico-space" aria-hidden="true"></i>{{ $r->me()->name }}推荐码</span>
+</nav>
+
 <div class="d-flex justify-content-center align-items-center w-100 alert">
     <div class="card bg-default col-12 col-sm-4 align-items-center">
         <br>
