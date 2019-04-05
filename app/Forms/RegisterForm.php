@@ -40,7 +40,7 @@ class RegisterForm extends Form
             ->add('org_addr', 'text', [
                 'label' => '单位地址',
                 'rules' => 'required|min:5|max:32'
-            ]);
+            ])
             ->add('org_content', 'textarea', [
                 'label' => '备注',
                 'rules' => 'min:2|max:200'
