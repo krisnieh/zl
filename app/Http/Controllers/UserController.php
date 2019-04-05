@@ -280,7 +280,7 @@ class UserController extends Controller
             $new_org = [
                 'name' => $request->org_name,
                 'parent_id' => $u->org_id,
-                'conf_id' => $conf_id,
+                'conf_id' => $conf_id->id,
                 'info' => '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}',
                 'auth' => $need,
             ];
