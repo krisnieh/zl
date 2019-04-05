@@ -161,9 +161,9 @@ class UserController extends Controller
     {
         $check = json_decode(Auth::user()->info);
 
-        if(!$check || !array_key_exists('qrcode', $check) || !array_key_exists($key, $check->'qrcode') || !array_key_exists('url', $check->qrcode->$key) || !array_key_exists('expire', $check->qrcode->$key) || $check->qrcode->$key->expire < (time() + 180)) return false;
+        if(!$check || !array_key_exists('qrcode', $check) || !array_key_exists($key, $check->'qrcode') || !array_key_exists('url', $check->qrcode->strval($key)) || !array_key_exists('expire', $check->qrcode->strval($key)) || $check->qrcode->strval($key)->expire < (time() + 180)) return false;
 
-        return ['url' => $check->qrcode->$key->url, 'expire' => $check->qrcode->$key->expire];
+        return ['url' => $check->qrcode->strval($key)->url, 'expire' => $check->qrcode->strval($key)->expire];
     }
 
     /**
