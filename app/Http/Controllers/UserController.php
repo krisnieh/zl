@@ -239,69 +239,71 @@ class UserController extends Controller
      */
     public function regCheck(Request $request) 
     {
-        $form = $this->form(RegisterForm::class);
 
-        // 输入校验
-        $v = new Validator;
-        if(!$v->checkMobile($request->mobile)) return redirect()->back()->withErrors(['mobile'=>'手机号不正确!'])->withInput();
-        if($request->password !== $request->confirm_password) redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
+        print_r($request);
+        // $form = $this->form(RegisterForm::class);
 
-        $exists = User::where('accounts->mobile', $request->mobile)
-                        ->first();
+        // // 输入校验
+        // $v = new Validator;
+        // if(!$v->checkMobile($request->mobile)) return redirect()->back()->withErrors(['mobile'=>'手机号不正确!'])->withInput();
+        // if($request->password !== $request->confirm_password) redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
 
-        if($exists) return redirect()->back()->withErrors(['mobile'=>'手机号已存在!'])->withInput();
+        // $exists = User::where('accounts->mobile', $request->mobile)
+        //                 ->first();
 
-        // 单位
-        $array = explode('_', Cache::get(session('openid')));
+        // if($exists) return redirect()->back()->withErrors(['mobile'=>'手机号已存在!'])->withInput();
 
-        $u = User::findOrFail($array[2])->first();
+        // // 单位
+        // $array = explode('_', Cache::get(session('openid')));
 
-        $org_id = $u->org_id;
+        // $u = User::findOrFail($array[2])->first();
 
-        $r = new Role;
+        // $org_id = $u->org_id;
 
-        // 是否需要审批
-        $need = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":false}';
-        $text = $r->admin($array[2]) || $r->master($array[2]) ? '恭喜,您已经可以使用!' : '您的注册资料已经提交审核, 请耐心等待!';
+        // $r = new Role;
 
-        if($request->org_name) {
-            $org_exsists = Org::where('name', $request->org_name)->first();
-            if($exists) return redirect()->back()->withErrors(['mobile'=>'单位名称已存在!'])->withInput();
+        // // 是否需要审批
+        // $need = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":false}';
+        // $text = $r->admin($array[2]) || $r->master($array[2]) ? '恭喜,您已经可以使用!' : '您的注册资料已经提交审核, 请耐心等待!';
 
-            // conf_id
-            $do = end($array);
+        // if($request->org_name) {
+        //     $org_exsists = Org::where('name', $request->org_name)->first();
+        //     if($exists) return redirect()->back()->withErrors(['mobile'=>'单位名称已存在!'])->withInput();
 
-            $conf_id = Conf::where('type', 'org')
-                            ->where('key', $do)
-                            ->firstOrFail();
+        //     // conf_id
+        //     $do = end($array);
 
-            $new_org = [
-                'name' => $request->org_name,
-                'parent_id' => $u->org_id,
-                'conf_id' => $conf_id,
-                'info' => '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}',
-                'auth' => $need,
-            ];
+        //     $conf_id = Conf::where('type', 'org')
+        //                     ->where('key', $do)
+        //                     ->firstOrFail();
 
-            $org_id = Org::create($new_org)->id;
+        //     $new_org = [
+        //         'name' => $request->org_name,
+        //         'parent_id' => $u->org_id,
+        //         'conf_id' => $conf_id,
+        //         'info' => '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}',
+        //         'auth' => $need,
+        //     ];
 
-        }
+        //     $org_id = Org::create($new_org)->id;
+
+        // }
         
-        $new = [
-            'parent_id' => $array[2],
-            'org_id' => 3,
-            'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
-            'password' => bcrypt($request->password),
-            'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
-            'auth' => $need,
-        ];
+        // $new = [
+        //     'parent_id' => $array[2],
+        //     'org_id' => 3,
+        //     'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
+        //     'password' => bcrypt($request->password),
+        //     'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
+        //     'auth' => $need,
+        // ];
 
-        User::create($new);
+        // User::create($new);
 
-        Cache::forget(session('openid'));
+        // Cache::forget(session('openid'));
 
-        // $text = '您的注册资料已经提交审核, 请耐心等待!';
-        return view('note', compact('text'));
+        // // $text = '您的注册资料已经提交审核, 请耐心等待!';
+        // return view('note', compact('text'));
     }
 
     /**
