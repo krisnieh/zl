@@ -245,8 +245,8 @@ class UserController extends Controller
      */
     public function regCancel()
     {
-        if(Session::has('openid'))) {
-            if(Cache::has(session('openid'))) Cache::forget(session('openid'));
+        if(Session::has('openid')) {
+            if(Cache::has(session('openid')) Cache::forget(session('openid'));
             Session::forget('openid');
         }
 
