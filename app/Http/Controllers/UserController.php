@@ -240,25 +240,25 @@ class UserController extends Controller
     public function regCheck(Request $request) 
     {
 
-        print_r($request);
+        // print_r($request);
         // $form = $this->form(RegisterForm::class);
 
-        // // 输入校验
-        // $v = new Validator;
-        // if(!$v->checkMobile($request->mobile)) return redirect()->back()->withErrors(['mobile'=>'手机号不正确!'])->withInput();
-        // if($request->password !== $request->confirm_password) redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
+        // 输入校验
+        $v = new Validator;
+        if(!$v->checkMobile($request->mobile)) return redirect()->back()->withErrors(['mobile'=>'手机号不正确!'])->withInput();
+        if($request->password !== $request->confirm_password) redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
 
-        // $exists = User::where('accounts->mobile', $request->mobile)
-        //                 ->first();
+        $exists = User::where('accounts->mobile', $request->mobile)
+                        ->first();
 
-        // if($exists) return redirect()->back()->withErrors(['mobile'=>'手机号已存在!'])->withInput();
+        if($exists) return redirect()->back()->withErrors(['mobile'=>'手机号已存在!'])->withInput();
 
-        // // 单位
-        // $array = explode('_', Cache::get(session('openid')));
+        // 单位
+        $array = explode('_', Cache::get(session('openid')));
 
-        // $u = User::findOrFail($array[2])->first();
+        $u = User::findOrFail($array[2])->first();
 
-        // $org_id = $u->org_id;
+        $org_id = $u->org_id;
 
         // $r = new Role;
 
