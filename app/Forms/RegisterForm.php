@@ -16,7 +16,7 @@ class RegisterForm extends Form
 
     public function buildForm()
     {
-        if($tihs->pick() == 'angent' || $this->pick() == 'customer') {
+        if($this->pick() == 'angent' || $this->pick() == 'customer') {
             $this
             ->add('province', 'text', [
                 'label' => '省',
