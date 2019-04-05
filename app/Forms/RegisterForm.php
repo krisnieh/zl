@@ -3,6 +3,7 @@
 namespace App\Forms;
 
 use Kris\LaravelFormBuilder\Form;
+use Cache;
 
 class RegisterForm extends Form
 {
