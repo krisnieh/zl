@@ -285,7 +285,8 @@ class UserController extends Controller
                 'auth' => $need,
             ];
 
-            $org_id = Org::create($new_org)->id;
+            $n = Org::create($new_org);
+            $org_id = $n->id;
 
         }
         
@@ -298,9 +299,11 @@ class UserController extends Controller
             'auth' => $need,
         ];
 
-        User::create($new);
+        $new = User::create($new);
 
         Cache::forget(session('openid'));
+
+        Auth::login($new);
 
         // $text = '您的注册资料已经提交审核, 请耐心等待!';
         return view('note', compact('text'));
