@@ -14,6 +14,8 @@ use App\Forms\LoginForm;
 use App\Forms\RegisterForm;
 use App\User;
 use App\Org;
+use App\Conf;
+
 use App\Helpers\Role;
 use App\Helpers\Validator;
 use App\Wechat\Qrcode;
@@ -239,6 +241,7 @@ class UserController extends Controller
     {
         $form = $this->form(RegisterForm::class);
 
+        // 输入校验
         $v = new Validator;
         if(!$v->checkMobile($request->mobile)) return redirect()->back()->withErrors(['mobile'=>'手机号不正确!'])->withInput();
         if($request->password !== $request->confirm_password) redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
@@ -251,35 +254,51 @@ class UserController extends Controller
         // 单位
         $array = explode('_', Cache::get(session('openid')));
 
-        $org_id = User::find($array[2])->first()->org_id;
+        $u = User::findOrFail($array[2])->first();
+
+        $org_id = $u->org_id;
+
+        // 是否需要审批
+        $need = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":false}';
+        $text = $r->admin($array[2]) || $r->master($array[2]) ? '恭喜,您已经可以使用!' : '您的注册资料已经提交审核, 请耐心等待!';
 
         if($request->org_name) {
             $org_exsists = Org::where('name', $request->org_name)->first();
             if($exists) return redirect()->back()->withErrors(['mobile'=>'单位名称已存在!'])->withInput();
 
+            // conf_id
+            $do = end($array);
+
+            $conf_id = Conf::where('type', 'org')
+                            ->where('key', $do)
+                            ->firstOrFail();
+
             $new_org = [
                 'name' => $request->org_name,
-                'info' => '{"city": "无锡", "province": "江苏", "sub_city": "江阴"}',
+                'parent_id' => $u->org_id,
+                'conf_id' => $conf_id,
+                'info' => '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}',
+                'auth' => $need,
             ];
+
+            $org_id = Org::create($new_org)->id;
 
         }
         
-
-
-
         $new = [
             'parent_id' => $array[2],
             'org_id' => 3,
             'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
             'password' => bcrypt($request->password),
             'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
+            'auth' => $need,
         ];
 
         User::create($new);
 
         Cache::forget(session('openid'));
 
-        $text = '您的注册资料已经提交审核, 请耐心等待!';
+        // $text = '您的注册资料已经提交审核, 请耐心等待!';
         return view('note', compact('text'));
     }
 
