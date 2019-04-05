@@ -38,7 +38,7 @@ Route::group(['middleware' => ['login', 'state']], function () {
     });
 
     // 用户
-    Route::get('/new', 'UserController@new');
+    Route::get('/ad', 'UserController@new');
     Route::get('/ad/{key}', 'UserController@ad');
 
     Route::get('/users', 'UserController@index');
