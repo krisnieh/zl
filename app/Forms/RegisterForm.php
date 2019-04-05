@@ -20,10 +20,12 @@ class RegisterForm extends Form
             $this
             ->add('province', 'text', [
                 'label' => '省',
+                'default_value' => '江苏',
                 'rules' => 'required|min:2|max:8'
             ])
             ->add('city', 'text', [
                 'label' => '市',
+                'default_value' => '无锡',
                 'rules' => 'required|min:2|max:8'
             ])
             ->add('sub_city', 'text', [
