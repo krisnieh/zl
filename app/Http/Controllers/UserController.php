@@ -247,7 +247,7 @@ class UserController extends Controller
     {
         if(Session::has('openid')) {
             if(Cache::has(session('openid')) Cache::forget(session('openid'));
-            Session::forget('openid');
+            // Session::forget('openid');
         }
 
         Auth::logout();
