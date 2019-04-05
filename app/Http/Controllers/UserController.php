@@ -258,6 +258,8 @@ class UserController extends Controller
 
         $org_id = $u->org_id;
 
+        $r = new Role;
+
         // 是否需要审批
         $need = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":false}';
         $text = $r->admin($array[2]) || $r->master($array[2]) ? '恭喜,您已经可以使用!' : '您的注册资料已经提交审核, 请耐心等待!';
