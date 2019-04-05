@@ -36,7 +36,7 @@ class Role
     // 选择目标
     private function choose($id=0)
     {
-        if (!Auth::check()) abort('403');
+        if (!Auth::check() && $id==0) abort('403');
         return $id == 0 ? Auth::user() : User::findOrFail($id);
     }
 
