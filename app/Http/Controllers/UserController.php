@@ -258,7 +258,7 @@ class UserController extends Controller
             if($exists) return redirect()->back()->withErrors(['mobile'=>'单位名称已存在!'])->withInput();
 
             $new_org = [
-                'name' => $request->org_name;
+                'name' => $request->org_name,
                 'info' => '{"city": "无锡", "province": "江苏", "sub_city": "江阴"}',
             ];
 
