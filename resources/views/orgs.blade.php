@@ -48,7 +48,11 @@
                     <tr>
                 @endif
                       <td><a class="text-dark" href="/orgs/{{ $org->id }}">{{ $org->name }}</a></td>
+                      @if($r->show($org->info, 'province'))
                       <td>{{ $r->show($org->info, 'province') }} / {{ $r->show($org->info, 'city') }} / {{ $r->show($org->info, 'sub_city') }}</td>
+                      @else
+                      <td>{{ $r->show($org->info, 'addr') }}</td>
+                      @endif
                       <td>
               @if($r->admin() && !$r->ownOrg($org->id))
                 @if($r->oLocked($org->id))
