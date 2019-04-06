@@ -152,7 +152,7 @@ class UserController extends Controller
 
         $json = '{"expire_seconds": '.$expire_seconds.', "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.Auth::id().'_'.$key.'"}}}';
 
-        Log::info($json);
+        // Log::info($json);
 
         $resault = $qrcode->get($json);
 
@@ -278,7 +278,7 @@ class UserController extends Controller
 
         $org_id = $u->org_id;
 
-        Log::danger($org_id);
+        // Log::danger($org_id);
 
         $r = new Role;
 
@@ -298,7 +298,7 @@ class UserController extends Controller
                             ->where('key', $do)
                             ->firstOrFail();
 
-            Log::info($org_id);
+            // Log::info($org_id);
 
             $new_org = [
                 'name' => $request->org_name,
