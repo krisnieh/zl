@@ -279,6 +279,7 @@ class UserController extends Controller
 
         // 是否需要审批
         $need = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":"no"}';
+        $need_user = $r->admin($array[2]) || $r->master($array[2]) ? '{"master":true}' : '{"locked":true,"pass":"no","master":true}';
         $text = $r->admin($array[2]) || $r->master($array[2]) ? '恭喜,您可以使用本系统了!' : '您的注册资料已经提交审核, 请耐心等待!';
 
         if($request->org_name) {
@@ -294,7 +295,7 @@ class UserController extends Controller
 
             $new_org = [
                 'name' => $request->org_name,
-                'parent_id' => $u->org_id,
+                'parent_id' => $org_id,
                 'conf_id' => $conf_id->id,
                 'master_id' => $array[2],
                 'info' => '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}',
@@ -312,7 +313,7 @@ class UserController extends Controller
             'accounts' => '{"mobile":"'.$request->mobile.'", "openid":"'.session('openid').'"}',
             'password' => bcrypt($request->password),
             'info' => '{"name":"'.$request->name.'", "addr":"'.$request->addr.'"}',
-            'auth' => $need,
+            'auth' => $need_user,
         ];
 
         $new = User::create($new);
