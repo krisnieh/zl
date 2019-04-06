@@ -40,6 +40,7 @@ Route::group(['middleware' => ['login', 'state']], function () {
 
     // 业务
     Route::get('/pass', 'BizController@pass');
+    Route::get('/pass/ok/{type}/{id}', 'BizController@ok');
 
     // 用户
     Route::get('/ad', 'UserController@new');

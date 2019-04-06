@@ -31,6 +31,16 @@ class BizController extends Controller
         return view('pass', compact('orgs', 'users'));
     }
 
+    /**
+     * 通过
+     *
+     */
+    public function ok($type, $id)
+    {
+        DB::table($type)->findOrFail($id)->update(['auth->pass' => 'yes', 'auth->locked' => false]);
+        return redirect()->back();
+    }
+
 
     /**
      * end

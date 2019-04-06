@@ -24,7 +24,7 @@
                   <tr>
                     <td>{{ $org->name }}</td>
                     <td>{{ $r->show($org->info, 'province') }} / {{ $r->show($org->info, 'city') }} / {{ $r->show($org->info, 'sub_city') }}</td>
-                    <td><a href="/pass/ok" class="btn btn-sm btn-success"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+                    <td><a href="/pass/ok/orgs/{{ $org->id }}" class="btn btn-sm btn-success"><i class="fa fa-check" aria-hidden="true"></i></a></td>
                   </tr>
 
                 </tbody>
@@ -49,7 +49,7 @@
                     <td>{{ $r->show($user->info, 'name') }}</td>
                     <td>{{ $user->org->name }}</td>
                     <td>{{ $r->show($user->accounts, 'mobile') }}</td>
-                    <td><a href="/pass/ok" class="btn btn-sm btn-success"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+                    <td><a href="/pass/ok/users/{{ $user->id }}" class="btn btn-sm btn-success"><i class="fa fa-check" aria-hidden="true"></i></a></td>
                   </tr>
 
                 </tbody>
