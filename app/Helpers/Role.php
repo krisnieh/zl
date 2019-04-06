@@ -182,7 +182,7 @@ class Role
             if($this->master() && !$this->master($id)) return true;
         } else {
             // 不同单位
-            if($this->orgMaster($this->choose($id)->org)) return true;
+            if($this->orgMaster($this->choose($id)->org->id)) return true;
         } 
 
         return false;
