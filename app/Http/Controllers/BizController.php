@@ -37,7 +37,8 @@ class BizController extends Controller
      */
     public function ok($type, $id)
     {
-        DB::table($type)->find($id)->update(['auth->pass' => 'yes', 'auth->locked' => false]);
+        $target = DB::table($type)->find($id);
+        $target->update(['auth->pass' => 'yes', 'auth->locked' => false]);
         return redirect()->back();
     }
 
