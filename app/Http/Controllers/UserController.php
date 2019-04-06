@@ -274,11 +274,11 @@ class UserController extends Controller
         // 单位
         $array = explode('_', Cache::get(session('openid')));
 
-        $u = User::findOrFail($array[2])->first();
+        $u = User::findOrFail($array[2]);
 
         $org_id = $u->org_id;
 
-
+        Log::danger($org_id);
 
         $r = new Role;
 

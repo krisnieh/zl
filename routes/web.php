@@ -67,10 +67,12 @@ Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
-    $str = 'a_b_c';
-    $arr = explode('_', $str);
-    $do = end($arr);
-        return $do;
+    $u = App\User::findOrFail(8)->first();
+
+        $org_id = $u->org_id;
+
+        // echo $org_id;
+        print_r($u);
     // $a = Auth::user()->org->typeConf->order;
 
     // echo $a;
