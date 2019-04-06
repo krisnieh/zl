@@ -299,13 +299,16 @@ class UserController extends Controller
                             ->firstOrFail();
 
             // Log::info($org_id);
+            // if($request->city) {
+            $info = $request->city ? '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}' : '{"addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}'
+            // }           
 
             $new_org = [
                 'name' => $request->org_name,
                 'parent_id' => $org_id,
                 'conf_id' => $conf_id->id,
                 'master_id' => $array[2],
-                'info' => '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}',
+                'info' => $info,
                 'auth' => $need,
             ];
 

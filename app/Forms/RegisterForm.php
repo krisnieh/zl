@@ -18,7 +18,7 @@ class RegisterForm extends Form
 
     public function buildForm()
     {
-        if($this->pick() == 'angent' || $this->pick() == 'customer') {
+        if($this->pick() == 'angent') {
             $this
             ->add('province', 'text', [
                 'label' => '省',
@@ -33,8 +33,11 @@ class RegisterForm extends Form
             ->add('sub_city', 'text', [
                 'label' => '区/县',
                 'rules' => 'required|min:2|max:8'
-            ])
+            ]);
+        }
 
+        if($this->pick() == 'customer' || $this->pick() == 'angent'){
+            $this
             ->add('org_name', 'text', [
                 'label' => '单位名称',
                 'rules' => 'required|min:2|max:20'
