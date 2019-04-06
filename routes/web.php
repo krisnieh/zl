@@ -38,6 +38,9 @@ Route::group(['middleware' => ['login', 'state']], function () {
         return view('apps');
     });
 
+    // 业务
+    Route::get('/pass', 'BizController@pass');
+
     // 用户
     Route::get('/ad', 'UserController@new');
     Route::get('/ad/{key}', 'UserController@ad');
@@ -47,7 +50,6 @@ Route::group(['middleware' => ['login', 'state']], function () {
     Route::get('/user/lock/{id}', 'UserController@lock');
     Route::get('/user/unlock/{id}', 'UserController@unlock');
     Route::get('/user/{id}/{key}', 'UserController@set');
-    Route::get('/user/approve', 'UserController@approve');
 
     // 机构
     Route::get('/orgs', 'OrgController@index');

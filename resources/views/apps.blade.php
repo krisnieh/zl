@@ -28,14 +28,14 @@
         <a href="/order">
           <img src="svg/finance.svg" class="rounded-circle app-icon">
         </a>
-          <h6>财务</h6>
+          <h6>充值</h6>
     </div>
 
     <div class="col-md-2 col-sm-4 col-4 text-center app">
         <a href="/users">
           <img src="svg/order.svg" class="rounded-circle app-icon">
         </a>
-          <h6>部件订单</h6>
+          <h6>订单</h6>
     </div>
 
     <div class="col-md-2 col-sm-4 col-4 text-center app">

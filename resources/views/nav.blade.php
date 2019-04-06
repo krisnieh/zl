@@ -25,8 +25,8 @@
       <div class="dropdown-menu  dropdown-menu-right">
         <a class="dropdown-item" href="/ad"><i class="fa fa-qrcode ico-space" aria-hidden="true"></i>推荐码</a>
         <a class="dropdown-item" href="/apps"><i class="fa fa-th ico-space" aria-hidden="true"></i>应用</a>
-        @if($r->admin())
-        <a class="dropdown-item" href="/user/approve"><i class="fa fa-check-square-o ico-space" aria-hidden="true"></i>审批中心</a>
+        @if($r->admin() || $r->master())
+        <a class="dropdown-item" href="/pass"><i class="fa fa-check-square-o ico-space" aria-hidden="true"></i>审批中心</a>
         @endif
         <div class="dropdown-divider"></div>
         @if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')) 

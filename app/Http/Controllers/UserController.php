@@ -278,7 +278,7 @@ class UserController extends Controller
         $r = new Role;
 
         // 是否需要审批
-        $need = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":false}';
+        $need = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":"no"}';
         $text = $r->admin($array[2]) || $r->master($array[2]) ? '恭喜,您可以使用本系统了!' : '您的注册资料已经提交审核, 请耐心等待!';
 
         if($request->org_name) {
@@ -348,24 +348,6 @@ class UserController extends Controller
         $target->update(['auth->type' => $key]);
         return redirect()->back();
     }
-
-    /**
-     * 待审批
-     *
-     */
-    public function approve() 
-    {
-        $a = new Au;
-        if(!$a->manager()) abort('403');
-
-        $records = User::whereNull('auth->type')
-                ->where('id', '>', 1)
-                ->paginate(30);
-
-        return view('users', compact('records'));
-    }
-
-
 
     // end
 }
