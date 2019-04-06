@@ -300,7 +300,7 @@ class UserController extends Controller
 
             // Log::info($org_id);
             // if($request->city) {
-            $info = $request->city ? '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}' : '{"addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}'
+            $info = $request->city ? '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}' : '{"addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}';
             // }           
 
             $new_org = [
