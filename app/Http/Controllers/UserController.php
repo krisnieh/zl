@@ -9,6 +9,7 @@ use Session;
 use Carbon\Carbon;
 use Cache;
 use Auth;
+use Log;
 
 use App\Forms\LoginForm;
 use App\Forms\RegisterForm;
@@ -150,6 +151,8 @@ class UserController extends Controller
         $expire_seconds = 600; # 10分钟过期
 
         $json = '{"expire_seconds": '.$expire_seconds.', "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.Auth::id().'_'.$key.'"}}}';
+
+        Log::info($json);
 
         $resault = $qrcode->get($json);
 
