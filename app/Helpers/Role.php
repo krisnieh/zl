@@ -97,7 +97,7 @@ class Role
      */
     public function master($id=0)
     {
-        if(!$this->angent($id)) return false;
+        if(!$this->angent($id) && !$this->customer($id)) return false;
         
         return $this->hasAndTrue($this->choose($id)->auth, 'master');
     }
