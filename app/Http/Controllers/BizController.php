@@ -51,8 +51,6 @@ class BizController extends Controller
                 break;
         }
 
-        // $target = DB::table($type)->find($id);
-        // $target->update(['auth->locked' => false, 'auth->pass' => 'yes']);
         return redirect()->back();
     }
 
