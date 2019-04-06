@@ -37,8 +37,22 @@ class BizController extends Controller
      */
     public function ok($type, $id)
     {
-        $target = DB::table($type)->find($id);
-        $target->update(['auth->locked' => false, 'auth->pass' => 'yes']);
+        switch ($type) {
+            case 'orgs':
+                Org::findOrFail($id)->update(['auth->locked' => false, 'auth->pass' => 'yes']);
+                break;
+
+            case 'users':
+                User::findOrFail($id)->update(['auth->locked' => false, 'auth->pass' => 'yes']);
+                break;
+            
+            default:
+                abort('403');
+                break;
+        }
+
+        // $target = DB::table($type)->find($id);
+        // $target->update(['auth->locked' => false, 'auth->pass' => 'yes']);
         return redirect()->back();
     }
 
