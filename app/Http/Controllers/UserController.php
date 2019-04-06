@@ -98,7 +98,7 @@ class UserController extends Controller
     // 解除微信绑定
     public function cut ()
     {
-        Auth::user() -> update(['accounts->openid' => '']);
+        Auth::user()->update(['accounts->openid' => null]);
         return $this->logout();
     }
 
@@ -297,7 +297,7 @@ class UserController extends Controller
             $conf_id = Conf::where('type', 'org')
                             ->where('key', $do)
                             ->firstOrFail();
-                            
+
             Log::info($org_id);
 
             $new_org = [
