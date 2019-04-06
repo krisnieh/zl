@@ -284,7 +284,7 @@ class UserController extends Controller
 
         // 是否需要审批
         $need = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":"no"}';
-        $need_user = $r->admin($array[2]) || $r->master($array[2]) ? '{"master":true}' : '{"locked":true,"pass":"no","master":true}';
+        $need_user = $r->admin($array[2]) || $r->master($array[2]) ? null : '{"locked":true,"pass":"no"}';
         $text = $r->admin($array[2]) || $r->master($array[2]) ? '恭喜,您可以使用本系统了!' : '您的注册资料已经提交审核, 请耐心等待!';
 
         if($request->org_name) {
@@ -301,7 +301,8 @@ class UserController extends Controller
             // Log::info($org_id);
             // if($request->city) {
             $info = $request->city ? '{"city": "'.$request->city.'", "province": "'.$request->province.'", "sub_city": "'.$request->sub_city.'", "addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}' : '{"addr":"'.$request->org_addr.'", "content":"'.$request->org_content.'"}';
-            // }           
+
+            $need_user = $r->admin($array[2]) || $r->master($array[2]) ? '{"master":true}' : '{"locked":true,"pass":"no","master":true}';        
 
             $new_org = [
                 'name' => $request->org_name,
