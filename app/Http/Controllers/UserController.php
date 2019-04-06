@@ -278,6 +278,8 @@ class UserController extends Controller
 
         $org_id = $u->org_id;
 
+
+
         $r = new Role;
 
         // 是否需要审批
@@ -295,6 +297,8 @@ class UserController extends Controller
             $conf_id = Conf::where('type', 'org')
                             ->where('key', $do)
                             ->firstOrFail();
+                            
+            Log::info($org_id);
 
             $new_org = [
                 'name' => $request->org_name,
