@@ -34,7 +34,13 @@
                   <thead>
                     <tr>
                       <th>名称</th>
-                      <th>区域</th>
+                      <th>
+                        @if($r->show($org->info, 'province'))
+                        区域
+                        @else
+                        地址
+                        @endif
+                      </th>
                       <th></th>
                     </tr>
                   </thead>
