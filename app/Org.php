@@ -8,12 +8,6 @@ class Org extends Model
 {
     protected $guarded = [];
 
-    // // 对应配置
-    // public function typeConf1() 
-    // {
-    //     return $this->belongsTo('App\Conf', 'id', 'conf_id');
-    // }
-
     // 老板
     public function typeConf()
     {
@@ -26,11 +20,17 @@ class Org extends Model
         return $this->hasMany('App\User', 'org_id', 'id');
     }
 
-    // // 老板
-    // public function boss()
-    // {
-    //     return $this->hasOne('App\User', 'boss_id');
-    // }
+    // 花费
+    public function costs()
+    {
+        return $this->hasMany('App\Order', 'from_org', 'id');
+    }
+
+    // 卖货
+    public function sales()
+    {
+        return $this->hasMany('App\Order', 'to_org', 'id');
+    }
 
     // // 管理者
     // public function master()

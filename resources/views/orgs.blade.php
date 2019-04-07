@@ -71,6 +71,8 @@
           @endforeach
 
       </div>
+  @else
+  <div class="alert alert-info">暂无记录</div>
   @endif
 
 <script>

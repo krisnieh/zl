@@ -80,7 +80,7 @@ class OrgsTableSeeder extends Seeder
             'name' => '新桥修理店',
             'conf_id' => 7,
             'parent_id' => 7,
-            'info' => '{"province":"江苏", "city":"无锡", "sub_city":"江阴"}',
+            'info' => '{"addr":"江阴新桥镇胡叶街128号"}',
             'auth' => null
         ]);
 

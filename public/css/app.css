@@ -97,6 +97,21 @@ a:hover, a:visited, a:link, a:active {
     margin-right: 10px;
 }
 
+.card-list {
+    margin-bottom: 10px;
+}
+.card-h {
+    height: 38px;
+}
+.card-b {
+    padding: -15px;
+}
+.thin-p {
+    margin-top: -15px;
+    margin-bottom: 5px;
+}
+
+
 
 
 

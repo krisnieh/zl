@@ -25,21 +25,21 @@
     </div>
 
     <div class="col-md-2 col-sm-4 col-4 text-center app">
-        <a href="/order">
+        <a href="/finance">
           <img src="svg/finance.svg" class="rounded-circle app-icon">
         </a>
           <h6>充值</h6>
     </div>
 
     <div class="col-md-2 col-sm-4 col-4 text-center app">
-        <a href="/users">
+        <a href="/orders">
           <img src="svg/order.svg" class="rounded-circle app-icon">
         </a>
           <h6>订单</h6>
     </div>
 
     <div class="col-md-2 col-sm-4 col-4 text-center app">
-        <a href="/users">
+        <a href="/scores">
           <img src="svg/score.svg" class="rounded-circle app-icon">
         </a>
           <h6>积分</h6>

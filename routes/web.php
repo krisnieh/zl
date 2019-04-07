@@ -58,6 +58,14 @@ Route::group(['middleware' => ['login', 'state']], function () {
     Route::get('/org/lock/{id}', 'OrgController@lock');
     Route::get('/org/unlock/{id}', 'OrgController@unlock');
 
+    // 订单
+    Route::get('/orders', 'OrderController@index');
+    Route::get('/orders/new', 'OrderController@new');
+    Route::get('/orders/show/{org_id}', 'OrderController@show');
+    Route::post('/orders/store', 'OrderController@store');
+    Route::get('/orders/delete/{id}', 'OrderController@delete');
+    Route::get('/orders/finish/{id}/{price}', 'OrderController@finish');
+
 });
 
 

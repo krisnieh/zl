@@ -54,6 +54,6 @@
     </tbody>
   </table>
   @else
-    <div class="card">暂无记录</div>
+    <div class="alert alert-info">暂无记录</div>
   @endif
 @endsection

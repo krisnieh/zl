@@ -154,7 +154,7 @@ class Role
      */
     public function orgMaster($org_id)
     {
-        return Auth::id() == Org::findOrFail($org_id)->master_id;
+        return Auth::id() == Org::findOrFail($org_id)->parent_id;
     }
 
     /**
@@ -192,17 +192,32 @@ class Role
     /**
      * 机构
      * ------------------
-     * 锁定
+     * 
      *
      */
-    public function oLocked($id)
+    public function oLocked($org_id)
     {
-        return $this->hasAndTrue(Org::find($id)->auth, 'locked');
+        return $this->hasAndTrue(Org::find($org_id)->auth, 'locked');
     }
 
-    public function ownOrg($id)
+    public function ownOrg($org_id)
     {
-        return Auth::user()->org_id == $id;
+        return Auth::user()->org_id == $org_id;
+    }
+
+    public function staffOrg($org_id)
+    {
+        return Org::findOrFail($org_id)->typeConf->key == 'staff';
+    }
+
+    public function angentOrg($org_id)
+    {
+        return Org::findOrFail($org_id)->typeConf->key == 'angent';
+    }
+
+    public function customerOrg($org_id)
+    {
+        return Org::findOrFail($org_id)->typeConf->key == 'customer';
     }
 
     // END

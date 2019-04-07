@@ -81,7 +81,7 @@ class UsersTableSeeder extends Seeder
             'accounts' =>'{"mobile":"13666666666", "openid":"wechatopenid"}',
             'password' => bcrypt('000000'),
             'info' => '{"name":"莫大先生", "addr":"无锡江阴新桥"}',
-            'auth' => null
+            'auth' => '{"master":true}'
         ]);
 
         
