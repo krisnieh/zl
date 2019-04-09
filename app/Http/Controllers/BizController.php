@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 
 use App\User;
 use App\Org;
@@ -11,6 +12,7 @@ use App\Helpers\Role;
 
 class BizController extends Controller
 {
+    private $au;
     /**
      * 审批中心
      *
@@ -20,7 +22,16 @@ class BizController extends Controller
         $r = new Role;
         if(!$r->admin() && !$r->master()) abort('403');
 
+        $this->au = new Role;
+
         $orgs = Org::where('auth->pass', 'no')
+                    ->where(function ($query) {
+
+                        if(!$this->au->admin()){
+                            $query->Where('parent_id', Auth::user()->org_id);
+                        }
+
+                    })
                     ->whereNull('auth->ignore')
                     ->get();
 
