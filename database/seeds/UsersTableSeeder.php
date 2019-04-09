@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
         User::create([
             'parent_id' => 1,
             'org_id' => 3,
-            'accounts' =>'{"mobile":"17261750890", "openid":"wechatopenid"}',
+            'accounts' =>'{"mobile":"18552138678", "openid":"ojK9v1brwHBA7tMbJ_ZggNJ_-pQ0"}',
             'password' => bcrypt('000000'),
             'info' => '{"name":"吴清国", "addr":"无锡江阴青阳"}',
             'auth' => '{"root":true}'
