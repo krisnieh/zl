@@ -18,6 +18,9 @@
                         <a class="badge badge-danger" href="/finance/delete/{{ $record->id }}"><i class="fa fa-fire" aria-hidden="true"></i> 删除!!</a>
                         @endif 
                     </p>
+                    @if($r->show($record->from->auth, 'vip'))
+                    <span class="badge badge-dark">{{ $r->show($record->from->auth, 'vip') }}VIP, 可用¥:{{ $record->from->give->sum('pay') }}</span><br>
+                    @endif
                     客户: {{ $r->show($record->consumer->info, 'name') }} {{ $r->show($record->consumer->accounts, 'mobile') }}<br>
                     地址: {{ $r->show($record->from->info, 'addr') }} <br>
                     金额: ¥{{ $record->pay }} <br>
