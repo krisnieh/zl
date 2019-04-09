@@ -55,6 +55,9 @@ class BizController extends Controller
      */
     public function ok($type, $id)
     {
+        $r = new Role;
+        if(!$r->admin() && !$r->master()) abort('403');
+        
         switch ($type) {
             case 'orgs':
                 Org::findOrFail($id)->update(['auth->locked' => false, 'auth->pass' => 'yes']);
