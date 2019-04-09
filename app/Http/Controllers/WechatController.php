@@ -84,8 +84,8 @@ class WechatController extends Controller
                 },
                 {
                     "type":"view",
-                    "name":"积分",
-                    "url":"https://zl.viirose.com/score"
+                    "name":"订单",
+                    "url":"https://zl.viirose.com/orders"
                 },
                 {
                     "type":"view",
@@ -96,8 +96,6 @@ class WechatController extends Controller
         }';
 
         $menu->create($json);
-
-        return view('ok');
     }
 
     /**
@@ -108,8 +106,6 @@ class WechatController extends Controller
     {
         $menu = new Menu;
         $menu->delete();
-
-        return view('ok');
     }
 
 
