@@ -173,6 +173,16 @@ class Role
         return Auth::id() == Org::findOrFail($org_id)->master_id;
     }
 
+    /**
+     * 机构管理员
+     *
+     */
+    public function orgAdmin($org_id)
+    {
+        return $this->orgMaster($org_id) && $this->master() && $this->inOrg($org_id) ? true : false;
+    }
+
+
 
 
     /**
