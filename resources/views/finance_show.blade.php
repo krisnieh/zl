@@ -29,7 +29,7 @@
                         @endif 
                     </p>
                     @if($r->show($a->from->auth, 'vip'))
-                    <span class="badge badge-dark">{{ $r->show($a->from->auth, 'vip') }}VIP, 可用¥:{{ $a->sum('pay') }}</span><br>
+                    <span class="badge badge-dark">{{ $r->show($a->from->auth, 'vip') }}VIP, 可用¥:{{ $a->from->give->sum('pay') }}</span><br>
                     @endif
                     客户: {{ $r->show($a->consumer->info, 'name') }} {{ $r->show($a->consumer->accounts, 'mobile') }}<br>
                     地址: {{ $r->show($a->from->info, 'addr') }} <br>
@@ -69,7 +69,7 @@
                     </p>
                     
                     @if($r->show($a->from->auth, 'vip'))
-                    <span class="badge badge-dark">{{ $r->show($a->from->auth, 'vip') }}VIP, 可用¥:{{ $a->sum('pay') }}</span><br>
+                    <span class="badge badge-dark">{{ $r->show($a->from->auth, 'vip') }}VIP, 可用¥:{{ $a->from->give->sum('pay') }}</span><br>
                     @endif
                     
                     客户: {{ $r->show($a->consumer->info, 'name') }} {{ $r->show($a->consumer->accounts, 'mobile') }}<br>
