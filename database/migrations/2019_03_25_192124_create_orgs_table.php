@@ -18,7 +18,6 @@ class CreateOrgsTable extends Migration
             $table->integer('parent_id');
             $table->integer('conf_id')->index();
             $table->string('name');
-            $table->integer('master_id')->nullable();
             $table->jsonb('info')->nullable();
             $table->jsonb('auth')->nullable();
             $table->timestamps();

@@ -15,10 +15,14 @@ class CreateFinancesTable extends Migration
     {
         Schema::create('finances', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('from_user_id');
-            $table->integer('to_user_id');
+            $table->boolean('add')->default(false);
+            $table->integer('to_org');
+            $table->integer('to_user')->nullable();
+            $table->integer('from_org');
+            $table->integer('from_user');
             $table->decimal('pay',8,2)->default(0);
-            $table->jsonb('info')->nullable();
+            $table->integer('state')->default(0);
+            $table->integer('month')->default(0);
             $table->timestamps();
         });
     }

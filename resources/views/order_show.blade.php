@@ -19,14 +19,25 @@
       @foreach($record->sales as $a)
 
         <div class="card card-list">
-          <div class="card-header card-h"><small>#</small> <strong>{{ $a->id }}</strong><small class="pull-right">{{ $a->created_at->diffForHumans() }} {{ $a->created_at }}</small> </div>
+          <div class="card-header card-h"><small>#</small> <strong>{{ $a->id }}</strong>
+            @if($a->state > 0)
+            {!! '<span class="badge badge-success pull-right">由'.$r->show($a->seller->info, 'name').$a->updated_at->diffForHumans().'完成</span>' !!}
+            @else
+            <small class="pull-right">{{ $a->created_at->diffForHumans() }} {{ $a->created_at }}</small> 
+            @endif
+          </div>
           <div class="card-body">
               <p class="thin-p"><span class="badge badge-info">订货方: {{ $a->from->name }}</span> 
-                  @if($r->inOrg($a->to_org))
+                  @if($r->inOrg($a->to_org) && $a->state == 0)
                   <a class="badge badge-danger" href="javascript:del({{ $a->id }})"><i class="fa fa-fire" aria-hidden="true"></i> 删除!!</a> 
                   <a href="javascript:finish({{ $a->id }})" class="badge badge-success"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 完成订单</a>
                   @endif 
               </p>
+              @if($r->show($a->from->auth, 'vip'))
+                <span class="badge badge-dark">{{ $r->show($a->from->auth, 'vip') }}VIP, 可用¥:{{ $a->from->give->sum('pay') }}</span><br>
+              @endif
+
+
               客户: {{ $r->show($a->consumer->info, 'name') }} {{ $r->show($a->consumer->accounts, 'mobile') }}<br>
               地址: {{ $r->show($a->from->info, 'addr') }} <br>
               货物: <span class="badge badge-{{ $a->product_id == 1 ? 'warning' : 'dark' }}">{{ $a->goods->name }} {{ $a->goods->type }}</span> × <span class="badge badge-{{ $a->product_id == 1 ? 'warning' : 'dark' }}">{{ $a->num }} 箱</span><br>
@@ -55,6 +66,10 @@
           <div class="card-body">
               <p class="thin-p"><span class="badge badge-info">订货方: {{ $a->from->name }}</span> 
               </p>
+              @if($r->show($a->from->auth, 'vip'))
+                <span class="badge badge-dark">{{ $r->show($a->from->auth, 'vip') }}VIP, 可用¥:{{ $a->from->give->sum('pay') }}</span><br>
+              @endif
+
               客户: {{ $r->show($a->consumer->info, 'name') }} {{ $r->show($a->consumer->accounts, 'mobile') }}<br>
               地址: {{ $r->show($a->from->info, 'addr') }} <br>
               货物: <span class="badge badge-{{ $a->product_id == 1 ? 'warning' : 'dark' }}">{{ $a->goods->name }} {{ $a->goods->type }}</span> × <span class="badge badge-{{ $a->product_id == 1 ? 'warning' : 'dark' }}">{{ $a->num }} 箱</span><br>
@@ -87,7 +102,7 @@
    
         <div class="modal-footer">
           <input type="hidden" id="target">
-          <a id="go" href="" class="btn btn-danger btn-sm"><i class="fa fa-fire" aria-hidden="true"></i> 删除!!</a>
+          <a id="go" href="#" class="btn btn-danger btn-sm"><i class="fa fa-fire" aria-hidden="true"></i> 删除!!</a>
           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">关闭</button>
         </div>
    
@@ -100,23 +115,29 @@
       <div class="modal-content">
    
         <div class="modal-header">
-          <strong>请输入订单金额</strong>
+          <strong>完成订单</strong>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
    
         <div class="modal-body">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text">¥</span>
+              <span class="input-group-text">订单总金额¥</span>
             </div>
             <input type="number" class="form-control" id="price_f" onchange="javascript:change()">
           </div>
-          <p class="text text-danger">请务必核对金额,提交后无法修改!!</p>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">余额扣除¥</span>
+            </div>
+            <input type="number" class="form-control" id="cut" onchange="javascript:change()">
+          </div>
         </div>
    
         <div class="modal-footer">
           <input type="hidden" id="id_f">
-          <a id="go_f" href="" class="btn btn-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 完成订单</a>
+          <a id="go_f" href="#" class="btn btn-success btn-sm"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 完成订单</a>
           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">关闭</button>
         </div>
    
@@ -142,7 +163,8 @@
   function change() {
     var id_f = $("#id_f").val();
     var price_f = $("#price_f").val();
-    var url = '/orders/finish/' + id_f + '/' + price_f;
+    var cut = $("#cut").val();
+    var url = '/orders/finish/' + id_f + '/' + price_f + '/' + Number(cut);
 
     $("#go_f").attr('href', url);
   }

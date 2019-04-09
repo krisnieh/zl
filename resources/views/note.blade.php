@@ -6,8 +6,8 @@
     <span class="breadcrumb-item active"><i class="fa fa-bell-o ico-space" aria-hidden="true"></i>通知</span>
   </nav>
 <div class="d-flex justify-content-center align-items-center w-100 alert">
-    <div class="alert alert-success col-10 col-sm-5">
-        <h5><i class="fa fa-check-square-o" aria-hidden="true"></i></h5><p>{{ $text }}</p>
+    <div class="alert alert-{{ isset($color) ? $color : 'success' }} col-10 col-sm-5">
+        <h5><i class="fa fa-{{ isset($color) ? 'exclamation-triangle' : 'check-square-o' }}" aria-hidden="true"></i></h5><p>{{ $text }}</p>
     </div>
 </div>
 

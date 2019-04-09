@@ -32,10 +32,16 @@ class Org extends Model
         return $this->hasMany('App\Order', 'to_org', 'id');
     }
 
-    // // 管理者
-    // public function master()
-    // {
-    //     return $this->hasOne('App\User', 'master_id');
-    // }
+    // 给钱
+    public function give()
+    {
+        return $this->hasMany('App\Finance', 'from_org', 'id');
+    }
+
+    // 收钱
+    public function accept()
+    {
+        return $this->hasMany('App\Finance', 'to_org', 'id');
+    }
 
 }

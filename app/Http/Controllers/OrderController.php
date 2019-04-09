@@ -109,17 +109,59 @@ class OrderController extends Controller
      * 完成
      *
      */
-    public function finish($id, $price)
+    public function finish($id, $pay, $cut)
     {
-        echo $id;
-        echo $price;
-        // $target = Order::findOrFail($id);
+        $target = Order::findOrFail($id);
+        
+        $r = new Role;
+        if(!$r->inOrg($target->to_org)) abort('403');
 
-        // $r = new Role;
-        // if(!$r->inOrg($target->to_org)) abort('403');
+        if(!is_numeric($pay) || $pay < 0 || $cut > $pay) {
+            $color = 'danger';
+            $text = '非法金额!';
+            return view('note', compact('color','text'));
+            exit();
+        } 
 
-        // $target->delete();
+        if($target->pay > 0 || $target->to_user) {
+            $color = 'danger';
+            $text = '此订单已经完成!';
+            return view('note', compact('color','text'));
+            exit();
+        }
+
+        if($cut > $target->from->give->sum('pay')) {
+            $color = 'danger';
+            $text = '余额不足, 请充值后重试!';
+            return view('note', compact('color','text'));
+            exit();
+        }
+
+
+
+
+        if($cut > 0) {
+
+            $new = [
+                'add' => false,
+                'to_org' => Auth::user()->org_id,
+                'to_user' => Auth::id(),
+                'from_org' => $target->from_org,
+                'from_user'=> $target->from_user,
+                'pay' => - $cut,
+                'state' => 1,
+            ];
+
+            $target->from->give()->create($new);
+        }
+
+        $target->update(['pay' => $pay, 'to_user' => Auth::id(), 'state' => 1]);
+
+
+        $text = '操作成功,订单已完成!';
+        return view('note', compact('text'));
         // return redirect()->back();
+
     }
 
     /**

@@ -16,8 +16,14 @@ class Role
 {
     public function show($json, $key) 
     {
-        $arr = json_decode($json);
-        return $arr && array_key_exists($key, $arr) ? $arr->$key : null;
+        try {
+            $arr = json_decode($json);
+            return $arr && array_key_exists($key, $arr) ? $arr->$key : null;
+        } catch (Exception $e) {
+            return null;
+            exit();
+        }
+
     }
 
     // 个人信息
@@ -154,7 +160,7 @@ class Role
      */
     public function orgMaster($org_id)
     {
-        return Auth::id() == Org::findOrFail($org_id)->parent_id;
+        return Auth::user()->org_id == Org::findOrFail($org_id)->parent_id;
     }
 
     /**

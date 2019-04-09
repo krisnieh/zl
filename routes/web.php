@@ -64,7 +64,15 @@ Route::group(['middleware' => ['login', 'state']], function () {
     Route::get('/orders/show/{org_id}', 'OrderController@show');
     Route::post('/orders/store', 'OrderController@store');
     Route::get('/orders/delete/{id}', 'OrderController@delete');
-    Route::get('/orders/finish/{id}/{price}', 'OrderController@finish');
+    Route::get('/orders/finish/{id}/{pay}/{cut}', 'OrderController@finish');
+
+    // 充值
+    Route::get('/finance', 'FinanceController@index');
+    Route::get('/finance/new', 'FinanceController@new');
+    Route::post('/finance/store', 'FinanceController@store');
+    Route::get('/finance/show/{org_id}', 'FinanceController@show');
+    Route::get('/finance/delete/{id}', 'FinanceController@delete');
+    Route::get('/finance/finish/{id}/{month}/{vip}', 'FinanceController@finish');
 
 });
 
