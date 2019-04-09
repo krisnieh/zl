@@ -17,6 +17,7 @@ class OrgsTableSeeder extends Seeder
             'name' => 'root',
             'conf_id' => 3,
             'parent_id' => 1,
+            'master_id' => 1,
             'info' => null,
             'auth' => null
         ]);
@@ -24,6 +25,7 @@ class OrgsTableSeeder extends Seeder
             'name' => '待审批',
             'conf_id' => 4,
             'parent_id' => 1,
+            'master_id' => 1,
             'info' => '{"province":"江苏", "city":"无锡", "sub_city":"无锡"}',
             'auth' => '{"locked":true}'
         ]);
@@ -32,6 +34,7 @@ class OrgsTableSeeder extends Seeder
             'name' => '众乐速配',
             'conf_id' => 5,
             'parent_id' => 1,
+            'master_id' => 1,
             'info' => '{"province":"江苏", "city":"无锡", "sub_city":"无锡"}',
             'auth' => '{"root":true}'
         ]);

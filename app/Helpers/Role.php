@@ -155,13 +155,25 @@ class Role
 
 
     /**
-     * 机构指定管理员
+     * 管理机构
      *
      */
     public function orgMaster($org_id)
     {
         return Auth::user()->org_id == Org::findOrFail($org_id)->parent_id;
     }
+
+
+    /**
+     * 机构经理
+     *
+     */
+    public function orgMan($org_id)
+    {
+        return Auth::id() == Org::findOrFail($org_id)->master_id;
+    }
+
+
 
     /**
      * 所在机构

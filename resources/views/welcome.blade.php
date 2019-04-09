@@ -10,9 +10,6 @@
             <img class="ok" src="{{ URL::asset('svg/logo.svg') }}">
             <h5>众乐速配</h5>
             <p class="text text-danger">省钱 . 高效</p>
-            @if(Session::has('openid'))
-            <p>{{ session('openid') }}</p>
-            @endif
             <p>
                 @if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') && Cache::has(session('openid')))
                     <a href="/register" class="btn btn-block btn-success">继续, 完成注册</a>
