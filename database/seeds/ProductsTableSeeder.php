@@ -14,7 +14,7 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
         Product::create([
-            'name' => "江河自补剂",
+            'name' => "江和自补剂",
             'type' => "标准型",
             'info' => '{
                 "list": {"最低温度":"0 ℃", "包装":"400毫升/瓶", "箱数量":36},
@@ -22,7 +22,7 @@ class ProductsTableSeeder extends Seeder
             }'
         ]);
         Product::create([
-            'name' => "江河自补剂",
+            'name' => "江和自补剂",
             'type' => "抗冻型",
             'info' => '{
                 "list": {"最低温度":"- 15 ℃", "包装":"400毫升/瓶", "箱数量":36},

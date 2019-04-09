@@ -183,6 +183,15 @@ class Role
     }
 
     /**
+     * 机构老板
+     *
+     */
+    public function orgBoss($org_id)
+    {
+        return $this->inOrg($org_id) && $this->master() ? true : false;
+    }
+
+    /**
      * 所在机构
      *
      */
