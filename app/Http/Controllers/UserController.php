@@ -331,7 +331,7 @@ class UserController extends Controller
                 'name' => $request->org_name,
                 'parent_id' => $org_id,
                 'conf_id' => $conf_id->id,
-                'master_id' => $array[2],
+                // 'master_id' => $array[2],
                 'info' => $info,
                 'auth' => $need,
             ];
