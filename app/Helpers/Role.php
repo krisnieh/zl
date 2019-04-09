@@ -179,11 +179,8 @@ class Role
      */
     public function orgAdmin($org_id)
     {
-        return $this->orgMaster($org_id) && $this->master() && $this->inOrg($org_id) ? true : false;
+        return $this->orgMaster($org_id) && $this->master() ? true : false;
     }
-
-
-
 
     /**
      * 所在机构
