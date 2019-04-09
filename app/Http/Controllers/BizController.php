@@ -36,6 +36,13 @@ class BizController extends Controller
                     ->get();
 
         $users = User::where('auth->pass', 'no')
+                    ->where(function ($query) {
+
+                        if(!$this->au->admin()){
+                            $query->Where('parent_id', Auth::user()->org_id);
+                        }
+
+                    })
                     ->whereNull('auth->ignore')
                     ->get();
 
