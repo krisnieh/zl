@@ -46,6 +46,8 @@ Route::group(['middleware' => ['login', 'state']], function () {
     Route::get('/ad', 'UserController@new');
     Route::get('/ad/{key}', 'UserController@ad');
 
+    Route::get('/chang_password', 'UserController@changPassword');
+    Route::post('/save_password', 'UserController@savePassword');
     Route::get('/users', 'UserController@index');
     Route::get('/user/{id?}', 'UserController@show');
     Route::get('/user/lock/{id}', 'UserController@lock');

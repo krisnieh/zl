@@ -13,6 +13,7 @@ use Log;
 
 use App\Forms\LoginForm;
 use App\Forms\RegisterForm;
+use App\Forms\PasswordForm;
 use App\User;
 use App\Org;
 use App\Conf;
@@ -83,6 +84,28 @@ class UserController extends Controller
 
         return redirect('/apps');
 
+    }
+    public function changPassword()
+    {
+        $form = $this->form(PasswordForm::class, [
+            'method' => 'POST',
+            'url' => '/save_password'
+        ]);
+
+        $title = '输入新密码';
+        $icon = 'cogs';
+
+        return view('form', compact('form','title','icon'));
+    }
+
+    public function savePassword(Request $request)
+    {
+        $form = $this->form(PasswordForm::class);
+        if($request->password !== $request->confirm_password) redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
+        Auth::user()->update(['password'=>bcrypt($request->password)]);
+
+        $text = '密码修改成功!';
+        return view('note', compact('text'));
     }
 
     // 退出

@@ -29,6 +29,7 @@
         <a class="dropdown-item" href="/pass"><i class="fa fa-check-square-o ico-space" aria-hidden="true"></i>审批中心</a>
         @endif
         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="/chang_password"><i class="fa fa-cogs ico-space" aria-hidden="true"></i>修改密码</a>
         @if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')) 
           <a class="dropdown-item text text-danger" href="/wechat/cut"><i class="fa fa-cut ico-space" aria-hidden="true"></i>解除此微信关联</a>
         @else
