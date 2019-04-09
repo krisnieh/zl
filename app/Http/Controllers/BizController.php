@@ -25,24 +25,24 @@ class BizController extends Controller
         $this->au = new Role;
 
         $orgs = Org::where('auth->pass', 'no')
-                    ->where(function ($query) {
+                    // ->where(function ($query) {
 
-                        if(!$this->au->admin()){
-                            $query->Where('parent_id', Auth::user()->org_id);
-                        }
+                    //     if(!$this->au->admin()){
+                    //         $query->Where('parent_id', Auth::user()->org_id);
+                    //     }
 
-                    })
+                    // })
                     ->whereNull('auth->ignore')
                     ->get();
 
         $users = User::where('auth->pass', 'no')
-                    ->where(function ($query) {
+                    // ->where(function ($query) {
 
-                        if(!$this->au->admin()){
-                            $query->Where('parent_id', Auth::user()->org_id);
-                        }
+                    //     if(!$this->au->admin()){
+                    //         $query->Where('parent_id', Auth::user()->org_id);
+                    //     }
 
-                    })
+                    // })
                     ->whereNull('auth->ignore')
                     ->get();
 
