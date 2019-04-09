@@ -34,7 +34,7 @@
 
         <p><i class="fa fa-mobile ico-space" aria-hidden="true"></i>{{ $r->show($record->accounts, 'mobile')}}</p>
         <p><i class="fa fa-map-marker ico-space" aria-hidden="true"></i>
-            @if($r->angent($record->id))
+            @if($r->angent($record->id) && $r->staff($record->id) )
             {{ $r->show($record->org->info, 'province') }}{{ $r->show($record->org->info, 'city') }}{{ $r->show($record->org->info, 'sub_city') }}{{ $r->show($record->org->info, 'addr') }}
             @elseif($r->customer($record->id))
             {{ $r->show($record->org->info, 'addr') }}
