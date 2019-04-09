@@ -75,12 +75,6 @@ a:hover, a:visited, a:link, a:active {
     padding-top: 8px; 
 }
 
-.alert {
-    padding-top: 30px;
-    padding-bottom: 50px;
-    text-align: center;
-}
-
 .ok {
     width: 80px;
 }
