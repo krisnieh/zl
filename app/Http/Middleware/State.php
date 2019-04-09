@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 
 use App\Helpers\Role;
-use App\Auth;
+use Auth;
 
 class State
 {
