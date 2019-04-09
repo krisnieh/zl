@@ -105,6 +105,11 @@ a:hover, a:visited, a:link, a:active {
     margin-bottom: 5px;
 }
 
+.cent {
+    text-align: center;
+    margin: 0 auto;
+}
+
 
 
 

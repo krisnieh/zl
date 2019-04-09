@@ -90,24 +90,7 @@ Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
-    $u = App\User::findOrFail(8)->first();
-
-        $org_id = $u->org_id;
-
-        // echo $org_id;
-        print_r($u);
-    // $a = Auth::user()->org->typeConf->order;
-
-    // echo $a;
-
-// // abort('500');
-//     $a = new App\Helpers\Role;
-
-//     if ($a->staff()) {
-//         echo "good";
-//     }else{
-//         echo "fuck";
-//     }
+    abort('404');
 
 });
 
