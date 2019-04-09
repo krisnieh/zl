@@ -33,7 +33,13 @@
         </p>
 
         <p><i class="fa fa-mobile ico-space" aria-hidden="true"></i>{{ $r->show($record->accounts, 'mobile')}}</p>
-        <p><i class="fa fa-map-marker ico-space" aria-hidden="true"></i>{{ $r->show($record->org->info, 'province') }}{{ $r->show($record->org->info, 'city') }}{{ $r->show($record->org->info, 'sub_city') }}{{ $r->show($record->org->info, 'addr') }}</p>
+        <p><i class="fa fa-map-marker ico-space" aria-hidden="true"></i>
+            @if($r->angentOrg($record->id))
+            {{ $r->show($record->org->info, 'province') }}{{ $r->show($record->org->info, 'city') }}{{ $r->show($record->org->info, 'sub_city') }}{{ $r->show($record->org->info, 'addr') }}
+            @elseif($r->customerOrg($record->id))
+            {{ $r->show($record->org->info, 'addr') }}
+            @endif
+        </p>
         <div class="hr-line-dashed"></div>
         @if(count($record->child))
         <strong>推荐用户</strong>
