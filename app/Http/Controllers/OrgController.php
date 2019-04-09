@@ -64,7 +64,7 @@ class OrgController extends Controller
     public function show($id)
     {
         $r = new Role;
-        if(!$r->admin() && !$r->orgMan($id) && !($r->orgMaster($id) && $r->master()) abort('403');
+        if(!$r->admin() && !$r->orgMan($id) && !($r->orgMaster($id) && $r->master())) abort('403');
 
         $record = Org::findOrFail($id);
 
