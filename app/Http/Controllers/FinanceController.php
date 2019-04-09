@@ -44,6 +44,12 @@ class FinanceController extends Controller
         if(!$r->admin() && !$r->inOrg($org_id)) abort('403');
 
         $record = Org::findOrFail($org_id);
+        // $record = Org::where('id', $org_id)
+        //                 ->with(['give' => function ($query) {
+        //                     $query->orderBy('created_at', 'desc');
+        //                 }])
+        //                 ->first();
+
         return view('finance_show', compact('record'));
     }
 

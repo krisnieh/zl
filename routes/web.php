@@ -74,6 +74,11 @@ Route::group(['middleware' => ['login', 'state']], function () {
     Route::get('/finance/delete/{id}', 'FinanceController@delete');
     Route::get('/finance/finish/{id}/{month}/{vip}', 'FinanceController@finish');
 
+    // 积分
+    Route::get('/scores', function() {
+        return view('scores');
+    });
+
 });
 
 

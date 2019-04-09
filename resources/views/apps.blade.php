@@ -28,7 +28,7 @@
         <a href="/finance">
           <img src="svg/finance.svg" class="rounded-circle app-icon">
         </a>
-          <h6>充值</h6>
+          <h6>财务</h6>
     </div>
 
     <div class="col-md-2 col-sm-4 col-4 text-center app">

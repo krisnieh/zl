@@ -23,7 +23,7 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <p class="thin-p"><span class="badge badge-{{ $a->add ? 'success' : 'danger' }}">{{ $a->from->name }} 充值 ¥{{ $a->pay }}</span> 
+                    <p class="thin-p"><span class="badge badge-{{ $a->add ? 'success' : 'danger' }}">{{ $a->from->name }} {{ $a->add ? '充值' : '消费' }} ¥{{ $a->pay }}</span> 
                         @if($r->inOrg($a->to_org) && $r->master() && $a->state == 0)
                         <a href="javascript:finish({{ $a->id }})" class="badge badge-warning"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 确认充值</a>
                         @endif 
@@ -62,7 +62,7 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <p class="thin-p"><span class="badge badge-{{ $a->add ? 'success' : 'danger' }}">{{ $a->from->name }} 充值 ¥{{ $a->pay }}</span> 
+                    <p class="thin-p"><span class="badge badge-{{ $a->add ? 'success' : 'danger' }}">{{ $a->from->name }} {{ $a->add ? '充值' : '消费' }} ¥{{ $a->pay }}</span> 
                         @if($r->own($a->from_user) && $a->state == 0)
                         <a class="badge badge-danger" href="javascript:del({{ $a->id }})"><i class="fa fa-fire" aria-hidden="true"></i> 删除!!</a>
                         @endif 

@@ -23,25 +23,25 @@ class Org extends Model
     // 花费
     public function costs()
     {
-        return $this->hasMany('App\Order', 'from_org', 'id');
+        return $this->hasMany('App\Order', 'from_org', 'id')->latest();
     }
 
     // 卖货
     public function sales()
     {
-        return $this->hasMany('App\Order', 'to_org', 'id');
+        return $this->hasMany('App\Order', 'to_org', 'id')->latest();
     }
 
     // 给钱
     public function give()
     {
-        return $this->hasMany('App\Finance', 'from_org', 'id');
+        return $this->hasMany('App\Finance', 'from_org', 'id')->latest();
     }
 
     // 收钱
     public function accept()
     {
-        return $this->hasMany('App\Finance', 'to_org', 'id');
+        return $this->hasMany('App\Finance', 'to_org', 'id')->latest();
     }
 
 }
