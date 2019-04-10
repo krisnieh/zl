@@ -62,7 +62,7 @@ class OrderController extends Controller
             'url' => '/orders/store'
         ]);
 
-        $title = '江河 自补液';
+        $title = '江和 自补液';
         $icon = 'flask';
 
         return view('form', compact('form','title','icon'));
