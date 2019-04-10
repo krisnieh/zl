@@ -43,7 +43,7 @@ class WechatController extends Controller
                     'Articles' => [
                         [
                             'title'=>"众乐速配", 
-                            'description'=>"快捷.高效", 
+                            'description'=>"欢迎关注众乐速配-江和自补液。江和携手经销商，助您2019生意腾飞!", 
                             'picurl'=>URL::asset('image/welcome.jpg'), 
                             'url'=>"https://zl.viirose.com",
                         ],
