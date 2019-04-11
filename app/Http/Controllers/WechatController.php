@@ -15,7 +15,7 @@ use App\User;
 class WechatController extends Controller
 {
     /**
-     * 微信服务器认证
+     * 微信服务器认证 
      *
      */
     public function ca()
@@ -31,6 +31,12 @@ class WechatController extends Controller
     public function answer() 
     {
         $xml = file_get_contents('php://input');
+        
+        if(!$xml) {
+            echo "success";
+            exit();
+        }
+
         $array = xml_to_array($xml);
 
         $t = new Templets;
@@ -62,7 +68,7 @@ class WechatController extends Controller
                 break;
             
             default:
-                # code...
+                // echo "success";
                 break;
         }
     }
