@@ -68,7 +68,7 @@ class WechatController extends Controller
                 break;
             
             default:
-                // echo "success";
+                echo "success";
                 break;
         }
     }
