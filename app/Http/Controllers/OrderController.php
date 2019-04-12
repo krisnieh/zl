@@ -14,6 +14,7 @@ use App\Helpers\Role;
 
 use App\Jobs\WechatOrderNew;
 use App\Jobs\WechatOrderFinish;
+use App\Jobs\WechatFinanceUse;
 
 class OrderController extends Controller
 {
@@ -160,7 +161,12 @@ class OrderController extends Controller
                 'state' => 1,
             ];
 
-            $target->from->give()->create($new);
+            $f = $target->from->give()->create($new);
+
+            # 
+            # 微信通知: 消费充值
+            # 
+            WechatOrderFinish::dispatch($f);
         }
 
         $target->update(['pay' => $pay, 'to_user' => Auth::id(), 'state' => 1]);

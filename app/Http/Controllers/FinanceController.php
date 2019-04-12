@@ -101,7 +101,7 @@ class FinanceController extends Controller
             'pay' => $request->pay,
         ];
 
-        Finance::create($new);
+        $finance = Finance::create($new);
 
         $text = '您的充值已经成功提交,正等待代理商确认';
 

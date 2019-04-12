@@ -58,7 +58,7 @@ class WechatOrderFinish implements ShouldQueue
                 $array = [
                     'touser' => $openid,
                     'template_id' => config('wechat.templets.order_finish'),
-                    'url' => config('wechat.pub.url').'/orders',
+                    // 'url' => config('wechat.pub.url').'/orders',
                     'data' => [
                         'first' => ['value'=>'订单已完成'],
                         'keyword1' => [
