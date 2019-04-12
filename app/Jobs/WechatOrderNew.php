@@ -38,7 +38,7 @@ class WechatOrderNew implements ShouldQueue
     public function handle(Role $role)
     {
         $openids = [];
-        // Log::info('handle');
+        Log::info('handle');
 
         // $this->order->to->users()->where('auth->master', true)->get(); # 5.7版本不支持
 
