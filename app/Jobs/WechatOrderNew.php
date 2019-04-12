@@ -35,7 +35,7 @@ class WechatOrderNew implements ShouldQueue
      *
      * @return void
      */
-    public function handle(Role, $role)
+    public function handle(Role $role)
     {
         $openids = [];
         // Log::info('handle');
