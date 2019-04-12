@@ -68,7 +68,7 @@ class WechatOrderNew implements ShouldQueue
                     ],
                 ];
                 // 发送
-                Log::warning($array);
+                Log::info($array);
             }  
         }
     }
