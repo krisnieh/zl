@@ -41,33 +41,33 @@ class Templet
      */
     public function sendTemplet($array)
     {
-        $keywords = '';
+       //  $keywords = '';
 
-        for ($i=0; $i < count($array['keywords']) ; $i++) { 
-            $keywords .= '
-                "keyword'.($i+1).'":{
-                   "value":"'.$array['keywords'][$i].'"
-                },
-            ';
-        }
+       //  for ($i=0; $i < count($array['keywords']) ; $i++) { 
+       //      $keywords .= '
+       //          "keyword'.($i+1).'":{
+       //             "value":"'.$array['keywords'][$i].'"
+       //          },
+       //      ';
+       //  }
 
-        $json = '
-        {
-           "touser":"'.$array['openid'].'",
-           "template_id":"'.$array['template_id'].'",
-           "url":"'.$array['url'].'",           
-           "data":{
-                    "first": {
-                       "value":"'.$array['first'].'"
-                    },
-                    '.$keywords.'
-                    "remark":{
-                       "value":"'.$array['remark'].'",
-                    }
-           }
-       }';
-
-       return $this->pub->way($this->url, $json);
+       //  $json = '
+       //  {
+       //     "touser":"'.$array['openid'].'",
+       //     "template_id":"'.$array['template_id'].'",
+       //     "url":"'.$array['url'].'",           
+       //     "data":{
+       //              "first": {
+       //                 "value":"'.$array['first'].'"
+       //              },
+       //              '.$keywords.'
+       //              "remark":{
+       //                 "value":"'.$array['remark'].'",
+       //              }
+       //     }
+       // }';
+      $json = json_encode($array);
+      return $this->pub->way($this->url, $json);
        // Log::info($json);
 
     }

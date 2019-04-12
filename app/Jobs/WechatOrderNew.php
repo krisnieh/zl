@@ -54,20 +54,45 @@ class WechatOrderNew implements ShouldQueue
 
         if(count($openids)) {
             foreach ($openids as $openid) {
+                // $array = [
+                //     'openid' => $openid,
+                //     'template_id' => config('wechat.templets.order_new'),
+                //     'url' => URL::asset('/orders/show/'.$this->order->from->id),
+                //     'first' => '新订单通知',
+                //     'remark' => '请及时与订货人联系确认',
+                //     'keywords' => [
+                //         '待确认', # '订单金额',
+                //         $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num, #'订单详情',
+                //         $this->order->id, # '订单号',
+                //         $this->order->from->name .'-'. $role->show($this->order->consumer->info, 'name') . $role->show($this->order->consumer->accounts, 'mobile'), # '买家会员',
+                //     ],
+                // ];
+                // 发送
                 $array = [
                     'openid' => $openid,
                     'template_id' => config('wechat.templets.order_new'),
                     'url' => URL::asset('/orders/show/'.$this->order->from->id),
-                    'first' => '新订单通知',
-                    'remark' => '请及时与订货人联系确认',
-                    'keywords' => [
-                        '待确认', # '订单金额',
-                        $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num, #'订单详情',
-                        $this->order->id, # '订单号',
-                        $this->order->from->name .'-'. $role->show($this->order->consumer->info, 'name') . $role->show($this->order->consumer->accounts, 'mobile'), # '买家会员',
+                    'data' => [
+                        'first' => ['value'=>'新订单通知'],
+                        'keyword1' => [
+                            'value'=>'待确认',
+                        ],
+                        'keyword2' => [
+                            'value' => $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num,
+                        ],
+                        'keyword3' => [
+                            'value'=>$this->order->id,
+                        ],
+                        'keyword4' => [
+                            'value'=>$this->order->from->name .'-'. $role->show($this->order->consumer->info, 'name') . $role->show($this->order->consumer->accounts, 'mobile'),
+                        ],
+                        'remark' => [
+                            'value'=>'请及时与订货人联系确认',
+                        ],
                     ],
+                    
                 ];
-                // 发送
+
                 $templet->sendTemplet($array);
             }  
         }
