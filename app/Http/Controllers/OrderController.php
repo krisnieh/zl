@@ -174,7 +174,7 @@ class OrderController extends Controller
         # 
         # 微信通知: 完成
         # 
-        // WechatOrderFinish::dispatch($target);
+        WechatOrderFinish::dispatch($target);
 
 
         $text = '操作成功,订单已完成!';
