@@ -28,9 +28,9 @@ class WechatTemplet implements ShouldQueue
      */
     public function __construct(Order $order)
     {
-        Log::info('start');
 
         $this->order = $order;
+        Log::info('start');
     }
 
     /**
@@ -38,9 +38,10 @@ class WechatTemplet implements ShouldQueue
      *
      * @return void
      */
-    public function handle(Templet $templet, Role $role)
+    public function handle(Role $role)
     {
-        Log::info('handel');
+        Log::info('handle');
+
         $openids = [];
 
         // $order->to->users()->where('auth->master', true)->get(); # 5.7版本不支持
