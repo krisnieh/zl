@@ -36,7 +36,7 @@ class WechatTemplet implements ShouldQueue
      *
      * @return void
      */
-    public function handle(Templet $templet, Role, $role)
+    public function handle(Templet $templet, Role $role)
     {
         $openids = [];
 
