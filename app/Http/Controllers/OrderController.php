@@ -13,6 +13,7 @@ use App\Org;
 use App\Helpers\Role;
 
 use App\Jobs\WechatOrderNew;
+use App\Jobs\WechatOrderFinish;
 
 class OrderController extends Controller
 {
@@ -163,6 +164,11 @@ class OrderController extends Controller
         }
 
         $target->update(['pay' => $pay, 'to_user' => Auth::id(), 'state' => 1]);
+
+        # 
+        # 微信通知: 完成
+        # 
+        WechatOrderFinish::dispatch($target);
 
 
         $text = '操作成功,订单已完成!';

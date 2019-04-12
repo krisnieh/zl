@@ -12,7 +12,7 @@ use App\Order;
 use App\Helpers\Role;
 use App\Wechat\Templet;
 
-class WechatOrderNew implements ShouldQueue
+class WechatOrderFinish implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -45,7 +45,11 @@ class WechatOrderNew implements ShouldQueue
             if($role->master($user->id) && $role->show($user->accounts, 'openid') != null) array_push($openids, $role->show($user->accounts, 'openid'));
         }
 
+        // 机构推荐者
         if($role->show($this->order->from->orgMan->accounts, 'openid') != null) array_push($openids, $role->show($this->order->from->orgMan->accounts, 'openid'));
+
+        // 下单者
+        if($role->show($this->order->consumer->accounts, 'openid') != null) array_push($openids, $role->show($this->order->consumer->accounts, 'openid'));
 
         $openids = array_unique($openids);
 
@@ -53,24 +57,24 @@ class WechatOrderNew implements ShouldQueue
             foreach ($openids as $openid) {
                 $array = [
                     'touser' => $openid,
-                    'template_id' => config('wechat.templets.order_new'),
-                    'url' => config('wechat.pub.url').'/orders/show/'.$this->order->to_org,
+                    'template_id' => config('wechat.templets.order_finish'),
+                    'url' => config('wechat.pub.url').'/orders',
                     'data' => [
-                        'first' => ['value'=>'新订单通知'],
+                        'first' => ['value'=>'订单已完成'],
                         'keyword1' => [
-                            'value'=>'待确认',
+                            'value'=> $this->order->pay,
                         ],
                         'keyword2' => [
                             'value' => $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num,
                         ],
                         'keyword3' => [
-                            'value'=>$this->order->id,
+                            'value'=> now(),
                         ],
                         'keyword4' => [
-                            'value'=>$this->order->from->name .'-'. $role->show($this->order->consumer->info, 'name') . $role->show($this->order->consumer->accounts, 'mobile'),
+                            'value'=> $role->show($this->order->consumer->info, 'addr'),
                         ],
                         'remark' => [
-                            'value'=>'请及时与订货人联系确认',
+                            'value'=>'若使用了充值金额结算,请核对账户变动,谢谢!',
                         ],
                     ],
                     
@@ -80,4 +84,15 @@ class WechatOrderNew implements ShouldQueue
             }  
         }
     }
+
+    // end
 }
+
+
+
+
+
+
+
+
+
