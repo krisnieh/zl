@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'parent_id' => 1,
-            'org_id' => 3,
+            'org_id' => 1,
             'accounts' =>'{"mobile":"17821621090", "openid":"ojK9v1ZaCM4AnDe_iMjf5AQM61II"}',
             'password' => bcrypt('000000'),
             'info' => '{"name":"Kris", "addr":"无锡"}',
