@@ -47,6 +47,9 @@ class WechatFinanceFill implements ShouldQueue
 
         if($role->show($this->finance->from->orgMan->accounts, 'openid') != null) array_push($openids, $role->show($this->finance->from->orgMan->accounts, 'openid'));
 
+        // 充值者
+        if($role->show($this->finance->consumer->accounts, 'openid') != null) array_push($openids, $role->show($this->finance->consumer->accounts, 'openid'));
+
         $openids = array_unique($openids);
 
         if(count($openids)) {
