@@ -12,7 +12,7 @@ use App\Order;
 use App\Org;
 use App\Helpers\Role;
 
-use App\Jobs\WechatTemplet;
+use App\Jobs\WechatOrderNew;
 
 class OrderController extends Controller
 {
@@ -93,7 +93,7 @@ class OrderController extends Controller
             # 
             # 微信通知
             # 
-            WechatTemplet::dispatch($order);
+            WechatOrderNew::dispatch($order);
         }
         if($request->black != 0) {
             $new['product_id'] = 2;
@@ -103,7 +103,7 @@ class OrderController extends Controller
             # 
             # 微信通知
             # 
-            WechatTemplet::dispatch($order);
+            WechatOrderNew::dispatch($order);
         }
 
         $text = '您的订单已经成功发送!';
