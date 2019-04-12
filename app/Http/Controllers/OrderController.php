@@ -12,6 +12,8 @@ use App\Order;
 use App\Org;
 use App\Helpers\Role;
 
+use use App\Jobs\WechatTemplet;
+
 class OrderController extends Controller
 {
     use FormBuilderTrait;
@@ -86,20 +88,25 @@ class OrderController extends Controller
         if($request->gold != 0) {
             $new['product_id'] = 1;
             $new['num'] = $request->gold;
-            Order::create($new);
+            $order = Order::create($new);
+
+            # 
+            # 微信通知
+            # 
+            WechatTemplet::dispatch($order);
         }
         if($request->black != 0) {
             $new['product_id'] = 2;
             $new['num'] = $request->black;
-            Order::create($new);
+            $order = Order::create($new);
+            
+            # 
+            # 微信通知
+            # 
+            WechatTemplet::dispatch($order);
         }
 
         $text = '您的订单已经成功发送!';
-
-        # 
-        # 微信通知
-        # ---------
-        # 
 
         return view('note', compact('text'));
 

@@ -18,6 +18,13 @@ return [
         'name' => env('WECHAT_NAME', false),
     ],
 
+    'templets' => [
+        'finance_fill' => env('WECHAT_TEMPLET_FINANCE_FILL', false),
+        'finance_use' => env('WECHAT_TEMPLET_FINANCE_USE', false),
+        'order_new' => env('WECHAT_TEMPLET_ORDER_NEW', false),
+        'order_finish' => env('WECHAT_TEMPLET_ORDER_FINISH', false),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Wechat Enterprise
