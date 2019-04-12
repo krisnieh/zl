@@ -62,8 +62,8 @@ class WechatTemplet implements ShouldQueue
                     'keywords' => [
                         $this->order->pay, # '订单金额',
                         $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num, #'订单详情',
-                        $this->order->id # '订单号',
-                        $this->order->from->name . $role->show($this->order->from_user->accounts, 'mobile') # '买家会员',
+                        $this->order->id, # '订单号',
+                        $this->order->from->name . $role->show($this->order->from_user->accounts, 'mobile'), # '买家会员',
                     ],
                 ];
                 // 发送
