@@ -69,7 +69,7 @@ class WechatOrderNew implements ShouldQueue
                 // ];
                 // 发送
                 $array = [
-                    'openid' => $openid,
+                    'touser' => $openid,
                     'template_id' => config('wechat.templets.order_new'),
                     'url' => URL::asset('/orders/show/'.$this->order->from->id),
                     'data' => [
