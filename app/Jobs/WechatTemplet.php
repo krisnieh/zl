@@ -43,11 +43,11 @@ class WechatTemplet implements ShouldQueue
         // $order->to->users()->where('auth->master', true)->get(); # 5.7版本不支持
 
         // 接收机构管理员
-        foreach ($order->to->users as $user) {
+        foreach ($this->order->to->users as $user) {
             if($role->master($user->id) && $role->show($user->accounts, 'openid')) array_push($openids, $role->show($user->accounts, 'openid'));
         }
 
-        if($role->show($order->from->orgMan->accounts, 'openid')) array_push($openids, $role->show($order->from->orgMan->accounts, 'openid'));
+        if($role->show($this->order->from->orgMan->accounts, 'openid')) array_push($openids, $role->show($this->order->from->orgMan->accounts, 'openid'));
 
         array_unique($openid);
 
