@@ -43,9 +43,9 @@ class Templet
     {
         $keywords = '';
 
-        for ($i=1; $i <= count($array['keywords']) ; $i++) { 
+        for ($i=0; $i < count($array['keywords']) ; $i++) { 
             $keywords .= '
-                "keyword'.$i.'":{
+                "keyword'.($i+1).'":{
                    "value":"'.$array['keywords'][$i].'"
                 },
             ';
