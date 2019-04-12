@@ -13,6 +13,7 @@ use URL;
 
 use App\Order;
 use App\Helpers\Role;
+use App\Wechat\Templet;
 
 class WechatOrderNew implements ShouldQueue
 {
@@ -36,7 +37,7 @@ class WechatOrderNew implements ShouldQueue
      *
      * @return void
      */
-    public function handle(Role $role)
+    public function handle(Role $role, Templet $templet)
     {
         $openids = [];
 
@@ -67,7 +68,7 @@ class WechatOrderNew implements ShouldQueue
                     ],
                 ];
                 // 发送
-                Log::info($array);
+                $templet->sendTemplet($array);
             }  
         }
     }

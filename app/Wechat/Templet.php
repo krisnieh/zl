@@ -2,6 +2,8 @@
 
 namespace App\Wechat;
 
+use Log;
+
 use App\Wechat\Pub;
 
 
@@ -65,7 +67,9 @@ class Templet
            }
        }';
 
-       return $this->pub->way($this->url, $json);
+       // return $this->pub->way($this->url, $json);
+       Log::info($json);
+
     }
 
     /**
