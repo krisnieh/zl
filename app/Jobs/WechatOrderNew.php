@@ -49,7 +49,7 @@ class WechatOrderNew implements ShouldQueue
 
         if($role->show($this->order->from->orgMan->accounts, 'openid') != null) array_push($openids, $role->show($this->order->from->orgMan->accounts, 'openid'));
 
-        array_unique($openids);
+        $openids = array_unique($openids);
 
         if(count($openids)) {
             foreach ($openids as $openid) {
