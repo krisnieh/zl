@@ -90,11 +90,7 @@ Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
-    $arr = [1,2];
-    array_push($arr, 3);
-    array_push($arr, 1);
-    $arr = array_unique($arr);
-    print_r($arr);
+    echo now();
 
 });
 
