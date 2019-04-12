@@ -67,8 +67,8 @@ class Templet
            }
        }';
 
-       // return $this->pub->way($this->url, $json);
-       Log::info($json);
+       return $this->pub->way($this->url, $json);
+       // Log::info($json);
 
     }
 
