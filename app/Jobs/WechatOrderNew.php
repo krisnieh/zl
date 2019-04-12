@@ -62,10 +62,10 @@ class WechatOrderNew implements ShouldQueue
                     'first' => '新订单通知',
                     'remark' => '请及时与订货人联系确认',
                     'keywords' => [
-                        $this->order->pay, # '订单金额',
+                        '待确认', # '订单金额',
                         $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num, #'订单详情',
                         $this->order->id, # '订单号',
-                        $this->order->consumer->name . $role->show($this->order->consumer->accounts, 'mobile'), # '买家会员',
+                        $this->order->from->name .'-'. $role->show($this->order->consumer->info 'name') . $role->show($this->order->consumer->accounts, 'mobile'), # '买家会员',
                     ],
                 ];
                 // 发送
