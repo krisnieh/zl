@@ -166,7 +166,7 @@ class OrderController extends Controller
             # 
             # 微信通知: 消费充值
             # 
-            WechatOrderFinish::dispatch($f);
+            WechatFinanceUse::dispatch($f);
         }
 
         $target->update(['pay' => $pay, 'to_user' => Auth::id(), 'state' => 1]);
@@ -174,7 +174,7 @@ class OrderController extends Controller
         # 
         # 微信通知: 完成
         # 
-        WechatOrderFinish::dispatch($target);
+        // WechatOrderFinish::dispatch($target);
 
 
         $text = '操作成功,订单已完成!';
