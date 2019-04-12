@@ -65,7 +65,7 @@ class WechatFinanceFill implements ShouldQueue
                         ],
                         'keyword2' => [
                             'value' => $this->finance->pay,
-                            'color' => '#42F408',
+                            'color' => '#18A304',
                         ],
                         'keyword3' => [
                             'value'=> date("Y-m-d h:i:s", time()),
