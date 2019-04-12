@@ -61,16 +61,14 @@ class WechatFinanceFill implements ShouldQueue
                             'value'=> $this->finance->from->name .'-'. $role->show($this->finance->consumer->info, 'name') . $role->show($this->finance->consumer->accounts, 'mobile'),
                         ],
                         'keyword2' => [
-                            'value' => $this->finance->goods->name . $this->finance->goods->type .'×'. $this->finance->num,
+                            'value' => $this->finance->pay,
+                            'color' => '#42F408',
                         ],
                         'keyword3' => [
-                            'value'=>$this->finance->id,
-                        ],
-                        'keyword4' => [
-                            'value'=>$this->finance->from->name .'-'. $role->show($this->finance->consumer->info, 'name') . $role->show($this->finance->consumer->accounts, 'mobile'),
+                            'value'=> date("Y-m-d h:i:s", time()),
                         ],
                         'remark' => [
-                            'value'=>'请及时与订货人联系确认',
+                            'value'=>'若有疑问请立即联系代理商',
                         ],
                     ],
                     

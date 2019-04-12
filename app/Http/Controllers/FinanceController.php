@@ -10,7 +10,7 @@ use App\Finance;
 use App\Org;
 use App\Helpers\Role;
 use App\Forms\FinanceForm;
-use App\Wechat\Templet;
+use App\Jobs\WechatFinanceFill;
 
 class FinanceController extends Controller
 {
@@ -159,6 +159,12 @@ class FinanceController extends Controller
                 # code...
                 break;
         }
+
+        # 
+        # 微信通知: 充值成功
+        # 
+        WechatFinanceFill::dispatch($target);
+
 
         $text = '操作成功,充值已确认!';
         return view('note', compact('text'));
