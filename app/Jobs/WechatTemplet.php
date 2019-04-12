@@ -30,7 +30,7 @@ class WechatTemplet implements ShouldQueue
     {
 
         $this->order = $order;
-        Log::info('start');
+        // Log::info('start');
     }
 
     /**
@@ -40,9 +40,9 @@ class WechatTemplet implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('handle');
 
         $openids = [];
+        Log::info('handle');
 
         // $order->to->users()->where('auth->master', true)->get(); # 5.7版本不支持
 
