@@ -19,7 +19,7 @@ class WechatTemplet implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private $order;
+    protected $order;
 
     /**
      * Create a new job instance.
