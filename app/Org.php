@@ -20,6 +20,12 @@ class Org extends Model
         return $this->hasMany('App\User', 'org_id', 'id');
     }
 
+    // 员工和客户
+    public function orgMan() 
+    {
+        return $this->hasOne('App\User', 'id', 'master_id');
+    }
+
     // 花费
     public function costs()
     {
