@@ -12,7 +12,7 @@ use App\Order;
 use App\Org;
 use App\Helpers\Role;
 
-use use App\Jobs\WechatTemplet;
+use App\Jobs\WechatTemplet;
 
 class OrderController extends Controller
 {
@@ -99,7 +99,7 @@ class OrderController extends Controller
             $new['product_id'] = 2;
             $new['num'] = $request->black;
             $order = Order::create($new);
-            
+
             # 
             # 微信通知
             # 
