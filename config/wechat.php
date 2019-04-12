@@ -10,7 +10,9 @@ return [
     |
     */
 
+
     'pub' => [
+        'url' =>  env('APP_URL', false),
         'app_id' => env('WECHAT_APP_ID', false),
         'app_secret' => env('WECHAT_SECRET', false),
         'token' => env('WECHAT_TOKEN', false),

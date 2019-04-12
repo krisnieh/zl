@@ -26,50 +26,34 @@ class Templet
      * 模板消息
      *
        $array = [
-            'openid' => ,
-            'template_id' => ,
-            'url' => ,
-            'first' => '店铺新订单成交通知',
-            'remark' => '该张订单完成后，店铺提成可以在会员中心申请提现',
-            'keywords' => [
-                '订单金额',
-                '订单详情',
-                '订单号',
-                '买家会员',
-            ],
-        ];
+          'touser' => $openid,
+          'template_id' => config('wechat.templets.order_new'),
+          'url' => config('wechat.pub.url').'/orders/show/'.$this->order->from->id,
+          'data' => [
+              'first' => ['value'=>'新订单通知'],
+              'keyword1' => [
+                  'value'=>'待确认',
+              ],
+              'keyword2' => [
+                  'value' => $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num,
+              ],
+              'keyword3' => [
+                  'value'=>$this->order->id,
+              ],
+              'keyword4' => [
+                  'value'=>$this->order->from->name .'-'. $role->show($this->order->consumer->info, 'name') . $role->show($this->order->consumer->accounts, 'mobile'),
+              ],
+              'remark' => [
+                  'value'=>'请及时与订货人联系确认',
+              ],
+          ],
+          
+      ];
      */
     public function sendTemplet($array)
     {
-       //  $keywords = '';
-
-       //  for ($i=0; $i < count($array['keywords']) ; $i++) { 
-       //      $keywords .= '
-       //          "keyword'.($i+1).'":{
-       //             "value":"'.$array['keywords'][$i].'"
-       //          },
-       //      ';
-       //  }
-
-       //  $json = '
-       //  {
-       //     "touser":"'.$array['openid'].'",
-       //     "template_id":"'.$array['template_id'].'",
-       //     "url":"'.$array['url'].'",           
-       //     "data":{
-       //              "first": {
-       //                 "value":"'.$array['first'].'"
-       //              },
-       //              '.$keywords.'
-       //              "remark":{
-       //                 "value":"'.$array['remark'].'",
-       //              }
-       //     }
-       // }';
       $json = json_encode($array);
       return $this->pub->way($this->url, $json);
-       // Log::info($json);
-
     }
 
     /**
