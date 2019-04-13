@@ -65,7 +65,7 @@ class WechatOrderFinish implements ShouldQueue
                             'value'=> $this->order->pay,
                         ],
                         'keyword2' => [
-                            'value' => $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num,
+                            'value' => $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num.'箱',
                         ],
                         'keyword3' => [
                             'value'=> date("Y-m-d h:i:s", time()),
@@ -74,7 +74,7 @@ class WechatOrderFinish implements ShouldQueue
                             'value'=> $role->show($this->order->from->info, 'addr'),
                         ],
                         'remark' => [
-                            'value'=>'若使用了充值金额结算,请核对账户变动,谢谢!',
+                            'value'=>'若使用了充值金额结算,请核对账户变动',
                         ],
                     ],
                     

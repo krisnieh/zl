@@ -67,7 +67,7 @@ class WechatFinanceUse implements ShouldQueue
                             'value' => $this->finance->to->name,
                         ],
                         'keyword3' => [
-                            'value' => $this->finance->pay,
+                            'value' => '¥'.$this->finance->pay,
                             'color' => '#F91706',
                         ],
                         'keyword4' => [

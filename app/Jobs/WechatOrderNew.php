@@ -61,7 +61,7 @@ class WechatOrderNew implements ShouldQueue
                             'value'=>'待确认',
                         ],
                         'keyword2' => [
-                            'value' => $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num,
+                            'value' => $this->order->goods->name . $this->order->goods->type .'×'. $this->order->num.'箱',
                         ],
                         'keyword3' => [
                             'value'=>$this->order->id,
