@@ -132,9 +132,9 @@ class FinanceController extends Controller
             exit();
         }
 
-        if($month > 24 || $month < 1) {
+        if($month > 24 || $month < 0) {
             $color = 'danger';
-            $text = '充值有效期必须1至24个月之间';
+            $text = '充值有效期必须在0至24个月之间';
             return view('note', compact('color','text'));
             exit();
         }
