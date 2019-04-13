@@ -6,7 +6,7 @@
     <span class="breadcrumb-item active"><i class="fa fa-gift ico-space" aria-hidden="true"></i>积分</span>
   </nav>
 
-    <div class="alert alert-info"><h1><i class="fa fa-gift ico-space" aria-hidden="true"></i></h1>积分功能即将开放,敬请期待!</div>
+    <div class="alert alert-info cent"><h1><i class="fa fa-gift ico-space" aria-hidden="true"></i></h1>积分功能即将开放,敬请期待!</div>
 
 
 @endsection
