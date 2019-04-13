@@ -167,7 +167,7 @@
     var vip = $("#vip option:selected").val();
     var url = '/finance/finish/' + id_f + '/' + month + '/' + vip;
 
-    if(month >= 1 && month <= 24) $("#go_f").attr('href', url);
+    if(month >= 0 && month <= 24) $("#go_f").attr('href', url);
   }
 
 </script>
