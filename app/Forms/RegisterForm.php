@@ -10,6 +10,8 @@ class RegisterForm extends Form
 
     private function pick()
     {
+        if(!Session::has('openid') || Cache::has(session('openid'))) exit();
+
         $str = Cache::get(session('openid'));
         $arr = explode('_', $str);
         $do = end($arr);

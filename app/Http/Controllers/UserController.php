@@ -295,7 +295,10 @@ class UserController extends Controller
         if($exists) return redirect()->back()->withErrors(['mobile'=>'手机号已存在!'])->withInput();
 
         // 单位
+        if(!Session::has('openid')) exit();
         $array = explode('_', Cache::get(session('openid')));
+
+        if(!count($array)) exit();
 
         $u = User::findOrFail($array[2]);
 
