@@ -90,7 +90,7 @@ Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
-    echo now();
+    Cache::flush();
 
 });
 
