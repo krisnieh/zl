@@ -63,7 +63,7 @@ class WechatController extends Controller
                 // 推荐码
                 $ex = User::where('accounts->openid', $array['FromUserName'])->first();
 
-                if(!$ex && array_key_exists('EventKey', $array) && Str::startsWith($array['EventKey'], 'qrscene_ad')) Cache::put($array['FromUserName'], $array['EventKey'], 30);
+                if(!$ex && array_key_exists('EventKey', $array) && is_string($array['EventKey']) && Str::startsWith($array['EventKey'], 'qrscene_ad')) Cache::put($array['FromUserName'], $array['EventKey'], 30);
 
                 // 回复
                 echo($t->news($news));
