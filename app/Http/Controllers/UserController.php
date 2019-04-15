@@ -282,6 +282,14 @@ class UserController extends Controller
      */
     public function regCheck(Request $request) 
     {
+        // 单位
+        if(!Session::has('openid')) exit();
+        if(!Cache::has(session('openid'))) exit();
+
+        $array = explode('_', Cache::get(session('openid')));
+
+        if(!count($array) || count($array) < 3) exit();
+
         $form = $this->form(RegisterForm::class);
 
         // 输入校验
@@ -294,11 +302,7 @@ class UserController extends Controller
 
         if($exists) return redirect()->back()->withErrors(['mobile'=>'手机号已存在!'])->withInput();
 
-        // 单位
-        if(!Session::has('openid')) exit();
-        $array = explode('_', Cache::get(session('openid')));
-
-        if(!count($array)) exit();
+        
 
         $u = User::findOrFail($array[2]);
 
