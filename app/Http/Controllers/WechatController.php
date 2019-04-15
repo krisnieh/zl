@@ -38,6 +38,7 @@ class WechatController extends Controller
         }
 
         $array = xml_to_array($xml);
+        Log::info($array);
 
         $t = new Templets;
 
