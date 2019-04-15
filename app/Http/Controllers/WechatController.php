@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use URL;
 use Log;
 use Cache;
-use Str;
+use Illuminate\Support\Str;
 
 use App\Wechat\Pub;
 use App\Wechat\Menu;
