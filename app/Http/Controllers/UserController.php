@@ -278,7 +278,7 @@ class UserController extends Controller
 
     private function clear()
     {
-        Cache::flush();
+        Cache::forget(session('openid'));
         return redirect('/');
     }
 
