@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use URL;
 use Log;
 use Cache;
+use Str;
 
 use App\Wechat\Pub;
 use App\Wechat\Menu;
@@ -62,7 +63,7 @@ class WechatController extends Controller
                 // 推荐码
                 $ex = User::where('accounts->openid', $array['FromUserName'])->first();
 
-                if(!$ex && array_key_exists('EventKey', $array) && is_array($array['EventKey'])) Cache::put($array['FromUserName'], $array['EventKey'], 30);
+                if(!$ex && array_key_exists('EventKey', $array) && iStr::startsWith($array['EventKey'], 'qrscene_ad');) Cache::put($array['FromUserName'], $array['EventKey'], 30);
 
                 // 回复
                 echo($t->news($news));
