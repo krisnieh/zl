@@ -276,6 +276,12 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    private function clear()
+    {
+        Cache::flush();
+        return redirect('/');
+    }
+
     /**
      * 注册检查
      *
@@ -283,12 +289,12 @@ class UserController extends Controller
     public function regCheck(Request $request) 
     {
         // 单位
-        if(!Session::has('openid')) exit();
-        if(!Cache::has(session('openid'))) exit();
+        if(!Session::has('openid')) $this->clear();
+        if(!Cache::has(session('openid'))) $this->clear();
 
         $array = explode('_', Cache::get(session('openid')));
 
-        if(!count($array) || count($array) < 3) exit();
+        if(!count($array) || count($array) < 3) $this->clear();
 
         $form = $this->form(RegisterForm::class);
 
