@@ -58,10 +58,11 @@ class WechatController extends Controller
                 ];
                 // Log::info($array);
 
+
                 // 推荐码
                 $ex = User::where('accounts->openid', $array['FromUserName'])->first();
 
-                if(!$ex && array_key_exists('EventKey', $array) && count($array['EventKey'])) Cache::put($array['FromUserName'], $array['EventKey'], 30);
+                if(!$ex && array_key_exists('EventKey', $array) && is_array($array['EventKey'])) Cache::put($array['FromUserName'], $array['EventKey'], 30);
 
                 // 回复
                 echo($t->news($news));
