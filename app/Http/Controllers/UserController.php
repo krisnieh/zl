@@ -259,7 +259,7 @@ class UserController extends Controller
             'url' => '/reg_check'
         ]);
 
-        $title = '注册: 需30分钟内完成 <a class="btn btn-danger btn-sm text-white" href="/cancel_reg">取消注册</a>';
+        $title = '注册: 需30分钟内完成 <a class="btn btn-danger btn-sm text-white" href="/reg_cancel">取消注册</a>';
         $icon = 'user-o';
 
         return view('form', compact('form','title','icon'));
