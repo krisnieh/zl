@@ -4,6 +4,7 @@ namespace App\Forms;
 
 use Kris\LaravelFormBuilder\Form;
 use Cache;
+use Session;
 
 class RegisterForm extends Form
 {
