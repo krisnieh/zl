@@ -5,6 +5,7 @@ namespace App\Forms;
 use Kris\LaravelFormBuilder\Form;
 use Cache;
 use Session;
+use Log;
 
 class RegisterForm extends Form
 {
@@ -18,7 +19,7 @@ class RegisterForm extends Form
 
         $str = Cache::get(session('openid'));
         $arr = explode('_', $str);
-        
+
         Log::alert($arr);
 
         $do = end($arr);
