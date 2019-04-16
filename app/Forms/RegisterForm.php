@@ -12,7 +12,7 @@ class RegisterForm extends Form
 
     private function pick()
     {
-        if(!Session::has('openid') || Cache::has(session('openid'))) {
+        if(!Session::has('openid') || !Cache::has(session('openid'))) {
             Cache::flush();
             return redirect('/');
         }
@@ -20,7 +20,7 @@ class RegisterForm extends Form
         $str = Cache::get(session('openid'));
         $arr = explode('_', $str);
 
-        Log::alert($arr);
+        // Log::alert($arr);
 
         $do = end($arr);
         return $do;
