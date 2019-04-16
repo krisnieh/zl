@@ -18,6 +18,9 @@ class RegisterForm extends Form
 
         $str = Cache::get(session('openid'));
         $arr = explode('_', $str);
+        
+        Log::alert($arr);
+
         $do = end($arr);
         return $do;
     }
