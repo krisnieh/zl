@@ -301,7 +301,7 @@ class UserController extends Controller
         // 输入校验
         $v = new Validator;
         if(!$v->checkMobile($request->mobile)) return redirect()->back()->withErrors(['mobile'=>'手机号不正确!'])->withInput();
-        if($request->password !== $request->confirm_password) redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
+        if($request->password !== $request->confirm_password) return redirect()->back()->withErrors(['confirm_password'=>'密码不一致!'])->withInput();
 
         $exists = User::where('accounts->mobile', $request->mobile)
                         ->first();
