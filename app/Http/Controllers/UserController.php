@@ -121,8 +121,6 @@ class UserController extends Controller
     // 解除微信绑定
     public function cut ()
     {
-        if(!Auth::check()) return redirect('/');
-        
         Auth::user()->update(['accounts->openid' => null]);
         return $this->logout();
     }

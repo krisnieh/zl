@@ -22,7 +22,6 @@ Route::get('/wechat/ca', 'WechatController@ca');
 Route::post('/wechat/ca', 'WechatController@answer'); # post xml
 Route::get('/wechat/menu/create', 'WechatController@menuCreate');
 Route::get('/wechat/menu/delete', 'WechatController@menuDelete');
-Route::get('/wechat/cut', 'UserController@cut');
 
 // web登录
 Route::get('/login', 'UserController@login');
@@ -37,6 +36,9 @@ Route::group(['middleware' => ['login', 'state']], function () {
     Route::get('/apps', function () {
         return view('apps');
     });
+
+    // 解除微信关联
+    Route::get('/wechat/cut', 'UserController@cut');
 
     // 业务
     Route::get('/pass', 'BizController@pass');
