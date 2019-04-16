@@ -175,7 +175,7 @@ class UserController extends Controller
 
         $json = '{"expire_seconds": '.$expire_seconds.', "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.Auth::id().'_'.$key.'"}}}';
 
-        // Log::info($json);
+        Log::info($json);
 
         $resault = $qrcode->get($json);
 
@@ -310,7 +310,7 @@ class UserController extends Controller
         
         $array = explode('_', Cache::get(session('openid')));
 
-        $u = User::findOrFail($array[2]);
+        $u = User::findOrFail(intval($array[2]));
 
         $org_id = $u->org_id;
 
