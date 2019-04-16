@@ -175,7 +175,7 @@ class UserController extends Controller
 
         $json = '{"expire_seconds": '.$expire_seconds.', "action_name": "QR_STR_SCENE", "action_info": {"scene": {"scene_str": "ad_'.Auth::id().'_'.$key.'"}}}';
 
-        Log::info($json);
+        // Log::info($json);
 
         $resault = $qrcode->get($json);
 
