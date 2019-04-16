@@ -292,7 +292,6 @@ class UserController extends Controller
         if(!Session::has('openid')) $this->clear();
         if(!Cache::has(session('openid'))) $this->clear();
 
-        $array = explode('_', Cache::get(session('openid')));
 
         // if(!count($array) || count($array) < 3) $this->clear();
 
@@ -309,6 +308,7 @@ class UserController extends Controller
         if($exists) return redirect()->back()->withErrors(['mobile'=>'手机号已存在!'])->withInput();
 
         
+        $array = explode('_', Cache::get(session('openid')));
 
         $u = User::findOrFail($array[2]);
 
