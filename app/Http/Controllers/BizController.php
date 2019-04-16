@@ -28,7 +28,7 @@ class BizController extends Controller
                     ->where(function ($query) {
 
                         if(!$this->au->admin()){
-                            $query->Where('parent_id', Auth::user()->org_id);
+                            $query->Where('parent_id', Auth::user()->org_id); 
                         }
 
                     })

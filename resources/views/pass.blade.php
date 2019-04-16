@@ -22,8 +22,12 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{{ $org->name }}</td>
+                    <td>{{ $org->name }}</td> 
+                  @if($r->angentOrg($org->id))
                     <td>{{ $r->show($org->info, 'province') }} / {{ $r->show($org->info, 'city') }} / {{ $r->show($org->info, 'sub_city') }}</td>
+                  @elseif($r->customerOrg($org->id))
+                    <td>{{ $r->show($org->info, 'addr') }}</td>
+                  @else
                     <td><a href="/pass/ok/orgs/{{ $org->id }}" class="btn btn-sm btn-success"><i class="fa fa-check" aria-hidden="true"></i></a></td>
                   </tr>
 
