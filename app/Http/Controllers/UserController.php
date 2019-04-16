@@ -294,7 +294,7 @@ class UserController extends Controller
 
         $array = explode('_', Cache::get(session('openid')));
 
-        if(!count($array) || count($array) < 3) $this->clear();
+        // if(!count($array) || count($array) < 3) $this->clear();
 
         $form = $this->form(RegisterForm::class);
 
