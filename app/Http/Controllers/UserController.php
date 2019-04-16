@@ -294,7 +294,6 @@ class UserController extends Controller
 
 
         // if(!count($array) || count($array) < 3) $this->clear();
-        Log::info($request);
 
         $form = $this->form(RegisterForm::class);
 
