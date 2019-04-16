@@ -65,7 +65,7 @@ class WechatController extends Controller
 
                 if(!$ex && array_key_exists('EventKey', $array) && is_string($array['EventKey']) && Str::startsWith($array['EventKey'], 'qrscene_ad')) Cache::put($array['FromUserName'], $array['EventKey'], 30);
 
-                Log::alert(Cache::get($array['FromUserName']));
+                // Log::alert(Cache::get($array['FromUserName']));
 
                 // 回复
                 echo($t->news($news));

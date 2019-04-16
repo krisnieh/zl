@@ -90,7 +90,11 @@ Route::get('/t', 'OrgController@test');
 
 
 Route::get('/test', function() {
-    Cache::flush();
+    // Cache::flush();''
+    $a = Cache::get(session('openid'));
+    Log::alert($a);
+    $b = explode('_', $a);
+    Log::info($b);
 
 });
 
