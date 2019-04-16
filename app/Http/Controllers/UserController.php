@@ -113,14 +113,16 @@ class UserController extends Controller
     {
         // Session::flush();
         // Cookie::forget('id');
-        Auth::logout();
-        return redirect('/');
+        Auth::logout(); 
+        return redirect('/'); 
     }
 
 
     // 解除微信绑定
     public function cut ()
     {
+        if(!Auth::check()) return redirect('/');
+        
         Auth::user()->update(['accounts->openid' => null]);
         return $this->logout();
     }
