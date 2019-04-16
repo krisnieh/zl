@@ -27,6 +27,8 @@ Route::get('/wechat/menu/delete', 'WechatController@menuDelete');
 Route::get('/login', 'UserController@login');
 Route::get('/logout', 'UserController@logout');
 Route::post('/check', 'UserController@check');
+
+// 注册和取消
 Route::get('/register', 'UserController@register');
 Route::post('/reg_check', 'UserController@regCheck');
 Route::get('/reg_cancel', 'UserController@regCancel');
@@ -87,9 +89,6 @@ Route::group(['middleware' => ['login', 'state']], function () {
 
 
 // -------- test ----------
-
-Route::get('/t', 'OrgController@test');
-
 
 Route::get('/test', function() {
     // Cache::flush();''
