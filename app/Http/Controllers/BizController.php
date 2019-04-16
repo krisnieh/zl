@@ -36,15 +36,20 @@ class BizController extends Controller
                     ->get();
 
         $users = User::where('auth->pass', 'no')
-                    ->where(function ($query) {
+                    // ->where(function ($query) {
 
-                        if(!$this->au->admin()){
-                            $query->Where('org_id', Auth::user()->org_id);
-                        }
+                    //     if(!$this->au->admin()){
+                    //         $query->Where('org_id', Auth::user()->org_id);
+                    //     }
 
-                    })
+                    // })
                     ->whereNull('auth->ignore')
                     ->get();
+
+        foreach ($users as $user) {
+            if($user->org->parent_id !== Auth::user()->org_id) $users->forget($user);
+        }
+
 
         return view('pass', compact('orgs', 'users'));
     }
