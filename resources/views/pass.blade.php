@@ -27,7 +27,7 @@
                     <td>{{ $r->show($org->info, 'province') }} / {{ $r->show($org->info, 'city') }} / {{ $r->show($org->info, 'sub_city') }}</td>
                   @elseif($r->customerOrg($org->id))
                     <td>{{ $r->show($org->info, 'addr') }}</td>
-                  @else
+                  @endif
                     <td><a href="/pass/ok/orgs/{{ $org->id }}" class="btn btn-sm btn-success"><i class="fa fa-check" aria-hidden="true"></i></a></td>
                   </tr>
 
