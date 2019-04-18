@@ -13,6 +13,7 @@ use App\Helpers\Role;
 class BizController extends Controller
 {
     private $au;
+
     /**
      * 审批中心
      *
@@ -49,11 +50,6 @@ class BizController extends Controller
         $users = $all->reject(function ($user) {
             return $user->org->parent_id !== Auth::user()->org_id;
         });
-
-        // foreach ($users as $user) {
-        //     if($user->org->parent_id !== Auth::user()->org_id) $users->forget($user);
-        // }
-
 
         return view('pass', compact('orgs', 'users'));
     }
