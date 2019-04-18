@@ -35,7 +35,7 @@ class BizController extends Controller
                     ->whereNull('auth->ignore')
                     ->get();
 
-        $users = User::where('auth->pass', 'no')
+        $all = User::where('auth->pass', 'no')
                     // ->where(function ($query) {
 
                     //     if(!$this->au->admin()){
@@ -46,9 +46,13 @@ class BizController extends Controller
                     ->whereNull('auth->ignore')
                     ->get();
 
-        foreach ($users as $user) {
-            if($user->org->parent_id !== Auth::user()->org_id) $users->forget($user);
-        }
+        $users = $all->reject(function ($user) {
+            return $user->org->parent_id !== Auth::user()->org_id;
+        });
+
+        // foreach ($users as $user) {
+        //     if($user->org->parent_id !== Auth::user()->org_id) $users->forget($user);
+        // }
 
 
         return view('pass', compact('orgs', 'users'));
